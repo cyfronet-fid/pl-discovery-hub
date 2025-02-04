@@ -1,0 +1,104 @@
+<div class="search-page-container">
+  <ess-search-bar #searchBar></ess-search-bar>
+  <div class="container d-md-none">
+    <div class="row mobile-buttons">
+      <div class="col-6">
+        <button
+          (click)="showFilters = !showFilters"
+          class="btn btn-special mobile-show-flters"
+          type="button"
+        >
+          <ng-container *ngIf="!showFilters; else hideFiltersCaption"
+            >Show filters</ng-container
+          >
+          <ng-template #hideFiltersCaption>Hide filters</ng-template>
+          <i class="bi bi-filter"></i>
+        </button>
+      </div>
+      <div class="col-6">
+        <button
+          (click)="showCollections = !showCollections"
+          class="btn btn-special mobile-show-collections"
+          type="button"
+        >
+          <ng-container *ngIf="!showCollections; else hideCollectionsCaption"
+            >All catalogs</ng-container
+          >
+          <ng-template #hideCollectionsCaption>Hide catalogs</ng-template>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{
+      'mobile-collections-hidden': !showCollections,
+      'mobile-collections-show': showCollections
+    }"
+  >
+    <ess-collections-navigation
+      *ngIf="!this.isSpecialCollection"
+    ></ess-collections-navigation>
+  </div>
+  <div class="container--xxl">
+    <div class="dashboard" style="position: relative">
+      <div class="row" id="dashboard__main">
+        <div
+          class="col-sm-3 col-12 left-column"
+          [ngClass]="{
+            'mobile-filters-hidden': !showFilters,
+            'mobile-filters-show': showFilters
+          }"
+          id="dashboard__filters"
+        >
+          <ess-filters
+            [results]="response?.results"
+            [isError]="response?.isError"
+          ></ess-filters>
+        </div>
+        <div class="col-sm-7 col-12 center-column">
+          <ess-page-header
+            *ngIf="!response?.isError"
+            [resultsCount]="response?.numFound ?? 0"
+          ></ess-page-header>
+          <ess-active-filters></ess-active-filters>
+          <ess-results-with-pagination
+            [response]="response"
+            (clearSearchInput)="searchBar.clearInput($event)"
+          ></ess-results-with-pagination>
+        </div>
+        <div
+          class="col-sm-3 col-12 right-column pl-0"
+        >
+          <!---
+          <a href="#" class="right-column-back">
+            <div class="right-link-title">Go back to resource discovery service</div>
+            <div class="right-link-desc">Return to browsing resources in the resource discovery service.</div>
+            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
+          </a> --->
+
+         <ess-right-panel></ess-right-panel>
+
+          <h4>Knowledge</h4>
+
+          <a href="https://knowledge-hub.sandbox.eosc-beyond.eu/" class="right-column-link-alt">
+            <div class="right-link-title">Knowledge hub</div>
+            <div class="right-link-desc">Discover training materials, courses and learning paths supporting open science and FAIR sharing.</div>
+            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
+          </a>
+
+          <a href="{{marketplaceUrl}}user_documentation" class="right-column-link-alt">
+            <div class="right-link-title">Check user documentation</div>
+            <div class="right-link-desc">Browse our guides for useful EOSC insights</div>
+            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="suggested" style="background-color: #fef2f4">
+    <ess-recommendations></ess-recommendations>
+  </div>
+  <!-- <ess-feedback-panel class="feedback-panel"></ess-feedback-panel> -->
+</div>

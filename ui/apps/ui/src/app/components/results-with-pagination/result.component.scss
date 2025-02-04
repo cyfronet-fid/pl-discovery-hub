@@ -1,0 +1,148 @@
+:host {
+  display: block;
+}
+
+.product-type-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.product-type-bar > .product-type-details {
+  background: #eee;
+  color: #257B85;
+  padding: 5px 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+
+.usage > .statistic {
+  font-size: 11px;
+  margin-right: 15px;
+  display: inline-block;
+  line-height: 17px;
+  height: 17px;
+  vertical-align: middle;
+}
+
+.usage > .statistic img {
+  margin-right: 5px;
+  max-height: 17px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.bundle-box {
+  margin-top: 12px;
+}
+
+/* z serwisu */
+.bundle-box .bundle-item {
+  border-left: 4px solid #84caff;
+}
+
+.bundle-box .bundle-item:first-child .card {
+  border-top: 1px solid #dfe2e4;
+}
+
+.bundle-box .bundle-item .card {
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px dashed #dfe2e4;
+}
+
+.bundle-box .bundle-item:last-child .card {
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #dfe2e4 !important;
+}
+
+.card-title {
+  margin-bottom: 0.25rem;
+  font-size: 12px;
+  padding: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.provided-by {
+  margin-bottom: 0.25rem;
+  font-size: 12px;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.bundle_container {
+  padding: 20px 25px 20px 25px !important;
+}
+
+.padding_for_provider {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: red;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.project-card-label {
+  width: 125px;
+  height: 13px;
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.project-card-value {
+  color: #000A64;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.funder-dropdown .btn {
+  font-size: 11px;
+  line-height: 17px;
+  padding: 5px 10px;
+}
+
+.funder-dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 250px;
+}
+
+.funder-item {
+  font-size: 11px;
+  line-height: 17px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  word-wrap: break-word;
+}
+
+.funder-item:last-child {
+  border-bottom: none;
+}
+
+.statistic.text-muted {
+  white-space: normal;
+}

@@ -1,0 +1,35 @@
+.ant-menu-item-custom {
+  color: white;
+}
+
+.ant-menu-custom {
+  width: 700px;
+  display: flex;
+  align-self: center;
+}
+
+.prefix-buttons button {
+  border: 3px solid #fff;
+  border-bottom: none;
+  width: 350px;
+  height: 40px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.prefix-buttons button:first-child {
+  border-top-left-radius: 24px;
+}
+
+.prefix-buttons button.active {
+  background-color: #fff;
+  color: #363939;
+}
+
+.prefix-buttons button:not(.active) {
+  background: none;
+}

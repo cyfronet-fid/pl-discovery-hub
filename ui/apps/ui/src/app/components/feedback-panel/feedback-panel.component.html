@@ -1,0 +1,24 @@
+<div class="circle-widget">
+  <div ngbDropdown class="d-inline-block" placement="auto">
+    <button
+      class="btn btn-primary feedback-dropdown-button"
+      id="dropdownFeedback"
+      ngbDropdownToggle
+    >
+      <span class="question-mark">?</span> Help
+    </button>
+    <ul
+      ngbDropdownMenu
+      aria-labelledby="dropdownFeedback"
+      class="feedback-dropdown-menu"
+    >
+      <li>
+        <a class="menu-item" id="zammad-feedback-form">Submit feedback</a>
+      </li>
+      <li class="menu-separator"></li>
+      <li>
+        <a class="menu-item" id="zammad-report-bug-form">Report a bug</a>
+      </li>
+    </ul>
+  </div>
+</div>

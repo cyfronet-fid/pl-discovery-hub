@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = {extras = ["all"], version = "*"}
+pydantic = "*"
+sqlalchemy = "*"
+alembic = "*"
+psycopg2 = "*"
+typer = "*"
+httpx = "*"
+asgi-lifespan = "*"
+pytest-asyncio = "*"
+fastapi-sessions = "*"
+cryptojwt = "*"
+oidcrp = "*"
+uvicorn = "*"
+"stomp.py" = "*"
+cachetools = "*"
+async-lru = "*"
+pydantic-settings = "*"
+sentry-sdk = "*"
+
+[dev-packages]
+black = "*"
+pylint = "*"
+pytest = "*"
+isort = "*"
+schemathesis = "*"
+pytest-mock = "*"
+pytest-lazy-fixture = "*"
+
+[requires]
+python_version = "3.10"

@@ -1,0 +1,79 @@
+name: Test
+
+on: push
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Start containers
+      run: docker compose -f dc-test.yml up -d db_test
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.10.9'
+        cache: 'pipenv'
+        cache-dependency-path: backend/Pipfile.lock
+    - name: Install pipenv
+      run: pipx install pipenv
+    - name: Install dependencies
+      run: pipenv sync --dev
+      working-directory: ./backend
+    - name: Run tests
+      run: ENVIRONMENT=test pipenv run pytest -m "not integration"
+      working-directory: ./backend
+      env:
+        TESTING: 1
+    - name: Containers logs
+      if: always()
+      run: docker compose logs
+    - name: Stop containers
+      if: always()
+      run: docker compose -f dc-test.yml down
+  backend-integration:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Start containers
+      run: docker compose -f dc-test.yml up -d
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.10.9'
+        cache: 'pipenv'
+        cache-dependency-path: backend/Pipfile.lock
+    - name: Install pipenv
+      run: pipx install pipenv
+    - name: Install dependencies
+      run: pipenv sync --dev
+      working-directory: ./backend
+    - name: Wait for SOLR
+      run: timeout 500 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:8993/solr/)" != "200" ]]; do sleep 5; done' || false
+    - name: Run tests
+      run: ENVIRONMENT=test pipenv run pytest -m "integration"
+      working-directory: ./backend
+      env:
+        TESTING: 1
+        SOLR_URL: http://localhost:8993/solr/
+    - name: Containers logs
+      if: always()
+      run: docker compose logs
+    - name: Stop containers
+      if: always()
+      run: docker compose -f dc-test.yml down
+  transform:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.10.5'
+        cache: 'pipenv'
+        cache-dependency-path: transform/Pipfile.lock
+    - name: Install pipenv
+      run: pipx install pipenv
+    - name: Install dependencies
+      run: pipenv sync --dev
+      working-directory: ./transform
+    - name: Run tests
+      run: pipenv run python -m pytest
+      working-directory: ./transform

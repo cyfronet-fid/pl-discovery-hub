@@ -1,0 +1,159 @@
+@import '../../../scss/variables';
+
+$font-family-sans-serif: 'Ubuntu', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+$font-size-base: 1rem;
+
+$font-weight-light: 100; // Ubuntu light
+$font-weight-normal: 300; // Ubuntu regular
+$font-weight-bold: 400; // Ubuntu medium
+$font-weight-bolder: 600; // Ubuntu bold
+
+$font-size-base: 1rem;
+
+$border-radius-default: 2px;
+
+$color-primary: #0c2bd5;
+$color-secondary: #ffcd00;
+$color-text: #233d4c;
+$color-1: #f9fcfe;
+$color-2: #1c313a;
+$color-3: #f8f9fa;
+$color-4: #52636a;
+$color-5: #f8f9fa;
+$color-6: #a6aeb1;
+$color-7: #05cae7;
+$color-link: #3540b6;
+$color-white: #fff;
+
+$box-shadow-default: 0 2px 6px rgba(0, 0, 0, 0.13);
+
+$palette-gray-100: $color-text;
+$palette-gray-5: rgba($palette-gray-100, 0.05);
+$palette-gray-10: rgba($palette-gray-100, 0.1);
+$palette-gray-30: rgba($palette-gray-100, 0.3);
+$palette-gray-50: rgba($palette-gray-100, 0.5);
+$palette-gray-70: rgba($palette-gray-100, 0.7);
+$palette-gray-80: rgba($palette-gray-100, 0.8);
+
+.service-info-box {
+  display: inline-block;
+  position: relative;
+  float: left;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+
+  header {
+    font-weight: bold;
+    z-index: unset;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  &:last-child {
+    margin: 0;
+  }
+
+  .title {
+    width: 100%;
+    float: left;
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+    line-height: 1.4rem;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: $color-link;
+
+    &:hover {
+      color: $palette-gray-100;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+}
+
+.based-on-your-search {
+  font-size: 16px;
+  line-height: 30px;
+
+  .recommend-box {
+    float: left;
+    display: inline-block;
+    color: $palette-gray-100;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 10px;
+    position: relative;
+    line-height: 20px;
+    border: 1px solid $recommendation-box-border;
+    background: $home-card-bg;
+    padding: 4px 12px 4px 40px;
+    border-radius: 5px;
+
+    img {
+      color: $user-directed-message-border-color;
+      position: absolute;
+      width: 23px;
+      height: auto;
+      top: 5px;
+      left: 10px;
+    }
+  }
+}
+
+.usage > .statistic {
+  font-size: 11px;
+  margin-right: 15px;
+  display: inline-block;
+  line-height: 17px;
+  height: 17px;
+  vertical-align: middle;
+}
+
+.usage > .statistic img {
+  margin-right: 5px;
+  max-height: 17px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.column .suggested:not(:first-child) {
+  margin-left: 24px;
+}
+
+.suggested {
+  background: #fff;
+  padding: 24px 20px 20px;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  margin: 0 0 20px;
+}
+
+.results #container:not(:first-child) {
+  margin-left: 24px;
+}
+
+@media (max-width: 768px) {
+  .service-info-box {
+    width: 100%;
+    flex: auto;
+    height: auto;
+    margin: 0 0 20px;
+    padding: 15px 20px;
+  }
+
+  .results #container:not(:first-child) {
+    margin-left: 0;
+  }
+}

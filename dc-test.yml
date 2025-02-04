@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+  db_test:
+    image: postgres:14
+    ports:
+      - "127.0.0.1:5452:5432"
+    volumes:
+      - db-data-test:/var/lib/postgresql/data
+    networks:
+      - ess-local-test
+    environment:
+      POSTGRES_DB: ${DB_POSTGRES_DB:-ess_test}
+      POSTGRES_USER: ${DB_POSTGRES_USER:-ess_test}
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD:-ess_test}
+  solr1_test:
+    image: solr:8.11
+    ports:
+      - "127.0.0.1:8993:8983"
+    volumes:
+      - solr-data-test:/var/solr
+      - ./solr/config/configsets:/configsets
+      - ./solr/config/solr.xml:/opt/solr/server/solr/solr.xml
+      - ./solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - ess-local-test
+    environment:
+      ZK_HOST: zoo1_test:2181
+    depends_on:
+      - zoo1_test
+  zoo1_test:
+    image: zookeeper:3.7
+    restart: always
+    volumes:
+      - zoo1-data-test:/data
+      - zoo1-datalog-test:/datalog
+    networks:
+      - ess-local-test
+    environment:
+      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
+  rabbitmq:
+    image: itzg/rabbitmq-stomp:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "61613:61613"
+      - "15672:15672"  # admin interface for rabbitmqadmin
+    networks:
+      - ess-local-test
+
+volumes:
+  db-data-test:
+  solr-data-test:
+  zoo1-data-test:
+  zoo1-datalog-test:
+
+networks:
+  ess-local-test:

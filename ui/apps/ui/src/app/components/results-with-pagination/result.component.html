@@ -1,0 +1,370 @@
+<ng-container
+  *ngIf="
+    type.value === 'service' ||
+      type.value === 'data-source' ||
+      type.value === 'provider' ||
+      type.value === 'data source'||
+      type.value === 'catalogue';
+    else elseTypeIcon
+  "
+>
+  <div class="type-icon-holder {{  type.label }}" style="flex: 115px 0 0">
+    <div
+      class="type-icon"
+      [ngStyle]="{
+        'background-image': 'url(' + this.logoUrl + ')',
+        width: '100%',
+        height: '100%',
+        'background-repeat': 'no-repeat',
+        'background-size': 'auto',
+        'background-position': 'top center',
+        margin: '25px auto'
+      }"
+    ></div>
+  </div>
+</ng-container>
+
+<ng-template #elseTypeIcon>
+  <div class="type-icon-holder {{ type.label }}">
+    <div class="type-icon"></div>
+  </div>
+</ng-template>
+<div
+  id="container"
+  [ngClass]="type.value === 'bundle' ? 'bundle_container' : 'nobundle'"
+>
+  <ess-colored-tags
+    [type]="type"
+    [tags]="coloredTags"
+    [q]="q$ | async"
+    (activeFilter)="setActiveFilter($event.filter, $event.value)"
+  ></ess-colored-tags>
+  <div style="display: flex">
+    <div
+      style="display: flex"
+      *ngIf="isSpecialCollection; else defaultTypeValueTemplate"
+    >
+      <div style="display: flex; flex-direction: column">
+        <ess-url-title
+          [ngClass]="{ padding_for_provider: this.isSpecialCollection }"
+          [title]="title"
+          [highlight]="highlightsreal['title'] ?? []"
+          [url]="redirectUrl"
+        >
+        </ess-url-title>
+        <ess-url-title
+        *ngIf="abbreviation"
+          [ngClass]="{ sub_title: this.isSpecialCollection }"
+          [title]="abbreviation"
+          [highlight]="highlightsreal['abbreviation'] ?? []"
+          [url]="redirectUrl"
+          style="margin-bottom: -10px"
+        >
+        </ess-url-title>
+      </div>
+    </div>
+   <div>
+
+   </div>
+    <ng-template #defaultTypeValueTemplate>
+      <div style="display: flex; flex-direction: column">
+        <ess-url-title
+          [ngClass]="{ padding_for_provider: type.value === 'provider' }"
+          [title]="title"
+          [highlight]="highlightsreal['title'] ?? []"
+          [url]="redirectUrl"
+        >
+        </ess-url-title>
+      </div>
+    </ng-template>
+  </div>
+  <div class="product-type-bar">
+    <div class="product-type-details" *ngIf="type !== undefined">
+      {{ _createDocumentTypeLabel(type.label, documentType) }}
+    </div>
+    <div class="product-type-details"  *ngIf="type.value === 'project' && this.duration">
+      {{ duration }}
+    </div>
+     <div class="product-type-details"  *ngIf="type.value === 'project'">
+      Project Code:  {{ code }}
+    </div>
+
+    <img
+      *ngIf="accessRight !== undefined"
+      [src]="_getAccessIcon(accessRight!)"
+    />
+    <img
+      *ngIf="horizontal !== undefined && horizontal"
+      src="/assets/horizontal-service.svg"
+    />
+  </div>
+  <div *ngIf="type.value !== 'bundle'" class="usage">
+    <span
+      *ngIf="
+        date !== undefined &&
+        date !== '' &&
+        type.value !== 'bundle' &&
+        type.value !== 'provider'
+      "
+      class="statistic text-muted"
+      ><img src="/assets/usage-date.svg" />
+      <ng-container i18n>{{ date }}</ng-container></span
+    >
+    <span *ngIf="downloads !== undefined" class="statistic text-muted"
+      ><img src="/assets/usage-downloads.svg" />
+      <ng-container i18n>{{ downloads }} Downloads</ng-container></span
+    >
+    <span *ngIf="views !== undefined" class="statistic text-muted"
+      ><img src="/assets/usage-views.svg" />
+      <ng-container i18n>{{ views }} Views</ng-container></span
+    >
+    <span *ngIf="license !== undefined" class="statistic text-muted"
+      ><img src="/assets/article.svg" />
+      <ng-container i18n>License: {{ _formatLicense(license!) }}</ng-container>
+    </span>
+    <ng-container *ngIf="funder && funder.length > 0">
+      <!-- Check if there is exactly one funder -->
+      <ng-container *ngIf="funder.length === 1; else elseBlock">
+        <!-- Convert to dropdown if funder's name is longer than 35 characters -->
+        <ng-container *ngIf="funder[0].length > 35; else singleFunder">
+          <img src="/assets/funder.svg" />
+          <div ngbDropdown class="d-inline-block funder-dropdown">
+            <button
+              type="button"
+              class="btn statistic text-muted"
+              [id]="'funderDropdown-' + _getFormattedFunderId(funder[0])"
+              ngbDropdownToggle
+            >
+              <ng-container i18n>Funder</ng-container>
+            </button>
+            <div
+              ngbDropdownMenu
+              [attr.aria-labelledby]="'funderDropdown-' + _getFormattedFunderId(funder[0])"
+              class="funder-dropdown-menu"
+            >
+              <div class="statistic text-muted funder-item">
+                <ng-container i18n>{{ funder[0] }}</ng-container>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #singleFunder>
+      <span class="statistic text-muted">
+        <img src="/assets/funder.svg" />
+        <ng-container i18n>Funder: {{ funder[0] }}</ng-container>
+      </span>
+        </ng-template>
+      </ng-container>
+
+      <ng-template #elseBlock>
+        <img src="/assets/funder.svg" />
+        <div ngbDropdown class="d-inline-block funder-dropdown">
+          <button
+            type="button"
+            class="btn statistic text-muted"
+            [id]="'funderDropdownMultiple'"
+            ngbDropdownToggle
+          >
+            <ng-container i18n>{{ funder.length }} Funders</ng-container>
+          </button>
+          <div
+            ngbDropdownMenu
+            [attr.aria-labelledby]="'funderDropdownMultiple'"
+            class="funder-dropdown-menu"
+          >
+            <div
+              *ngFor="let f of funder"
+              class="statistic text-muted funder-item"
+            >
+              <ng-container i18n>{{ f }}</ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="languages.length > 0">
+      <ng-container *ngIf="languages.length === 1; else elseBlock">
+        <span class="statistic text-muted">
+          <img src="/assets/language.svg" />
+          <ng-container i18n>{{ languages[0] }}</ng-container>
+        </span>
+      </ng-container>
+      <ng-template #elseBlock>
+        <img src="/assets/language.svg" />
+        <div ngbDropdown class="d-inline-block language-dropdown">
+          <button
+            type="button"
+            class="btn statistic text-muted"
+            id="languageDropdown"
+            ngbDropdownToggle
+          >
+            <ng-container i18n> {{ languages.length }} languages</ng-container>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="languageDropdown">
+            <div
+              *ngFor="let language of languages"
+              class="statistic text-muted"
+            >
+              <ng-container i18n>{{ language }}</ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <div *ngIf="this.type.value === 'organisation' || 'project'" style="border-bottom: 1px dotted #d9dee2;" class="mb-3"></div>
+
+  <div *ngIf="type.value !== 'bundle'; else bundleBlock">
+    <ess-tags
+      [tags]="tags"
+      [highlights]="highlightsreal"
+      (activeFilter)="setActiveFilter($event.filter, $event.value)"
+      [providerName]="providerName"
+    >
+    </ess-tags>
+    <ess-organisation-result
+      *ngIf="this.type.value === 'organisation'"
+      [id]="this.id"
+      [title]="this.title"
+      [country]="this.country ?? ''"
+      [website]="this.website ?? ''"
+      [relatedPublicationNumber]="this.relatedPublicationNumber"
+      [relatedSoftwareNumber]="this.relatedSoftwareNumber"
+      [relatedDatasetNumber]="this.relatedDatasetNumber"
+      [relatedOtherNumber]="this.relatedOtherNumber"
+      [relatedProjectNumber]="this.relatedProjectNumber"
+    >
+    </ess-organisation-result>
+
+    <div *ngIf="this.type.value !== 'organisation'" style="border-bottom: 1px dotted #d9dee2; margin: 12px 0;"></div>
+
+    <ess-project-result
+    *ngIf="this.type.value === 'project'"
+    [id]="this.id"
+    [fundedUnder]="this.fundedUnder ?? ''"
+    [currency]="this.currency?? ''"
+    [cost]="this.cost ?? 0"
+    [startDate]="this.startDate ?? ''"
+    [endDate]="this.endDate ?? ''"
+    >
+    </ess-project-result>
+
+    <ess-description
+    *ngIf="this.type.value !== 'organisation' && this.description"
+      [description]="description"
+      [highlights]="highlightsreal['description'] ?? []"
+    ></ess-description>
+
+    <ess-ig-services-card
+      *ngIf="type.value === 'guideline'"
+      [relatedServices]="relatedServices"
+      [title]="title"
+    ></ess-ig-services-card>
+  </div>
+  <ng-template #bundleBlock>
+    <ess-description
+      [description]="description"
+      [highlights]="highlightsreal['description'] ?? []"
+    ></ess-description>
+
+    <div style="border-bottom: 1px dotted #d9dee2;"></div>
+
+    <ess-tags
+      [tags]="tags"
+      [highlights]="highlightsreal"
+      (activeFilter)="setActiveFilter($event.filter, $event.value)"
+    >
+    </ess-tags>
+  </ng-template>
+  <ess-secondary-tags
+    *ngIf="type.value !== 'bundle'"
+    [highlights]="highlightsreal"
+    [tags]="secondaryTags"
+    (activeFilter)="setActiveFilter($event.filter, $event.value)"
+  >
+  </ess-secondary-tags>
+
+  <div>
+    <div>
+      <div class="bundle-box" *ngIf="type.value === 'bundle'">
+        <div
+          *ngFor="let offer of offers"
+          class="bundle-item align-items-stretch"
+        >
+          <ng-container *ngIf="offer">
+            <div class="card">
+              <div class="card-body d-flex flex-row">
+                <div class="bundle-offer-pic p-2">
+                  <img
+                    style="width: 48px"
+                    src="{{ getLogoUrl(offer.service?.slug) }}"
+                  />
+                </div>
+                <div class="bundle-offer-desc p-2">
+                  <h4 class="card-title">
+                    {{ offer.title }}
+                  </h4>
+                  <div class="provided-by">
+                    Service {{ offer.service?.title }}
+                  </div>
+                  <div class="provided-by">
+                    Provided by {{ offer.service?.resource_organisation }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-actions {{ type.label }}">
+    <ess-sources
+      *ngIf="isResearchProduct"
+      class="bottom-action-link"
+      [title]="title"
+      [urls]="urls"
+      [exportData]="exportData"
+    ></ess-sources>
+    <ess-share
+      [urls]="urls"
+      [title]="title"
+      [description]="description"
+      [shareUrl]="redirectUrl || ''"
+      [type]="type"
+      class="share-link"
+    ></ess-share>
+    <ess-bibliography
+      class="bottom-action-link"
+      *ngIf="isResearchProduct"
+      [title]="title"
+      [hasDOIUrl]="hasDOIUrl"
+      [exportData]="exportData"
+    ></ess-bibliography>
+    <ess-pin
+      *ngIf="RESOURCES_TO_SHOW_PIN_TO.includes(type.value)"
+      [resourceType]="type.value"
+      [resourceId]="id"
+      style="border-right: none !important"
+      class="bottom-action-link"
+    ></ess-pin>
+    <ess-pin-static
+      *ngIf="
+        MP_RESOURCES_TO_SHOW_PIN_TO.includes(type.value) &&
+        redirectOrderUrl !== null
+      "
+      [type]="type.value"
+      [url]="redirectOrderUrl"
+      style="float: left"
+    ></ess-pin-static>
+    <div *ngIf="collection === 'provider' || collection === 'organisation' || collection === 'catalogue' ">
+      <ess-related-resources
+        [pid]="this.pid ?? ''"
+        [title]="title"
+        [collection]="collection"
+      ></ess-related-resources>
+    </div>
+
+  </div>
+</div>
