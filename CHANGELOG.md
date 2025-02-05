@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0 (2025-02-05)
+
+
+### Features
+
+* pl eosc env template ([b87dd74](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b87dd7457f1ebaa855700c373aadcf2b6c281a07))
+
+
+### Bug Fixes
+
+* remove transform tests ([958c119](https://github.com/cyfronet-fid/pl-discovery-hub/commit/958c11930a0cc88e2a2a5320abbc30f19accd511))
+
 ## [2.3.0](https://github.com/cyfronet-fid/eosc-search-service/compare/v2.2.0...v2.3.0) (2023-05-11)
 
 
