@@ -51,15 +51,6 @@ export const datasetsFilters: IFiltersConfig = {
       expandArrow: true,
     },
     {
-      id: 'affiliation',
-      filter: 'affiliation',
-      label: 'Affiliation',
-      type: 'multiselect',
-      defaultCollapsed: true,
-      tooltipText: '',
-      expandArrow: true,
-    },
-    {
       id: 'publisher',
       filter: 'publisher',
       label: 'Publisher',
@@ -141,14 +132,6 @@ export const datasetsFilters: IFiltersConfig = {
       defaultCollapsed: true,
       tooltipText: SDG_TOOLTIP_TEXT,
       expandArrow: true,
-    },
-    {
-      id: 'affiliation',
-      filter: 'affiliation',
-      label: 'Affiliation',
-      type: 'tag',
-      defaultCollapsed: false,
-      tooltipText: '',
     },
     {
       id: 'publisher',

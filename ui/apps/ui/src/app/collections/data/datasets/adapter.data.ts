@@ -44,11 +44,6 @@ export const datasetsAdapter: IAdapter = {
         showMoreThreshold: 10,
       },
       {
-        label: 'Affiliation',
-        values: toValueWithLabel(toArray(openAIREResult?.affiliation)),
-        filter: 'affiliation',
-      },
-      {
         label: 'Publisher',
         values: toValueWithLabel(toArray(openAIREResult?.publisher)),
         filter: 'publisher',
