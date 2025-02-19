@@ -220,11 +220,6 @@ export const allCollectionsAdapter: IAdapter = {
               showMoreThreshold: 10,
             },
             {
-              label: 'Affiliation',
-              values: toValueWithLabel(toArray(data?.affiliation)),
-              filter: 'affiliation',
-            },
-            {
               label: 'Publisher',
               values: toValueWithLabel(toArray(data?.publisher)),
               filter: 'publisher',

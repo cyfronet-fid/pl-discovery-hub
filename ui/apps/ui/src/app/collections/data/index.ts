@@ -74,6 +74,9 @@ import { otherResourcesProductsFilters } from '@collections/data/other-resources
 import { bundlesFilters } from '@collections/data/bundles/filters.data';
 import { catalogueFilters } from './catalogues/filters.data';
 
+import { plDatasetsFilters } from '../pl-data/datasets/filters.data';
+import { plAllCollectionsFilters } from '@collections/pl-data/all/filters.data';
+
 import { excludedPublicationsFilters } from '@collections/data/publications/excluded.data';
 import { excludedDatasetsFilters } from '@collections/data/datasets/excluded.data';
 import { excludedAllCollectionsFilters } from '@collections/data/all/excluded.data';
@@ -88,6 +91,9 @@ import { excludedProvidersFilters } from '@collections/data/providers/excluded.d
 import { excludedProjectFilters } from './projects/excluded.data';
 import { excludedOrganisationFilters } from './organisations/excluded.data';
 import { excludedCatalogueFilters } from './catalogues/excluded.data';
+
+import { plExcludedDatasetsFilters } from '@collections/pl-data/datasets/excluded.data';
+import { plExcludedAllCollectionsFilters } from '@collections/pl-data/all/excluded.data';
 
 import { validateCollections } from '@collections/data/validators';
 
@@ -136,9 +142,9 @@ export const FILTERS: IFiltersConfig[] = [
 ];
 
 export const PL_FILTERS: IFiltersConfig[] = [
-  allCollectionsFilters,
+  plAllCollectionsFilters,
   publicationsFilters,
-  datasetsFilters,
+  plDatasetsFilters,
   servicesFilters,
   dataSourcesFilters,
   providersFilters,
@@ -164,9 +170,9 @@ export const EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
 ];
 
 export const PL_EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
-  excludedAllCollectionsFilters,
+  plExcludedAllCollectionsFilters,
   excludedPublicationsFilters,
-  excludedDatasetsFilters,
+  plExcludedDatasetsFilters,
   excludedServicesFilters,
   excludedDataSourcesFilters,
   excludedProvidersFilters,

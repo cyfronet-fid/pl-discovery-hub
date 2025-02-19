@@ -43,7 +43,7 @@ export class FiltersConfigsRepository {
   public readonly isLoading$ = this._store$.pipe(map((state) => state.loading));
 
   constructor(private _route: ActivatedRoute) {
-    this.setScope();
+    this._route.queryParams.subscribe(() => this.setScope());
   }
 
   get(urlPath: string | null | undefined | ''): IFiltersConfig {
@@ -52,9 +52,9 @@ export class FiltersConfigsRepository {
     const filtersConfig =
       config ||
       (this._store$.query(getEntity(DEFAULT_COLLECTION_ID)) as IFiltersConfig);
-    const excludedFiltersConfig = this._excludedFiltersStore$.query(
+    const excludedFiltersConfig = (this._excludedFiltersStore$.query(
       getEntity(id)
-    ) as IExcludedFiltersConfig;
+    ) as IExcludedFiltersConfig) || { id, excluded: [] };
     const filtersAfterExclusion = filtersConfig.filters.filter(
       (entry) => !excludedFiltersConfig.excluded.includes(entry.filter)
     );
@@ -111,6 +111,7 @@ export class FiltersConfigsRepository {
     const scope = this._route.snapshot.queryParamMap.get('scope') || '';
     const filters = scope === 'eu' ? FILTERS : PL_FILTERS;
     const excluded = scope === 'eu' ? EXCLUDED_FILTERS : PL_EXCLUDED_FILTERS;
+
     this._excludedFiltersStore$.update(setEntities(excluded));
     this._store$.update(
       (state) => ({ ...state }),

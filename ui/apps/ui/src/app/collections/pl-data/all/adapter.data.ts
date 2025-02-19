@@ -12,6 +12,10 @@ import {
   redirectUrlAdapter,
 } from '../../data/all/adapter.data';
 import { ConfigService } from '../../../services/config.service';
+import {
+  toArray,
+  toValueWithLabel,
+} from '@collections/filters-serializers/utils';
 
 const plRedirectUrlAdapter = (
   type: string,
@@ -120,6 +124,14 @@ export const plAllCollectionsAdapter = {
       redirectUrl: plRedirectUrlAdapter(data.type || '', data), // Override the redirectUrl
       logoUrl: plLogoUrlAdapter(data.type || '', data),
       orderUrl: plOrderUrlAdapter(data.type || '', data),
+      tags: [
+        ...result.tags,
+        {
+          label: 'Affiliation',
+          values: toValueWithLabel(toArray(data?.affiliation)),
+          filter: 'affiliation',
+        },
+      ],
     };
   },
 };
