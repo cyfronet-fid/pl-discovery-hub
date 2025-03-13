@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.0.0...v1.0.1) (2025-03-13)
+
+
+### Bug Fixes
+
+* [[#2](https://github.com/cyfronet-fid/pl-discovery-hub/issues/2)] filters eu scope, all collection, dataset ([#4](https://github.com/cyfronet-fid/pl-discovery-hub/issues/4)) ([761a786](https://github.com/cyfronet-fid/pl-discovery-hub/commit/761a7865a160629b8333260190fdc420c160b0d8))
+
 ## 1.0.0 (2025-02-05)
 
 
