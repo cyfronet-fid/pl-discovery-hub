@@ -749,6 +749,10 @@ h2 {
   text-decoration: none;
 }
 
+.eoscpl-more-link a:hover {
+  color: #fff;
+}
+
 .eoscpl-more-link svg {
   width: 14px;
   height: 14px;
@@ -757,6 +761,7 @@ h2 {
 
 .eoscpl-intro:hover {
   border: 2px solid #eb5d81;
+
 }
 
 .eoscpl-intro:hover .eoscpl-more-link {
@@ -828,14 +833,22 @@ h2 {
     border: none;
   }
 
-  .container-wide {
+  .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     .partner-box {
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .partner-logo {
+        height: 90px;
+
+        img {
+          max-height: 120px;
+        }
+      }
 
       .partner-title {
         color: #24727B;
@@ -1066,7 +1079,12 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 19px;
+    margin-bottom: 21px;
+
+    img {
+      max-height: 65px;
+      max-width: 200px;
+    }
 
     .badge-right {
       position: relative;
@@ -1399,7 +1417,7 @@ footer {
         margin: 0 0 25px;
       }
 
-      .container-wide {
+      .container {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -1407,7 +1425,6 @@ footer {
 
         .partner-box {
           width: 45%;
-
           .partner-title {
             font-size: 16px;
             margin-top: 12px;
