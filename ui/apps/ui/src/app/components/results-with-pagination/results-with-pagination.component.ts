@@ -30,7 +30,6 @@ export class ResultsWithPaginationComponent implements OnInit {
     [id: string]: { [field: string]: string[] | undefined } | undefined;
   } = {};
   isError = false;
-  marketplaceUrl = '';
   public specialCollections = SPECIAL_COLLECTIONS;
 
   @Input()
@@ -93,7 +92,6 @@ export class ResultsWithPaginationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.marketplaceUrl = this._configService.get().eu_marketplace_url;
     this.pageNr$
       .pipe(
         untilDestroyed(this),
@@ -162,5 +160,9 @@ export class ResultsWithPaginationComponent implements OnInit {
 
   getCollectionName(): string {
     return this._customRoute.params()['collection'] as string;
+  }
+
+  redirectToRoot() {
+    this._router.navigate(['/']);
   }
 }
