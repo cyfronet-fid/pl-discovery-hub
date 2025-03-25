@@ -395,6 +395,7 @@ export const DATASOURCE_PID_MAPPING: Record<string, string> = {
   'eosc.cyfronet.new_datasource_test-cyfronet_10':
     'new datasource Test-Cyfronet #10',
   'eosc.cyfronet.rodbuk': 'RODBUK Cracow Open Research Data Repository',
+  'eosc.icm.repod': 'RepOD Repository for Open Data',
   'eosc.dkrz.wdcc': 'WDCC World Data Center for Climate',
   'eosc.elixir-uk.workflowhub': 'WorkflowHub',
   'eosc.embl-ebi.icr': 'Identifiers.org Central Registry',
