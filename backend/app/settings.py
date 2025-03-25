@@ -80,11 +80,11 @@ class GlobalSettings(BaseSettings):
     EU_MARKETPLACE_BASE_URL: Url = "https://eosc.pl/"
     PL_MARKETPLACE_BASE_URL: Url = "https://marketplace.eosc.pl/"
     EOSC_COMMONS_URL: Url = (  # Without / at the end it doesn't work
-        "https://s3.cloud.cyfronet.pl/eosc-portal-common/"
+        "https://s3.cloud.cyfronet.pl/eosc-pl-common/pr-eosc-pl-2025-branding/"
     )
-    EOSC_COMMONS_ENV: str = "production"
-    EOSC_EXPLORE_URL: Url = "https://explore.eosc-portal.eu/"
-    KNOWLEDGE_HUB_URL: Url = "https://knowledge-hub.eosc-portal.eu/"
+    EOSC_COMMONS_ENV: str = "beta"
+    EOSC_EXPLORE_URL: Url = "https://explore.sandbox.eosc-beyond.eu/"
+    KNOWLEDGE_HUB_URL: Url = "https://knowledge-hub.sandbox.eosc-beyond.eu/"
 
     # Get config from .env
     model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")

@@ -11,12 +11,12 @@ async def test_return_backend_config(app: FastAPI, client: AsyncClient) -> None:
 
     assert response.status_code == HTTP_200_OK
     assert response.json() == {
-        "eosc_commons_env": "production",
-        "eosc_commons_url": "https://s3.cloud.cyfronet.pl/eosc-portal-common/",
-        "eu_marketplace_url": "https://eosc.pl/",
+        "eosc_commons_env": "beta",
+        "eosc_commons_url": "https://s3.cloud.cyfronet.pl/eosc-pl-common/pr-eosc-pl-2025-branding/",
+        "eu_marketplace_url": "https://marketplace.sandbox.eosc-beyond.eu/",
         "pl_marketplace_url": "https://marketplace.eosc.pl/",
-        "eosc_explore_url": "https://explore.eosc-portal.eu/",
-        "knowledge_hub_url": "https://knowledge-hub.eosc-portal.eu/",
+        "eosc_explore_url": "https://explore.sandbox.eosc-beyond.eu/",
+        "knowledge_hub_url": "https://knowledge-hub.sandbox.eosc-beyond.eu/",
         "is_sort_by_relevance": True,
         "max_results_by_page": 50,
         "max_items_sort_relevance": 250,
