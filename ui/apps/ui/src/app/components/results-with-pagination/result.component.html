@@ -321,7 +321,7 @@
   </div>
   <div class="bottom-actions {{ type.label }}">
     <ess-sources
-      *ngIf="isResearchProduct"
+      *ngIf="isResearchProduct && this.scope === 'eu'"
       class="bottom-action-link"
       [title]="title"
       [urls]="urls"
@@ -337,7 +337,7 @@
     ></ess-share>
     <ess-bibliography
       class="bottom-action-link"
-      *ngIf="isResearchProduct"
+      *ngIf="isResearchProduct && this.scope === 'eu'"
       [title]="title"
       [hasDOIUrl]="hasDOIUrl"
       [exportData]="exportData"

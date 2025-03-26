@@ -21,6 +21,7 @@ import { InstanceExportData } from '@collections/data/openair.model';
 import { SPECIAL_COLLECTIONS } from '@collections/data/config';
 import { ConfigService } from '../../services/config.service';
 import moment from 'moment';
+import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
 
 @Component({
   selector: 'ess-result',
@@ -39,6 +40,7 @@ export class ResultComponent implements OnInit {
     'software',
     'dataset',
   ];
+  scope = DEFAULT_SCOPE;
   isDoiCollection = false;
   @Input() id!: string;
   @Input() date?: string;
@@ -179,6 +181,7 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     this.setHasDOIUrl();
+    this.scope = this._customRoute.scope() || DEFAULT_SCOPE;
     this.collection = this._customRoute.collection() || '';
     this.isSpecialCollection = SPECIAL_COLLECTIONS.includes(this.collection);
     this.isDoiCollection = this.doiCollections.includes(this.collection);
