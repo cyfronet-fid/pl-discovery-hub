@@ -358,7 +358,7 @@
       [url]="redirectOrderUrl"
       style="float: left"
     ></ess-pin-static>
-    <div *ngIf="collection === 'provider' || collection === 'organisation' || collection === 'catalogue' ">
+    <div *ngIf="collection === 'provider' || collection === 'organisation' || collection === 'catalogue' || type.value === 'data-source'">
       <ess-related-resources
         [pid]="this.pid ?? ''"
         [title]="title"
