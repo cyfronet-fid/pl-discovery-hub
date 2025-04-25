@@ -72,7 +72,7 @@ export const servicesAdapter: IAdapter = {
     ],
     secondaryTags: [
       toInterPatternsSecondaryTag(service.eosc_if ?? [], 'eosc_if'),
-      toKeywordsSecondaryTag(service.tag_list ?? [], 'tag_list'),
+      toKeywordsSecondaryTag(service.keywords ?? [], 'keywords'),
     ],
     ...parseStatistics(service),
   }),
