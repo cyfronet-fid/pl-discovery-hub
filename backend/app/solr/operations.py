@@ -104,7 +104,7 @@ async def search(
             "hl.method": "fastVector",
             "hl.fragsize": 200,
             # Highlight fields list
-            # "hl.fl": "title,author_names,description,keywords,tag_list",
+            # "hl.fl": "title,author_names,description,keywords",
             "q": q,
             "qf": qf,
             "pf": qf,
@@ -211,7 +211,7 @@ async def search_advanced(
             "hl.method": "fastVector",
             "hl.fragsize": 200,
             # Highlight fields list
-            # "hl.fl": "title,author_names,description,keywords,tag_list",
+            # "hl.fl": "title,author_names,description,keywords",
             "q": q,
             "qf": qf,
             "pf": qf,
