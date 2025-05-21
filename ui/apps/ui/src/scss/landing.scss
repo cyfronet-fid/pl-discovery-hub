@@ -93,7 +93,7 @@ h2 {
 
   .landing-header {
     background: url("../eoscpl-topmap.jpg") no-repeat 50% 0;
-    background-size: 100% auto;
+    background-size: cover;
     padding: 83px 0 83px;
 
     .logo-box {
@@ -710,7 +710,7 @@ h2 {
 .eoscpl-intro {
   display: inline-block;
   padding: 22px 24px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   border-radius: 0 32px 32px;
   border: 2px solid #257b85;
 }
@@ -720,7 +720,7 @@ h2 {
   font-weight: 500;
   color: #257b85;
   line-height: 140%;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .eoscpl-intro-desc {
@@ -737,9 +737,10 @@ h2 {
   justify-content: space-between;
   font-weight: 400;
   align-items: center;
-  color: #fff;
+  color: #0E0F0F;
   border-radius: 32px;
-  background: #257b85;
+  background: #fff;
+  border: 2px solid #257b85;
   float: right;
   text-decoration: none;
 }
@@ -766,6 +767,25 @@ h2 {
 
 .eoscpl-intro:hover .eoscpl-more-link {
   background: #eb5d81;
+  color: #fff;
+  border: 2px solid #eb5d81;
+}
+
+.eoscpl-intro.pink {
+  border: 2px solid #EB5D81;
+
+  .eoscpl-intro-title {
+    color: #EB5D81;
+  }
+
+  .eoscpl-more-link {
+    border: 2px solid #EB5D81;
+  }
+
+  .eoscpl-intro:hover .eoscpl-more-link {
+    background: #EB5D81;
+    color: #fff
+  }
 }
 
 .learn-more {
@@ -942,8 +962,8 @@ h2 {
 
   .openscience-intro {
     display: flex;
-    padding: 19px 24px 20px 24px;
-    margin-bottom: 28px;
+    padding: 25px 24px 25px 24px;
+    margin-bottom: 35px;
     border-radius: 32px;
     flex-direction: row;
     justify-content: space-between;
