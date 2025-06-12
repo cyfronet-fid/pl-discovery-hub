@@ -38,11 +38,11 @@ const appRoutes: Routes = [
       ),
   },
   {
-    path: 'acceptable-use-policy',
+    path: 'terms-of-use',
     pathMatch: 'full',
     loadChildren: () =>
-      import('./pages/acceptable-use-policy/acceptable-use-policy.module').then(
-        (m) => m.AcceptableUsePolicyModule
+      import('@pages/terms-of-use/terms-of-use.module').then(
+        (m) => m.TermsOfUseModule
       ),
   },
   {

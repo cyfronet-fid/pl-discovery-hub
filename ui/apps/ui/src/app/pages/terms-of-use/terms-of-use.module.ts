@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AcceptableUsePolicyComponent } from '@pages/acceptable-use-policy/acceptable-use-policy.component';
+import { TermsOfUseComponent } from './terms-of-use.component';
 import { BackToSearchBarModule } from '@components/back-to-search-bar/back-to-search-bar.module';
 
 @NgModule({
-  declarations: [AcceptableUsePolicyComponent],
+  declarations: [TermsOfUseComponent],
   imports: [
     CommonModule,
     BackToSearchBarModule,
     RouterModule.forChild([
       {
         path: '',
-        component: AcceptableUsePolicyComponent,
+        component: TermsOfUseComponent,
       },
     ]),
   ],
 })
-export class AcceptableUsePolicyModule {}
+export class TermsOfUseModule {}
