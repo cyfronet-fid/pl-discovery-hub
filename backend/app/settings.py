@@ -80,7 +80,7 @@ class GlobalSettings(BaseSettings):
     EU_MARKETPLACE_BASE_URL: Url = "https://marketplace.sandbox.eosc-beyond.eu/"
     PL_MARKETPLACE_BASE_URL: Url = "https://marketplace.eosc.pl/"
     EOSC_COMMONS_URL: Url = (  # Without / at the end it doesn't work
-        "https://s3.cloud.cyfronet.pl/eosc-pl-common/pr-eosc-pl-2025-branding/"
+        "https://s3.cloud.cyfronet.pl/eosc-pl-common/"
     )
     EOSC_COMMONS_ENV: str = "beta"
     EOSC_EXPLORE_URL: Url = "https://explore.sandbox.eosc-beyond.eu/"
