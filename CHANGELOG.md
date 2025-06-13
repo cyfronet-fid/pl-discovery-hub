@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.0.1...v1.1.0) (2025-06-13)
+
+
+### Features
+
+* add to data source link with filter to all collection ([8d4a2a2](https://github.com/cyfronet-fid/pl-discovery-hub/commit/8d4a2a2cf8b2eead0e0f1b0f3365909b07c997df))
+
+
+### Bug Fixes
+
+* [[#32](https://github.com/cyfronet-fid/pl-discovery-hub/issues/32)] terms of use ([4a9cf19](https://github.com/cyfronet-fid/pl-discovery-hub/commit/4a9cf198c06bfd8a13118f43828b062f7155d6ee))
+* add eu scope as condition for cite and source ([01ee2ac](https://github.com/cyfronet-fid/pl-discovery-hub/commit/01ee2ac243f5361d3a95c265fcf8d4b527bf35b4))
+* default commons link ([3995f0b](https://github.com/cyfronet-fid/pl-discovery-hub/commit/3995f0b3081b15acb085c54ddb397c2330d10032))
+* documentation link, add repod to mapping ([35ce2b1](https://github.com/cyfronet-fid/pl-discovery-hub/commit/35ce2b1846538f693236868dbda586e2ab0c69b9))
+* homepage redirect ([c61e7e2](https://github.com/cyfronet-fid/pl-discovery-hub/commit/c61e7e2ebf505cfb62489d55b4f0b49d4fa72bcc))
+* oidc host default value ([9929c0c](https://github.com/cyfronet-fid/pl-discovery-hub/commit/9929c0cce69d8aa0b3a74d96a77f6dc54d707176))
+* python setup gh actions ([72b1d96](https://github.com/cyfronet-fid/pl-discovery-hub/commit/72b1d969615a924fc3f16a7c0e65a7ec91a53c9b))
+
 ## [1.0.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.0.0...v1.0.1) (2025-03-13)
 
 
