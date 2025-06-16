@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.1.0...v1.1.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* pin to the marketplace project ([58df712](https://github.com/cyfronet-fid/pl-discovery-hub/commit/58df7122790a59fe1bc0e7f0fdf502703b751bf2))
+
 ## [1.1.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.0.1...v1.1.0) (2025-06-13)
 
 
