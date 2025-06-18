@@ -43,13 +43,19 @@ export const servicesAdapter: IAdapter = {
     horizontal: service?.horizontal,
     type: setType(service.type),
     redirectUrl: service.slug
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${service.slug}`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(service.slug)}`
       : '',
     logoUrl: service.slug
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${service.slug}/logo`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(service.slug)}/logo`
       : '',
     orderUrl: service.slug
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${service.slug}/offers`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(service.slug)}/offers`
       : '',
     collection: COLLECTION,
     coloredTags: [],

@@ -32,7 +32,9 @@ export const softwareAdapter: IAdapter = {
     date: formatPublicationDate(openAIREResult['publication_date']),
     redirectUrl: `${
       ConfigService.config?.eosc_explore_url
-    }/search/result?id=${openAIREResult?.id?.split('|')?.pop()}`,
+    }/search/result?id=${encodeURIComponent(
+      openAIREResult?.id?.split('|')?.pop() || ''
+    )}`,
     coloredTags: [],
     tags: [
       {

@@ -30,13 +30,19 @@ export const dataSourcesAdapter: IAdapter = {
       value: (dataSource.type || '')?.replace(/ +/gm, '-'),
     },
     redirectUrl: dataSource.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${dataSource.pid}`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(dataSource.pid || '')}`
       : '',
     logoUrl: dataSource.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${dataSource.pid}/logo`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(dataSource.pid || '')}/logo`
       : '',
     orderUrl: dataSource.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${dataSource.pid}/offers`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/services/${encodeURIComponent(dataSource.pid || '')}/offers`
       : '',
     collection: COLLECTION,
     coloredTags: [],
