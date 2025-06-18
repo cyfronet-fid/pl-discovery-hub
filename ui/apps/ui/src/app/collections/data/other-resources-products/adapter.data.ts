@@ -33,7 +33,9 @@ export const otherResourcesProductsAdapter: IAdapter = {
     license: openAIREResult?.license,
     redirectUrl: `${
       ConfigService.config?.eosc_explore_url
-    }/search/result?id=${openAIREResult?.id?.split('|')?.pop()}`,
+    }/search/result?id=${encodeURIComponent(
+      openAIREResult?.id?.split('|')?.pop() || ''
+    )}`,
     coloredTags: [],
     tags: [
       {

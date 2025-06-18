@@ -47,21 +47,31 @@ export const redirectUrlAdapter = (
     case 'other':
       return `${
         ConfigService.config?.eosc_explore_url
-      }/search/result?id=${data?.id?.split('|')?.pop()}`;
+      }/search/result?id=${encodeURIComponent(
+        data.id?.split('|')?.pop() || ''
+      )}`;
     case 'data source':
       return data?.pid
-        ? `${ConfigService.config?.eu_marketplace_url}/services/${data.pid}`
+        ? `${
+            ConfigService.config?.eu_marketplace_url
+          }/services/${encodeURIComponent(data.pid || '')}`
         : '';
     case 'service':
-      return `${ConfigService.config?.eu_marketplace_url}/services/${data?.slug}`;
-    case 'training':
-      return '/trainings/' + data.id;
-    case 'interoperability guideline':
-      return '/guidelines/' + data.id;
+      return `${
+        ConfigService.config?.eu_marketplace_url
+      }/services/${encodeURIComponent(data.slug || '')}`;
     case 'bundle':
-      return `${ConfigService.config?.eu_marketplace_url}/services/${data.service_id}`;
+      return `${
+        ConfigService.config?.eu_marketplace_url
+      }/services/${encodeURIComponent(data.service_id || '')}`;
     case 'provider':
-      return `${ConfigService.config?.eu_marketplace_url}/providers/${data?.pid}`;
+      return `${
+        ConfigService.config?.eu_marketplace_url
+      }/providers/${encodeURIComponent(data.pid || '')}`;
+    case 'training':
+      return '/trainings/' + encodeURIComponent(data.id || '');
+    case 'interoperability guideline':
+      return '/guidelines/' + encodeURIComponent(data.id || '');
     default:
       return '';
   }
@@ -82,12 +92,20 @@ export const logoUrlAdapter = (
   switch (type) {
     case 'data source':
       return data.pid
-        ? `${ConfigService.config?.eu_marketplace_url}/services/${data.pid}/logo`
+        ? `${
+            ConfigService.config?.eu_marketplace_url
+          }/services/${encodeURIComponent(data.pid || '')}/logo`
         : '';
     case 'service':
       return data.slug
-        ? `${ConfigService.config?.eu_marketplace_url}/services/${data.slug}/logo`
+        ? `${
+            ConfigService.config?.eu_marketplace_url
+          }/services/${encodeURIComponent(data.slug || '')}/logo`
         : '';
+    case 'provider':
+      return `${
+        ConfigService.config?.eu_marketplace_url
+      }/providers/${encodeURIComponent(data?.pid || '')}/logo`;
     default:
       return '';
   }
@@ -108,14 +126,20 @@ export const orderUrlAdapter = (
   switch (type) {
     case 'data source':
       return data.pid
-        ? `${ConfigService.config?.eu_marketplace_url}/services/${data.pid}/offers`
+        ? `${
+            ConfigService.config?.eu_marketplace_url
+          }/services/${encodeURIComponent(data.pid || '')}/offers`
         : '';
     case 'service':
       return data.slug
-        ? `${ConfigService.config?.eu_marketplace_url}/services/${data.slug}/offers`
+        ? `${
+            ConfigService.config?.eu_marketplace_url
+          }/services/${encodeURIComponent(data.slug || '')}/offers`
         : '';
     case 'bundle':
-      return `${ConfigService.config?.eu_marketplace_url}/services/${data.service_id}/offers`;
+      return `${
+        ConfigService.config?.eu_marketplace_url
+      }/services/${encodeURIComponent(data.service_id || '')}/offers`;
     default:
       return '';
   }

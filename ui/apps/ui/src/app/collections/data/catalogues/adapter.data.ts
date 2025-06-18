@@ -43,7 +43,9 @@ export const cataloguesAdapter: IAdapter = {
     ],
 
     redirectUrl: catalogue.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/catalogues/${catalogue.pid}`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/catalogues/${encodeURIComponent(catalogue.pid || '')}`
       : '',
     coloredTags: [],
     isResearchProduct: false,
