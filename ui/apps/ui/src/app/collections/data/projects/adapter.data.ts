@@ -51,7 +51,9 @@ export const projectsAdapter: IAdapter = {
 
     redirectUrl: `${
       ConfigService.config?.eosc_explore_url
-    }/search/project?projectId=${project?.id?.split('|')?.pop()}`,
+    }/search/project?projectId=${encodeURIComponent(
+      project?.id?.split('|')?.pop() || ''
+    )}`,
     dateRange: project.date_range ?? '',
     yearRange: project.year_range ?? '',
   }),

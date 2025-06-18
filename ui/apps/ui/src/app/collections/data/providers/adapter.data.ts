@@ -31,10 +31,14 @@ export const providersAdapter: IAdapter = {
       value: 'provider',
     },
     redirectUrl: provider.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/providers/${provider.pid}`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/providers/${encodeURIComponent(provider.pid)}`
       : '',
     logoUrl: provider.pid
-      ? `${ConfigService.config?.eu_marketplace_url}/providers/${provider.pid}/logo`
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/providers/${encodeURIComponent(provider.pid)}/logo`
       : '',
     collection: COLLECTION,
     coloredTags: [],
