@@ -27,20 +27,27 @@
                     }}{{
                       i !==
                       (this.interoperabilityGuidelineItem?.title?.length ?? 0) -
-                        1
+                      1
                         ? ', '
                         : ''
                     }}
                     <br /><span class="ig-about-subtitle" i18
-                      >{{
-                        this.interoperabilityGuidelineItem
-                          ?.eosc_guideline_type ?? ''
-                          | filterPipe: type.GUIDELINE_TYPE
-                      }}<br />
+                  >{{
+                      this.interoperabilityGuidelineItem
+                        ?.eosc_guideline_type ?? ''
+                        | filterPipe: type.GUIDELINE_TYPE
+                    }}<br />
                       Provider:
                       <span>{{
-                        this.interoperabilityGuidelineItem?.providers ?? ''
-                      }}</span>
+                          this.interoperabilityGuidelineItem?.providers ?? ''
+                        }}<br />
+                        <span *ngIf="this.interoperabilityGuidelineItem?.node">
+                        EOSC Node:
+                      <span>{{
+                          this.interoperabilityGuidelineItem?.node
+                        }}</span>
+                        </span>
+                      </span>
                     </span>
                   </ng-container>
                 </p>
@@ -125,16 +132,16 @@
                               *ngIf="
                                 creator?.author_name_type_info?.author_types
                               "
-                              >Name Type:
+                            >Name Type:
                               {{
                                 creator?.author_name_type_info?.author_types ||
-                                  '' | filterPipe: type.AUTHOR_TYPE
+                                '' | filterPipe: type.AUTHOR_TYPE
                               }}</span
                             >
                             <span
                               class="section-description left20"
                               *ngIf="creator?.author_names_id"
-                              >Name Identifier:
+                            >Name Identifier:
                               {{ creator?.author_names_id }}</span
                             >
                             <span
@@ -142,7 +149,7 @@
                               *ngIf="
                                 creator?.author_affiliation_info?.affiliation
                               "
-                              >Affiliation:
+                            >Affiliation:
                               {{
                                 creator?.author_affiliation_info?.affiliation
                               }}</span
@@ -153,7 +160,7 @@
                                 creator?.author_affiliation_info
                                   ?.affiliationIdentifier
                               "
-                              >Affiliation Identifier:
+                            >Affiliation Identifier:
                               <a
                                 href="{{
                                   creator?.author_affiliation_info
@@ -162,7 +169,7 @@
                                     : creator?.author_affiliation_info
                                         ?.affiliationIdentifier
                                 }}"
-                                >{{
+                              >{{
                                   creator?.author_affiliation_info
                                     ?.affiliationIdentifier
                                 }}</a
@@ -193,20 +200,20 @@
                       <div>
                         <p class="section creator" i18n>
                           Rights<br /><span
-                            class="section-description left20"
-                            >{{
-                              getValue(
-                                this.interoperabilityGuidelineItem?.right_title,
-                                i
-                              )
-                            }}</span
-                          >
+                          class="section-description left20"
+                        >{{
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_title,
+                              i
+                            )
+                          }}</span
+                        >
                         </p>
                         <p class="section creator" i18n>
                           Rights URI<br /><span
-                            class="section-description left20"
-                            ><a
-                              href="{{
+                          class="section-description left20"
+                        ><a
+                          href="{{
                                 getValue(
                                   this.interoperabilityGuidelineItem?.right_uri,
                                   i
@@ -218,25 +225,25 @@
                                       i
                                     )
                               }}"
-                              >{{
-                                getValue(
-                                  this.interoperabilityGuidelineItem?.right_uri,
-                                  i
-                                )
-                              }}</a
-                            ></span
-                          >
+                        >{{
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_uri,
+                              i
+                            )
+                          }}</a
+                        ></span
+                        >
                         </p>
                         <p class="section creator" i18n>
                           Rights Identifier<br /><span
-                            class="section-description left20"
-                            >{{
-                              getValue(
-                                this.interoperabilityGuidelineItem?.right_id,
-                                i
-                              )
-                            }}</span
-                          >
+                          class="section-description left20"
+                        >{{
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_id,
+                              i
+                            )
+                          }}</span
+                        >
                         </p>
                       </div>
                     </ng-container>
@@ -251,20 +258,20 @@
                     >
                       <p class="section creator mb-0" i18n>
                         Related Standard URI<br /><span
-                          class="section-description left20"
-                          ><a href="{{ uri ?? 'javascript:void(0)' }}">{{
-                            uri ?? ''
-                          }}</a></span
-                        >
+                        class="section-description left20"
+                      ><a href="{{ uri ?? 'javascript:void(0)' }}">{{
+                          uri ?? ''
+                        }}</a></span
+                      >
                       </p>
                       <p class="section left20" i18n #relatedStandardIdentifier>
                         <span class="section-description">{{
-                          getValue(
-                            this.interoperabilityGuidelineItem
-                              ?.related_standards_id,
-                            i
-                          )
-                        }}</span>
+                            getValue(
+                              this.interoperabilityGuidelineItem
+                                ?.related_standards_id,
+                              i
+                            )
+                          }}</span>
                       </p>
                     </ng-container>
                   </div>
@@ -283,7 +290,7 @@
                 <a
                   href="{{ this.currentUrl }}#related-resources"
                   class="btn btn-extra-option explore mb-4"
-                  >Explore Related Services</a
+                >Explore Related Services</a
                 >
               </div>
 
@@ -325,12 +332,12 @@
                       "
                     >
                       Year of Publication<br /><span
-                        class="section-description"
-                        >{{
-                          this.interoperabilityGuidelineItem
-                            ?.publication_year ?? ''
-                        }}</span
-                      >
+                      class="section-description"
+                    >{{
+                        this.interoperabilityGuidelineItem
+                          ?.publication_year ?? ''
+                      }}</span
+                    >
                     </p>
                     <p
                       class="section"
@@ -340,7 +347,7 @@
                     >
                       Created<br /><span class="section-description">{{
                         this.interoperabilityGuidelineItem?.publication_date ??
-                          '' | transformDatePipe
+                        '' | transformDatePipe
                       }}</span>
                     </p>
                     <p
@@ -378,8 +385,8 @@
                       *ngIf="this.interoperabilityGuidelineItem?.doi"
                     >
                       Identifier<br /><span class="section-description"
-                        ><a
-                          href="{{
+                    ><a
+                      href="{{
                             this.interoperabilityGuidelineItem?.doi !==
                             undefined
                               ? this.interoperabilityGuidelineItem?.doi ??
@@ -387,13 +394,13 @@
                               : this.interoperabilityGuidelineItem?.uri ??
                                 'javascript:void(0)'
                           }}"
-                          >{{
-                            this.interoperabilityGuidelineItem?.doi ??
-                              this.interoperabilityGuidelineItem?.uri ??
-                              ''
-                          }}</a
-                        ></span
-                      >
+                    >{{
+                        this.interoperabilityGuidelineItem?.doi ??
+                        this.interoperabilityGuidelineItem?.uri ??
+                        ''
+                      }}</a
+                    ></span
+                    >
                     </p>
                   </div>
                 </ng-container>

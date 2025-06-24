@@ -9,13 +9,19 @@ export const plDataSourcesAdapter = {
     return {
       ...result,
       redirectUrl: dataSource.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(dataSource.pid)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(dataSource.pid)}/offers`
         : '',
       logoUrl: dataSource.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(dataSource.pid)}/logo`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(dataSource.pid)}/logo`
         : '',
       orderUrl: dataSource.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(dataSource.pid)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(dataSource.pid)}/offers`
         : '',
     };
   },

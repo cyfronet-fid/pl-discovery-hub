@@ -244,6 +244,12 @@ export const allCollectionsAdapter: IAdapter = {
               showMoreThreshold: 10,
             },
             {
+              label: 'EOSC Node',
+              values: toValueWithLabel(toArray(data?.node)),
+              filter: 'node',
+              showMoreThreshold: 4,
+            },
+            {
               label: 'Publisher',
               values: toValueWithLabel(toArray(data?.publisher)),
               filter: 'publisher',

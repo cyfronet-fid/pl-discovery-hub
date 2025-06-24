@@ -18,4 +18,5 @@ export interface IService {
   dedicated_for: string[];
   guidelines: string[];
   eosc_if: string[];
+  node: string;
 }

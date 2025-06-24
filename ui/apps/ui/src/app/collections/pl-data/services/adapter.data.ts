@@ -10,13 +10,19 @@ export const plServicesAdapter = {
     return {
       ...result,
       redirectUrl: service.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(service.slug)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(service.slug)}/offers`
         : '',
       logoUrl: service.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(service.slug)}/logo`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(service.slug)}/logo`
         : '',
       orderUrl: service.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(service.slug)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(service.slug)}/offers`
         : '',
     };
   },
