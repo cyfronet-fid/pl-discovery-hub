@@ -61,6 +61,12 @@ export const servicesAdapter: IAdapter = {
     coloredTags: [],
     tags: [
       {
+        label: 'EOSC Node',
+        values: toValueWithLabel(toArray(service.node)),
+        filter: 'node',
+        showMoreThreshold: 4,
+      },
+      {
         label: 'Organisation',
         values: toValueWithLabel(toArray(service.resource_organisation)),
         filter: 'resource_organisation',

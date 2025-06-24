@@ -537,6 +537,7 @@
   <field name="major_version" type="pint" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="manual_url" type="text_general" sortMissingLast="true" multiValued="false" required="false"/>
   <field name="multimedia_urls" type="text_general" sortMissingLast="true" required="false"/>
+  <field name="node" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="offer_ids" type="pints" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
   <field name="offers_count" type="pint" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="open_access" type="boolean" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>

@@ -49,6 +49,12 @@ export const providersAdapter: IAdapter = {
     ],
     tags: [
       {
+        label: 'EOSC Node',
+        values: toValueWithLabel(toArray(provider?.node)),
+        filter: 'node',
+        showMoreThreshold: 4,
+      },
+      {
         label: 'Scientific domain',
         values: toValueWithLabel(toArray(provider.scientific_domains)),
         filter: 'scientific_domains',

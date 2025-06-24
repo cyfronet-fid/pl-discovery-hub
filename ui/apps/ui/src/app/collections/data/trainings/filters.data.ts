@@ -9,6 +9,15 @@ export const trainingsFilters: IFiltersConfig = {
   id: URL_PARAM_NAME,
   filters: [
     {
+      id: 'node',
+      filter: 'node',
+      label: 'EOSC Node',
+      type: 'multiselect',
+      defaultCollapsed: false,
+      tooltipText: '',
+      expandArrow: true,
+    },
+    {
       id: 'unified_categories',
       filter: 'unified_categories',
       label: 'Research step',
@@ -141,6 +150,14 @@ export const trainingsFilters: IFiltersConfig = {
       id: 'author_names',
       filter: 'author_names',
       label: 'Authors',
+      type: 'tag',
+      defaultCollapsed: false,
+      tooltipText: '',
+    },
+    {
+      id: 'node',
+      filter: 'node',
+      label: 'EOSC Node',
       type: 'tag',
       defaultCollapsed: false,
       tooltipText: '',

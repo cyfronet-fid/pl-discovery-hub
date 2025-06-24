@@ -33,6 +33,7 @@ export interface IProvider {
   keywords_tg: string[];
   webpage_url: string[];
   title: string;
+  node: string;
   _version_: number;
   type: IValueWithLabel;
 }
