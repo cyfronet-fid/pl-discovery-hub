@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.1.1...v1.2.0) (2025-06-24)
+
+
+### Features
+
+* Encode eu and pl pids ([37de246](https://github.com/cyfronet-fid/pl-discovery-hub/commit/37de24610e89e3b09b7b3a194679b19ce7893ede))
+* Node filter ([5ec7271](https://github.com/cyfronet-fid/pl-discovery-hub/commit/5ec727172fdefcade944a472dddad08c6d012708))
+* Favicons, middle section mods, header mods ([c22269d](https://github.com/cyfronet-fid/pl-discovery-hub/commit/c22269dca0e056edd8d275f6492aaa0eb36cf2a8))
+* Solr configs for eu and pl ([d15e20a](https://github.com/cyfronet-fid/pl-discovery-hub/commit/d15e20ac562dba6e60142931409d582991b05cc6))
+
+
+### Bug Fixes
+
+* Remove tag list ([61fd38c](https://github.com/cyfronet-fid/pl-discovery-hub/commit/61fd38cee2e07798e15a033dd831b99acdcea6b0))
+
 ## [1.1.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.1.0...v1.1.1) (2025-06-16)
 
 
