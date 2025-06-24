@@ -35,12 +35,16 @@ const plRedirectUrlAdapter = (
 
     case 'service':
       return data?.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.slug)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.slug)}/offers`
         : '';
 
     case 'data source':
       return data?.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.pid)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.pid)}/offers`
         : '';
 
     default:
@@ -64,11 +68,15 @@ const plLogoUrlAdapter = (
   switch (type) {
     case 'data source':
       return data.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.pid)}/logo`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.pid)}/logo`
         : '';
     case 'service':
       return data.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.slug)}/logo`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.slug)}/logo`
         : '';
     default:
       // Use the original redirectUrlAdapter for all other cases
@@ -91,11 +99,15 @@ export const plOrderUrlAdapter = (
   switch (type) {
     case 'data source':
       return data.pid
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.pid)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.pid)}/offers`
         : '';
     case 'service':
       return data.slug
-        ? `${ConfigService.config?.pl_marketplace_url}/services/${encodeURIComponent(data.slug)}/offers`
+        ? `${
+            ConfigService.config?.pl_marketplace_url
+          }/services/${encodeURIComponent(data.slug)}/offers`
         : '';
     default:
       return orderUrlAdapter(type, data);
