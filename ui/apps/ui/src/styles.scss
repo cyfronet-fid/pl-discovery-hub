@@ -27,11 +27,11 @@ h5 {
 }
 
 a {
-  color: #0c2bd5;
+  color: #24727B;
 }
 
 a:hover {
-  color: #05a6e7;
+  color: #238792;
 }
 
 .no-child-node .ant-tree-switcher {
@@ -536,13 +536,13 @@ btn-primary.disabled,
 }
 
 .active {
-  color: #3d4db6;
-  border-bottom: 3px solid #3d4db6;
+  color: #257b85;
+  border-bottom: 3px solid #257b85;
   font-weight: bold;
 }
 
 .nav-btn:hover {
-  color: #3d4db6;
+  color: #257b85;
 }
 
 h3,
@@ -1223,7 +1223,7 @@ h6 {
       line-height: 1.1;
       font-weight: 400;
       margin: 0 0 0 10px;
-      color: #2255a4;
+      color: #257B85;
 
       &:hover {
         color: #000;
@@ -1441,8 +1441,8 @@ h6 {
 }
 
 .page-item.active .page-link {
-  background: #eff1ff;
-  border-color: #eff1ff;
+  background: #eee;
+  border-color: #eee;
   color: #333;
 }
 
@@ -2087,8 +2087,9 @@ h6 {
   }
 
   &:hover {
-    background: #3d4db6;
-    border-color: #3d4db6;
+    background: #F39BB1;
+    border-color: #F39BB1;
+    color: #0E0F0F;
   }
 }
 
@@ -2118,7 +2119,7 @@ h6 {
   li {
     border-radius: 9px;
     overflow: hidden;
-    border: 1px solid #011098;
+    border: 1px solid #257B85;
     background: #fff;
     width: 300px;
     margin-bottom: 10px;
@@ -2132,7 +2133,7 @@ h6 {
 
       .ant-card-body {
         padding: 12px 12px 7px;
-        color: #011098;
+        color: #257B85;
         font-size: 12px;
         line-height: 1.45;
 
@@ -2213,13 +2214,13 @@ h6 {
 .ant-select-dropdown {
   box-shadow: none;
   border-radius: 8px;
-  border: 1px solid #3d4db6;
+  border: 1px solid #257b85;
   background: #fff;
 }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
   .ant-select-selector {
-  border: 1px solid #3d4db6;
+  border: 1px solid #257b85;
   background: #fff url(assets/icon-search.svg) no-repeat;
   background-position: 95.5% 11px;
   background-size: 16px auto;
@@ -2261,7 +2262,7 @@ h6 {
 }
 
 .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-  border-color: #3d4db6;
+  border-color: #257b85;
 }
 
 @media (max-width: 576px) {
@@ -2494,7 +2495,7 @@ h6 {
         .ant-card {
           border-radius: 9px;
           overflow: hidden;
-          border: 1px solid #011098;
+          border: 1px solid #257B85;
           background: #fff;
           margin-bottom: 10px;
           padding: 0;
@@ -2507,7 +2508,7 @@ h6 {
 
           .ant-card-body {
             padding: 12px 12px 7px;
-            color: #011098;
+            color: #257B85;
             font-size: 12px;
             line-height: 1.45;
 
