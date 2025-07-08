@@ -10,7 +10,7 @@ import { InstanceExportData } from '@collections/data/openair.model';
         display: block;
       }
       .sources-label-text {
-        color: #040f81;
+        color: #257B85;
         font-size: 14px;
         font-style: normal;
         font-weight: 500;
