@@ -96,6 +96,10 @@ h2 {
     background-size: cover;
     padding: 83px 0 83px;
 
+    .search-text-checkbox {
+      display: none !important;
+    }
+
     .logo-box {
       margin-bottom: 30px;
     }
