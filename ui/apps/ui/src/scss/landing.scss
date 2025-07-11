@@ -950,6 +950,61 @@ h2 {
 
 }
 
+.become-provider {
+  padding: 72px 0 70px;
+  background: #257b85;
+  color: #fff;
+  margin-bottom: 130px;
+
+  h3 {
+    font-family: "Quicksand";
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0.64px;
+    color: #fff;
+    display: inline-block;
+    margin: 0 0 30px;
+  }
+
+  h4 {
+    font-family: "Quicksand";
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0.64px;
+    color: #fff;
+    display: inline-block;
+    margin: 5px 0 12px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: 300;
+  }
+
+  .become-link {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 32px;
+    border: 2px solid #fff;
+    color: #fff;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      margin-left: 9px;
+    }
+
+    &:hover {
+      background: #fff;
+      color: #257b85;
+    }
+  }
+}
+
 .open-science {
   padding: 75px 0;
 
