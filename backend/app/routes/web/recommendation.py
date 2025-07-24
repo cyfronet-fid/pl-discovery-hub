@@ -66,14 +66,16 @@ async def get_recommendations(
                     uuids = await get_fixed_recommendations(panel_id, scope=scope)
                     items = await get_recommended_items(client, uuids, scope)
 
-                resp = JSONResponse({
-                    "recommendations": items,
-                    "isRand": bool(items),
-                    "message": (
-                        str(error)
-                        or "Solr or external recommender service read timeout"
-                    ),
-                })
+                resp = JSONResponse(
+                    {
+                        "recommendations": items,
+                        "isRand": bool(items),
+                        "message": (
+                            str(error)
+                            or "Solr or external recommender service read timeout"
+                        ),
+                    }
+                )
                 # We're storing the visit id for fixed recommendations just in case as well
                 resp.set_cookie("recommendation_visit_id", recommendation_visit_id)
                 return resp
