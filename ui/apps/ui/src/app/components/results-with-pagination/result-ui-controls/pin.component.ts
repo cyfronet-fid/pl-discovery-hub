@@ -39,7 +39,7 @@ import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
       }
 
       .pin-icon-text {
-        color: #257B85;
+        color: #257b85;
         font-family: Inter;
         font-size: 14px;
         font-style: normal;
