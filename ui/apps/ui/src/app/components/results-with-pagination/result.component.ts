@@ -49,6 +49,7 @@ export class ResultComponent implements OnInit {
   @Input() redirectUrl: string = '';
   @Input() logoUrl?: string;
   @Input() orderUrl?: string;
+  @Input() repository?: string;
 
   @Input() isResearchProduct = false;
   @Input() description!: string;
