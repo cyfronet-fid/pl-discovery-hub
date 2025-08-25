@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.2.0...v1.3.0) (2025-08-25)
+
+
+### Features
+
+* [[#59](https://github.com/cyfronet-fid/pl-discovery-hub/issues/59)] new privacy policy ([b07a89e](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b07a89e9a04f4bb0e272d8936cdd515befad3a30))
+
 ## [1.2.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.1.1...v1.2.0) (2025-06-24)
 
 
