@@ -6,6 +6,7 @@ import {
   ITag,
   IValueWithLabel,
   IValueWithLabelAndLink,
+  RelatedService,
 } from '@collections/repositories/types';
 import { CustomRoute } from '@collections/services/custom-route.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,12 +17,10 @@ import { RedirectService } from '@collections/services/redirect.service';
 import { HttpClient } from '@angular/common/http';
 import { IOffer } from '@collections/data/bundles/bundle.model';
 import isArray from 'lodash-es/isArray';
-import { RelatedService } from '@collections/repositories/types';
 import { InstanceExportData } from '@collections/data/openair.model';
 import { SPECIAL_COLLECTIONS } from '@collections/data/config';
-import { ConfigService } from '../../services/config.service';
 import moment from 'moment';
-import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'ess-result',
@@ -40,13 +39,14 @@ export class ResultComponent implements OnInit {
     'software',
     'dataset',
   ];
-  scope = DEFAULT_SCOPE;
   isDoiCollection = false;
+  logoLoadFailed = false;
+
   @Input() id!: string;
   @Input() date?: string;
   @Input() pid?: string = '';
   @Input() urls: string[] = [];
-  @Input() redirectUrl: string = '';
+  @Input() url: string = '';
   @Input() logoUrl?: string;
   @Input() orderUrl?: string;
   @Input() repository?: string;
@@ -85,6 +85,28 @@ export class ResultComponent implements OnInit {
       return `${start.format('YYYY')}-${end.format('YYYY')}`;
     }
     return '';
+  }
+
+  get redirectUrl(): string | null {
+    if (this.url == null || this.url === '') {
+      return null;
+    }
+    if (this.type.value === 'bundle') {
+      this.redirectService.internalUrl(
+        this.url,
+        this.id,
+        this.type.value,
+        this.offers[0]?.main_offer_id
+          ? '#offer-' + this.offers[0].main_offer_id.toString().substring(2)
+          : ''
+      );
+    }
+    return this.redirectService.internalUrl(
+      this.url,
+      this.id,
+      this.type.value,
+      ''
+    );
   }
 
   get redirectOrderUrl(): string | null {
@@ -154,6 +176,7 @@ export class ResultComponent implements OnInit {
     this.highlightsreal = highlights;
     return;
   }
+
   public hasDOIUrl = false;
 
   public collection: string = '';
@@ -182,7 +205,7 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     this.setHasDOIUrl();
-    this.scope = this._customRoute.scope() || DEFAULT_SCOPE;
+    this.logoLoadFailed = false;
     this.collection = this._customRoute.collection() || '';
     this.isSpecialCollection = SPECIAL_COLLECTIONS.includes(this.collection);
     this.isDoiCollection = this.doiCollections.includes(this.collection);
@@ -247,7 +270,6 @@ export class ResultComponent implements OnInit {
             '<em>' + tag.split(':', 2)[1].trim() + '</em>'
           );
         }
-
         if (this.highlightsreal['title'] === undefined) {
           this.highlightsreal['title'] = [];
           this.highlightsreal['title'].push(
@@ -344,9 +366,9 @@ export class ResultComponent implements OnInit {
     });
   }
 
-  getLogoUrl(slug: string | undefined) {
-    return slug
-      ? `${ConfigService.config?.eu_marketplace_url}/services/${slug}/logo`
+  getServiceLogoUrl(id: string | undefined) {
+    return id
+      ? `${ConfigService.config?.marketplace_url}/services/${id}/logo`
       : 'assets/bundle_service.svg';
   }
 
@@ -388,6 +410,8 @@ export class ResultComponent implements OnInit {
         catalogue: 'Catalogue',
         'data source': 'Data Source',
         'interoperability guideline': 'Interoperability Guideline',
+        'deployable service': 'Deployable Service',
+        adapter: 'Adapter',
       };
       return type in humanReadableDict
         ? humanReadableDict[type]
@@ -422,5 +446,9 @@ export class ResultComponent implements OnInit {
 
   _getFormattedFunderId(funder: string): string {
     return funder.replace(/\s+/g, '-');
+  }
+
+  onLogoError() {
+    this.logoLoadFailed = true;
   }
 }

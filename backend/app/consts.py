@@ -20,6 +20,7 @@ class ResourceType(str, Enum):
     ORGANISATION = "organisation"
     PROJECT = "project"
     CATALOGUE = "catalogue"
+    DEPLOYABLE_SERVICE = "deployable service"
 
 
 class Collection(str, Enum):
@@ -40,6 +41,8 @@ class Collection(str, Enum):
     ORGANISATION = "organisation"
     PROJECT = "project"
     CATALOGUE = "catalogue"
+    ADAPTER = "adapter"
+    DEPLOYABLE_SERVICE = "deployable_service"
 
 
 ALL_COLLECTION_LIST = [
@@ -52,8 +55,9 @@ ALL_COLLECTION_LIST = [
     Collection.GUIDELINE,
     Collection.BUNDLE,
     Collection.OTHER_RP,
+    Collection.ADAPTER,
+    Collection.DEPLOYABLE_SERVICE,
 ]
-
 
 ResearchProductCollection: TypeAlias = Literal[
     Collection.PUBLICATION, Collection.DATASET, Collection.SOFTWARE, Collection.OTHER_RP
@@ -82,6 +86,8 @@ class PanelId(str, Enum):
     TRAININGS = "trainings"
     SOFTWARE = "software"
     BUNDLE = "bundle"
+    ADAPTERS = "adapters"
+    DEPLOYABLE_SERVICES = "deployable_services"
 
 
 # Mapping Solr collection names to recommender names [panel_id]
@@ -95,6 +101,8 @@ COLLECTION_TO_PANEL_ID_MAP = {
     Collection.TRAINING: PanelId.TRAININGS,
     Collection.SOFTWARE: PanelId.SOFTWARE,
     Collection.BUNDLE: PanelId.BUNDLE,
+    Collection.ADAPTER: PanelId.ADAPTERS,
+    Collection.DEPLOYABLE_SERVICE: PanelId.DEPLOYABLE_SERVICES,
 }
 
 PANEL_ID_OPTIONS = [
@@ -105,6 +113,8 @@ PANEL_ID_OPTIONS = [
     PanelId.OTHER_RESEARCH_PRODUCT,
     PanelId.SERVICES,
     PanelId.BUNDLE,
+    PanelId.ADAPTERS,
+    PanelId.DEPLOYABLE_SERVICES,
 ]
 
 SPECIAL_COLLECTIONS = [Collection.PROJECT, Collection.ORGANISATION]

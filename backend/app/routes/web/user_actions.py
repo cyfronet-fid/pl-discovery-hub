@@ -47,6 +47,8 @@ async def register_navigation_user_action(
         "project",
         "organisation",
         "catalogue",
+        "deployable service",
+        "deployable-service",
     ],
     page_id: str,
     recommendation: bool = False,

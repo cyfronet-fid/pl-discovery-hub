@@ -30,7 +30,6 @@ async def test_suggestions_one_collection(
             "collection": "publication",
             "qf": "bar baz",
             "exact": "false",
-            "scope": "",
         },
         json={},
     )
@@ -44,7 +43,6 @@ async def test_suggestions_one_collection(
         sort=["score desc", "id asc"],
         rows=3,
         exact="false",
-        scope="",
     )
 
 
@@ -63,7 +61,7 @@ async def test_suggestions_dispatch_collections(
         json={},
     )
     assert res.status_code == status.HTTP_200_OK
-    assert mock_post_search.call_count == 9
+    assert mock_post_search.call_count == 11
 
 
 @pytest.mark.parametrize(
