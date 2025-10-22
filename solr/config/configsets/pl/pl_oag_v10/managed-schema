@@ -484,7 +484,10 @@
   <field name="content_type" type="strings" required="false"/>
   <field name="country" type="strings" required="false"/>
   <field name="created_at" type="pdate" uninvertible="true" docValues="true" indexed="true" stored="true"/>
+  <field name="creator_affiliations" type="text_general" uninvertible="false" docValues="false" indexed="true" stored="true"/>
+  <field name="creator_identifiers" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="creators" type="text_general" uninvertible="true" docValues="false" multiValued="false" indexed="true" stored="true"/>
+  <field name="creators_searchable" type="text_general" uninvertible="true" docValues="false" indexed="true" stored="true"/>
   <field name="datasource_classification" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="datasource_pids" type="strings" indexed="true" stored="true"/>
   <field name="dataverse_id" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
@@ -528,10 +531,12 @@
   <field name="last_update" type="pdate" sortMissingLast="true" required="false"/>
   <field name="learning_outcomes" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
   <field name="learning_resource_types" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
+  <field name="legal_status" type="text_general" uninvertible="true" docValues="false" indexed="true" stored="true"/>
   <field name="level_of_expertise" type="string" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="license" type="string" required="false" useDocValuesAsStored="true"/>
   <field name="life_cycle_status" type="string" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="link_research_product_metadata_license_urls" type="strings" uninvertible="true" docValues="true" indexed="true" stored="true"/>
+  <field name="logo" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="main_offer_id" type="pint" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="maintenance_url" type="text_general" sortMissingLast="true" required="false"/>
   <field name="major_version" type="pint" uninvertible="true" docValues="true" indexed="true" stored="true"/>
@@ -568,6 +573,7 @@
   <field name="rating" type="pdouble" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="relatedStandards.relatedStandardIdentifier" type="text_general"/>
   <field name="relatedStandards.relatedStandardURI" type="text_general"/>
+  <field name="related_guidelines" type="strings" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="related_organisation_titles" type="strings" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="related_platforms" type="strings" required="false"/>
   <field name="related_project_ids" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
@@ -577,6 +583,8 @@
   <field name="related_training" type="boolean" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="relations" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
   <field name="relations_long" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
+  <field name="releases" type="strings" uninvertible="true" docValues="true" indexed="true" stored="true"/>
+  <field name="repository" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="research_community" type="strings" required="false" useDocValuesAsStored="true"/>
   <field name="research_entity_types" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
   <field name="research_product_access_policies" type="strings" uninvertible="true" docValues="true" multiValued="true" indexed="true" stored="true"/>
@@ -600,6 +608,7 @@
   <field name="sla_url" type="text_general" sortMissingLast="true" required="false"/>
   <field name="slug" type="string" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="source" type="strings" required="false"/>
+  <field name="spatial" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="standards" type="strings" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="status" type="string" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="status_monitoring_url" type="text_general" sortMissingLast="true" required="false"/>
@@ -612,6 +621,7 @@
   <field name="tag_list_tg" type="text_general" termPositions="true" termVectors="true" termOffsets="true" required="false"/>
   <field name="tagline" type="string" docValues="true" indexed="true" stored="false" useDocValuesAsStored="true"/>
   <field name="target_group" type="strings" required="false"/>
+  <field name="temporal" type="string" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="terms_of_use_url" type="text_general" sortMissingLast="true" multiValued="false" required="false"/>
   <field name="thematic" type="boolean" uninvertible="true" docValues="true" indexed="true" stored="true"/>
   <field name="title" type="text_general" termPositions="true" termVectors="true" termOffsets="true" required="false"/>
