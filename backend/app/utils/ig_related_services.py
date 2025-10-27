@@ -79,9 +79,7 @@ async def _get_related_records_pids(client, ig_pid):
         raise RelatedServicesError(detail="Unexpected error") from exc
 
 
-async def extend_ig_with_related_services(
-    client: AsyncClient, docs: list[dict], scope: Optional[str] = None
-):
+async def extend_ig_with_related_services(client: AsyncClient, docs: list[dict]):
     """Main function responsible for extending iteroperability guideline response
     with related services data
     """
@@ -99,7 +97,7 @@ async def extend_ig_with_related_services(
             finally:
                 if related_services_pids:
                     doc["related_services"] = await _get_related_services(
-                        client, related_services_pids, scope
+                        client, related_services_pids
                     )
                 else:
                     doc["related_services"] = []
@@ -110,24 +108,16 @@ async def extend_ig_with_related_services(
     return new_docs
 
 
-async def _get_related_services(
-    client: AsyncClient,
-    related_services_pids: list[str],
-    scope: Optional[str] = None,
-):
+async def _get_related_services(client: AsyncClient, related_services_pids: list[str]):
     gathered_result = await asyncio.gather(
-        *[_get_related_service(client, pid, scope) for pid in related_services_pids]
+        *[_get_related_service(client, pid) for pid in related_services_pids]
     )
     return [result for result in gathered_result if result]
 
 
-async def _get_related_service(
-    client,
-    pid,
-    scope: Optional[str] = None,
-):
+async def _get_related_service(client, pid):
     response = await get_item_by_pid(
-        client=client, collection=Collection.ALL_COLLECTION, item_pid=pid, scope=scope
+        client=client, collection=Collection.ALL_COLLECTION, item_pid=pid
     )
 
     if response and response.json()["response"]["docs"]:

@@ -29,6 +29,7 @@ class GlobalSettings(BaseSettings):
     DATABASE_URI: PostgresDsn = "postgresql+psycopg2://ess:ess@localhost:5442/ess"
     MAX_RESULTS_BY_PAGE: int = 50
     SHOW_BETA_COLLECTIONS: bool = False
+    SHOW_KNOWLEDGE_BASE: bool = True
 
     # Services
     # - Solr
@@ -77,14 +78,14 @@ class GlobalSettings(BaseSettings):
     )
 
     # Redirections
-    EU_MARKETPLACE_BASE_URL: Url = "https://marketplace.sandbox.eosc-beyond.eu/"
-    PL_MARKETPLACE_BASE_URL: Url = "https://marketplace.eosc.pl/"
+    MARKETPLACE_BASE_URL: Url = "https://marketplace.sandbox.eosc-beyond.eu/"
     EOSC_COMMONS_URL: Url = (  # Without / at the end it doesn't work
-        "https://s3.cloud.cyfronet.pl/eosc-pl-common/"
+        "https://s3.cloud.cyfronet.pl/eosc-portal-common/"
     )
     EOSC_COMMONS_ENV: str = "beta"
     EOSC_EXPLORE_URL: Url = "https://explore.sandbox.eosc-beyond.eu/"
     KNOWLEDGE_HUB_URL: Url = "https://knowledge-hub.sandbox.eosc-beyond.eu/"
+    USER_DOCUMENTATION_URL: Url = "https://docs.sandbox.eosc-beyond.eu/"
 
     # Get config from .env
     model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")

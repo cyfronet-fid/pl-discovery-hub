@@ -35,7 +35,6 @@ import { DOCUMENT } from '@angular/common';
 import { RedirectService } from '@collections/services/redirect.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { SPECIAL_COLLECTIONS } from '@collections/data/config';
-import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
 
 export interface Tags {
   narrow: string;
@@ -70,7 +69,6 @@ export class SearchInputComponent implements OnInit {
   focused = false;
   tooltipText: string | undefined;
   standardSearch = true;
-  scope: string = DEFAULT_SCOPE;
   collectionFcAdv = [
     { name: 'Author' },
     { name: 'Exact' },
@@ -531,7 +529,6 @@ export class SearchInputComponent implements OnInit {
         tags: this.tags,
         standard: this.standardSearch.toString(),
         exact: this.exactmatch.toString().toLowerCase(),
-        scope: this.scope,
         radioValueAuthor: this.radioValueAuthor,
         radioValueExact: this.radioValueExact,
         radioValueTitle: this.radioValueTitle,

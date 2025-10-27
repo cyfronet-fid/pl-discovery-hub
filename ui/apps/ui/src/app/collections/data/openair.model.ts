@@ -15,6 +15,7 @@ export interface IOpenAIREResult {
   publisher: string;
   author_pids: string[];
   license: string;
+  funder: string[];
   document_type: string[];
   country: string;
   doi: string[];
@@ -25,8 +26,6 @@ export interface IOpenAIREResult {
   exportation: InstanceExportData[];
   eosc_if: string[];
   related_organisation_titles: string[];
-  affiliation: string[];
-  funder: string[];
   node: string;
 }
 

@@ -144,11 +144,12 @@ See docker-compose.yml for components.
 - `DATABASE_URI`: `PostgresDsn = "postgresql+psycopg2://ess:ess@localhost:5442/ess"` - your database URI.
 - `MAX_RESULTS_BY_PAGE`: `int = 50` - how many results to fetch with a single call to SOLR backend.
 - `SHOW_BETA_COLLECTIONS`: `bool = False` - show collections that are in beta version?
+- `SHOW_KNOWLEDGE_BASE`: `bool = True` - show Knowledge Base navigation tab in frontend?
 
 #### Services:
 ##### Solr
 - `SOLR_URL`: `Url = "http://localhost:8983/solr/"` - your Solr URL.
-- `COLLECTIONS_PREFIX`: `str = ""` - Specify custom prefix for solr collections. Then your specific collection with that prefix will be used by default. Otherwise, determined with a request header, if it's present.
+- `COLLECTIONS_PREFIX`: `str = ""` - Specify custom prefix for solr collections. Then your specific collection with that prefix will be used.
 ##### Recommender System
 - `RS_URL`: `Url = "http://localhost:9080/"` - your Recommender System URL.
 - `RECOMMENDER_ENDPOINT`: `Url = "http://localhost:8081/recommendations"` - your endpoint that returns recommendations.
@@ -181,11 +182,11 @@ See docker-compose.yml for components.
 ##### Redirections
 - `MARKETPLACE_BASE_URL`: `Url = "https://marketplace.eosc-portal.eu/"` - marketplace base url (used to generate links back to MP).
 - `EOSC_COMMONS_URL`: `Url = "https://s3.cloud.cyfronet.pl/eosc-portal-common/"` - Base URL to eosc commons.
-- `EOSC_COMMONS_ENV`: `str = "production"` - Environment used to load eosc commons. Together with `EOSC_COMMONS_URL` two assets are loaded:
+- `EOSC_COMMONS_ENV`: `enum: 'production' | 'beta'` - Environment used to load eosc commons. Together with `EOSC_COMMONS_URL` two assets are loaded:
   > `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.js` and `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.css`
 
 - `EOSC_EXPLORE_URL`: `Url = "https://explore.eosc-portal.eu/"` - base URL to OpenAire Explore - used when constructing links for publications, datasets ETC.
-- `KNOWLEDGE_HUB_URL`: `Url = "https://knowledge-hub.eosc-portal.eu/"` - base URL to Knowledge Hub.
+- `KNOWLEDGE_HUB_URL`: `Url = "https://knowledge-hub.sandbox.eosc-beyond.eu/"` - base URL to Knowledge Hub.
 
 ### `db` envs:
 - `DB_POSTGRES_DB`

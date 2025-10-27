@@ -27,8 +27,6 @@ import { FeedbackPanelModule } from '@components/feedback-panel/feedback-panel.m
 import { SearchPageComponent } from './search-page.component';
 import { ArticlesModule } from '@components/articles/articles.module';
 
-import { RightPanelModule } from '@components/right-panel/right-panel.module';
-
 @NgModule({
   declarations: [SearchPageComponent],
   providers: [NgbActiveModal],
@@ -61,7 +59,6 @@ import { RightPanelModule } from '@components/right-panel/right-panel.module';
     DownloadResultsModule,
     FeedbackPanelModule,
     ArticlesModule,
-    RightPanelModule,
   ],
   exports: [SearchPageComponent],
 })

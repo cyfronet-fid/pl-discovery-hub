@@ -32,9 +32,8 @@
         nzType="primary"
         nzShape="round"
         class="mt-3 bottom-space button"
-        (click)="redirectToRoot()"
       >
-        Homepage
+        <a href="{{ marketplaceUrl }}">Homepage</a>
       </button>
     </ng-template>
   </nz-empty>
@@ -109,7 +108,7 @@
         [type]="result.type"
         [country]="result.country ?? ''"
         [website]="result.website ?? ''"
-        [redirectUrl]="result.redirectUrl"
+        [url]="result.url"
         [logoUrl]="result.logoUrl"
         [highlights]="highlights[result.id] ?? {}"
         [isResearchProduct]="result.isResearchProduct"
@@ -134,7 +133,7 @@
       [type]="result.type"
       [country]="result.country ?? ''"
       [website]="result.website ?? ''"
-      [redirectUrl]="result.redirectUrl"
+      [url]="result.url"
       [logoUrl]="result.logoUrl"
       [highlights]="highlights[result.id] ?? {}"
       [isResearchProduct]="result.isResearchProduct"
@@ -164,7 +163,7 @@
         [date]="result.date"
         [exportData]="result.exportData"
         [highlights]="highlights[result.id] ?? {}"
-        [redirectUrl]="result.redirectUrl"
+        [url]="result.url"
         [logoUrl]="result.logoUrl"
         [orderUrl]="result.orderUrl"
         [urls]="result.urls ?? []"
@@ -193,7 +192,7 @@
         [cost]="result.cost ?? 0"
         [startDate]="result.startDate ?? ''"
         [endDate]="result.endDate ?? ''"
-        [redirectUrl]="result.redirectUrl"
+        [url]="result.url"
         [logoUrl]="result.logoUrl"
       ></ess-result>
 
@@ -202,11 +201,10 @@
         <ess-result
           class="results"
           [id]="result.id"
-          [pid]="result.pid"
           [title]="result.title"
           [description]="result.description | transformArrayDescriptionPipe"
           [type]="result.type"
-          [redirectUrl]="result.redirectUrl"
+          [url]="result.url"
           [logoUrl]="result.logoUrl"
           [orderUrl]="result.orderUrl"
           [urls]="result.urls ?? []"
@@ -229,6 +227,7 @@
           [providerName]="result.providerName ?? []"
           [relatedServices]="result.relatedServices"
           [relatedOrganisations]="result.relatedOrganisations"
+          [repository]="result.repository ?? ''"
         ></ess-result>
       </ng-template>
     </ng-container>

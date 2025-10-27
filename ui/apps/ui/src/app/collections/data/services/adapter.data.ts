@@ -7,13 +7,13 @@ import {
   toArray,
   toValueWithLabel,
 } from '@collections/filters-serializers/utils';
-import { transformLanguages } from '@collections/data/shared-tags';
+import { transformLanguages } from '../shared-tags';
 import {
   parseStatistics,
   toInterPatternsSecondaryTag,
   toKeywordsSecondaryTag,
-} from '@collections/data/utils';
-import { ConfigService } from '../../../services/config.service';
+} from '../utils';
+import { buildServiceUrl } from '../url-builder-utils';
 
 const setType = (type: string | undefined) => {
   if (type === 'data source') {
@@ -36,27 +36,14 @@ export const servicesAdapter: IAdapter = {
   ): IResult => ({
     isResearchProduct: false,
     id: service.id,
-    // basic information
     title: service.title?.join(' ') || '',
     description: service.description?.join(' ') || '',
     languages: transformLanguages(service?.language),
     horizontal: service?.horizontal,
     type: setType(service.type),
-    redirectUrl: service.slug
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/services/${encodeURIComponent(service.slug)}`
-      : '',
-    logoUrl: service.slug
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/services/${encodeURIComponent(service.slug)}/logo`
-      : '',
-    orderUrl: service.slug
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/services/${encodeURIComponent(service.slug)}/offers`
-      : '',
+    url: buildServiceUrl(service),
+    logoUrl: buildServiceUrl(service, '/logo'),
+    orderUrl: buildServiceUrl(service, '/offers'),
     collection: COLLECTION,
     coloredTags: [],
     tags: [

@@ -82,7 +82,7 @@ const DEFAULT_RESULTS_SIZE = 10;
   styles: [
     `
       .show-more-less {
-        color: #257b85;
+        color: #040f81;
         font-family: Inter;
         font-size: 13px;
         font-style: normal;

@@ -19,10 +19,7 @@ logger = logging.getLogger(__name__)
 
 @router.get("/research-product/{resource_type}/{rp_id:path}")
 async def get_rp_by_id(
-    resource_type: ResearchProductCollection,
-    rp_id: str,
-    solr_get=Depends(get_dep),
-    scope: Optional[str] = None,
+    resource_type: ResearchProductCollection, rp_id: str, solr_get=Depends(get_dep)
 ) -> Optional[ResearchProductResponse]:
     """
     Main function responsible for getting details for a given Solr document.
@@ -32,7 +29,7 @@ async def get_rp_by_id(
         solr_get (callable): solr.operations `get` function
     """
     async with AsyncClient() as async_client:
-        response = await solr_get(async_client, resource_type, rp_id, scope)
+        response = await solr_get(async_client, resource_type, rp_id)
         response = response["doc"]
     if response is None:
         raise HTTPException(status_code=404, detail="Research product not found")

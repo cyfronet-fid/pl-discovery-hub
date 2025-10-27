@@ -1,14 +1,14 @@
 import { IAdapter, IResult } from '../../repositories/types';
 import { URL_PARAM_NAME } from './nav-config.data';
 import { COLLECTION } from './search-metadata.data';
-import { IProvider } from '@collections/data/providers/provider.model';
-import { parseStatistics } from '@collections/data/utils';
+import { IProvider } from './provider.model';
+import { parseStatistics } from '../utils';
 import {
   toArray,
   toValueWithLabel,
 } from '@collections/filters-serializers/utils';
-import { ConfigService } from '../../../services/config.service';
-import { toKeywordsSecondaryTag } from '@collections/data/utils';
+import { toKeywordsSecondaryTag } from '../utils';
+import { buildProviderUrl } from '../url-builder-utils';
 
 const getDescription = (desc: string[]) => {
   return desc.join('');
@@ -30,16 +30,6 @@ export const providersAdapter: IAdapter = {
       label: 'provider',
       value: 'provider',
     },
-    redirectUrl: provider.pid
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/providers/${encodeURIComponent(provider.pid)}`
-      : '',
-    logoUrl: provider.pid
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/providers/${encodeURIComponent(provider.pid)}/logo`
-      : '',
     collection: COLLECTION,
     coloredTags: [],
     secondaryTags: [
@@ -75,6 +65,8 @@ export const providersAdapter: IAdapter = {
         filter: 'meril_scientific_domains',
       },
     ],
+    url: buildProviderUrl(provider),
+    logoUrl: buildProviderUrl(provider, '/logo'),
     ...parseStatistics(provider),
   }),
 };

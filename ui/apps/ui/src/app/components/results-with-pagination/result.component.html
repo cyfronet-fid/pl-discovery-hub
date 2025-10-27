@@ -4,6 +4,7 @@
       type.value === 'data-source' ||
       type.value === 'provider' ||
       type.value === 'data source'||
+      type.value === 'adapter'||
       type.value === 'catalogue';
     else elseTypeIcon
   "
@@ -11,16 +12,20 @@
   <div class="type-icon-holder {{  type.label }}" style="flex: 115px 0 0">
     <div
       class="type-icon"
-      [ngStyle]="{
+      [ngStyle]="this.logoUrl && !this.logoLoadFailed ? {
         'background-image': 'url(' + this.logoUrl + ')',
-        width: '100%',
-        height: '100%',
-        'background-repeat': 'no-repeat',
-        'background-size': 'auto',
-        'background-position': 'top center',
-        margin: '25px auto'
-      }"
+        'background-size': '60px auto',
+        'width': '70px',
+        'height': '70px'
+      } : {}"
     ></div>
+    <img
+      *ngIf="this.logoUrl && !this.logoLoadFailed"
+      [src]="this.logoUrl"
+      (error)="onLogoError()"
+      style="display: none;"
+      alt=""
+    />
   </div>
 </ng-container>
 
@@ -298,7 +303,7 @@
                 <div class="bundle-offer-pic p-2">
                   <img
                     style="width: 48px"
-                    src="{{ getLogoUrl(offer.service?.slug) }}"
+                    src="{{ getServiceLogoUrl(offer.service?.id) }}"
                   />
                 </div>
                 <div class="bundle-offer-desc p-2">
@@ -321,7 +326,7 @@
   </div>
   <div class="bottom-actions {{ type.label }}">
     <ess-sources
-      *ngIf="isResearchProduct && this.scope === 'eu'"
+      *ngIf="isResearchProduct"
       class="bottom-action-link"
       [title]="title"
       [urls]="urls"
@@ -331,17 +336,22 @@
       [urls]="urls"
       [title]="title"
       [description]="description"
-      [shareUrl]="redirectUrl || ''"
+      [shareUrl]="url || ''"
       [type]="type"
       class="share-link"
     ></ess-share>
     <ess-bibliography
       class="bottom-action-link"
-      *ngIf="isResearchProduct && this.scope === 'eu'"
+      *ngIf="isResearchProduct"
       [title]="title"
       [hasDOIUrl]="hasDOIUrl"
       [exportData]="exportData"
     ></ess-bibliography>
+    <ess-repository
+      class="bottom-action-link"
+      *ngIf="type.value === 'adapter' && repository"
+      [repository]="repository"
+    ></ess-repository>
     <ess-pin
       *ngIf="RESOURCES_TO_SHOW_PIN_TO.includes(type.value)"
       [resourceType]="type.value"
@@ -349,16 +359,16 @@
       style="border-right: none !important"
       class="bottom-action-link"
     ></ess-pin>
-    <ess-pin-static
-      *ngIf="
-        MP_RESOURCES_TO_SHOW_PIN_TO.includes(type.value) &&
-        redirectOrderUrl !== null
-      "
-      [type]="type.value"
-      [url]="redirectOrderUrl"
-      style="float: left"
-    ></ess-pin-static>
-    <div *ngIf="collection === 'provider' || collection === 'organisation' || collection === 'catalogue' || type.value === 'data-source'">
+<!--    <ess-pin-static-->
+<!--      *ngIf="-->
+<!--        MP_RESOURCES_TO_SHOW_PIN_TO.includes(type.value) &&-->
+<!--        redirectOrderUrl !== null-->
+<!--      "-->
+<!--      [type]="type.value"-->
+<!--      [url]="redirectOrderUrl"-->
+<!--      style="float: left"-->
+<!--    ></ess-pin-static>-->
+    <div *ngIf="collection === 'provider' || collection === 'organisation' || collection === 'catalogue' ">
       <ess-related-resources
         [pid]="this.pid ?? ''"
         [title]="title"

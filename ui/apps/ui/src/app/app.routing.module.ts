@@ -6,10 +6,7 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () =>
-      import('./pages/landing-page/landing-page.module').then(
-        (m) => m.LandingPageModule
-      ),
+    redirectTo: SEARCH_PAGE_PATH,
   },
   {
     path: `${SEARCH_PAGE_PATH}/all`,
@@ -38,11 +35,18 @@ const appRoutes: Routes = [
       ),
   },
   {
-    path: 'terms-of-use',
+    path: 'adapters',
+    loadChildren: () =>
+      import('./pages/adapters-page/adapters-page.module').then(
+        (m) => m.AdaptersPageModule
+      ),
+  },
+  {
+    path: 'acceptable-use-policy',
     pathMatch: 'full',
     loadChildren: () =>
-      import('@pages/terms-of-use/terms-of-use.module').then(
-        (m) => m.TermsOfUseModule
+      import('./pages/acceptable-use-policy/acceptable-use-policy.module').then(
+        (m) => m.AcceptableUsePolicyModule
       ),
   },
   {

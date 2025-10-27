@@ -1,7 +1,6 @@
 import datetime
 import random
 import uuid
-from typing import Optional
 
 import httpx
 from async_lru import alru_cache
@@ -62,13 +61,11 @@ async def get_recommended_uuids(
         raise RecommenderError(message="Connection error") from e
 
 
-async def get_recommended_items(
-    client: AsyncClient, uuids: list[str], scope: Optional[str] = None
-):
+async def get_recommended_items(client: AsyncClient, uuids: list[str]):
     try:
         items = []
         for item_uuid in uuids:
-            item = await get(client, Collection.ALL_COLLECTION, item_uuid, scope)
+            item = await get(client, Collection.ALL_COLLECTION, item_uuid)
             items.append(item["doc"])
         return items
     except httpx.ConnectError as e:
@@ -78,9 +75,7 @@ async def get_recommended_items(
 # pylint: disable=unused-argument
 @alru_cache(maxsize=512)
 async def get_fixed_recommendations(
-    collection: Collection,
-    count: int = 3,
-    scope: Optional[str] = None,
+    collection: Collection, count: int = 3
 ) -> list[str]:
     rows = 100
     if collection == Collection.DATA_SOURCE:
@@ -98,7 +93,6 @@ async def get_fixed_recommendations(
             sort=["id desc"],
             rows=rows,
             exact="false",
-            scope=scope,
         )
     docs: list = response.data["response"]["docs"]
     if len(docs) == 0:

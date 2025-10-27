@@ -1,7 +1,5 @@
 """The Search endpoint"""
 
-from typing import Optional
-
 from fastapi import Body, Depends, Query
 from httpx import AsyncClient
 
@@ -31,7 +29,6 @@ async def search_post(
     cursor: str = Query("*", description="Cursor"),
     request: SearchRequest = Body(..., description="Request body"),
     search=Depends(search_dep),
-    scope: Optional[str] = None,
 ):
     """
     Do a search against the specified collection.
@@ -56,7 +53,6 @@ async def search_post(
             exact=exact,
             cursor=cursor,
             facets=request.facets,
-            scope=scope,
         )
     res_json = response.data
     out = {

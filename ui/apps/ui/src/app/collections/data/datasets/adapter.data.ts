@@ -32,7 +32,7 @@ export const datasetsAdapter: IAdapter = {
     license: openAIREResult?.license,
     funder: openAIREResult?.funder,
     documentType: openAIREResult?.document_type,
-    redirectUrl: `${
+    url: `${
       ConfigService.config?.eosc_explore_url
     }/search/result?id=${encodeURIComponent(
       openAIREResult?.id?.split('|')?.pop() || ''

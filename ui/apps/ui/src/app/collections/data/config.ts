@@ -19,32 +19,6 @@ export const PROJECT_QF =
 
 export const ORGANISATION_QF = 'alternative_names title abbreviation';
 
-export const PL_CONTEXT_COLLECTIONS = [
-  'all_collection',
-  'dataset',
-  'publication',
-  'service',
-  'data_source',
-  'provider',
-];
-
-export const EU_CONTEXT_COLLECTIONS = [
-  'all_collection',
-  'bundle',
-  'catalogue',
-  'data_source',
-  'dataset',
-  'guideline',
-  'organisation',
-  'other_rp',
-  'project',
-  'provider',
-  'publication',
-  'service',
-  'software',
-  'training',
-];
-
 export const SPECIAL_COLLECTIONS = [
   'organisation',
   'provider',
@@ -395,7 +369,6 @@ export const DATASOURCE_PID_MAPPING: Record<string, string> = {
   'eosc.cyfronet.new_datasource_test-cyfronet_10':
     'new datasource Test-Cyfronet #10',
   'eosc.cyfronet.rodbuk': 'RODBUK Cracow Open Research Data Repository',
-  'eosc.icm.repod': 'RepOD Repository for Open Data',
   'eosc.dkrz.wdcc': 'WDCC World Data Center for Climate',
   'eosc.elixir-uk.workflowhub': 'WorkflowHub',
   'eosc.embl-ebi.icr': 'Identifiers.org Central Registry',

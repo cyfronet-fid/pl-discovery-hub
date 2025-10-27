@@ -1,7 +1,6 @@
 """The Recommend endpoint"""
 
 from json import JSONDecodeError
-from typing import Optional
 
 from fastapi import Body, Depends, HTTPException, Query
 from httpx import AsyncClient, TransportError
@@ -40,7 +39,6 @@ async def recommend_post(
         },
     ),
     search=Depends(search_dep),
-    scope: Optional[str] = None,
 ):
     """
     Do a search against the specified collection, pass results to RS.
@@ -58,7 +56,6 @@ async def recommend_post(
             sort=sort + DEFAULT_SORT,
             rows=settings.RS_ROWS,
             cursor="*",
-            scope=scope,
         )
         try:
             rs_response = await recommendations(

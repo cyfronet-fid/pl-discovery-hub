@@ -60,6 +60,15 @@ export const otherResourcesProductsFilters: IFiltersConfig = {
       expandArrow: true,
     },
     {
+      id: 'license',
+      filter: 'license',
+      label: 'License',
+      type: 'multiselect',
+      defaultCollapsed: true,
+      tooltipText: '',
+      expandArrow: true,
+    },
+    {
       id: 'eosc_if',
       filter: 'eosc_if',
       label: 'Interoperability pattern',

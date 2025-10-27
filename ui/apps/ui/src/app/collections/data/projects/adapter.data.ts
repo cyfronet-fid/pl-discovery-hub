@@ -48,8 +48,7 @@ export const projectsAdapter: IAdapter = {
         showMoreThreshold: 10,
       },
     ],
-
-    redirectUrl: `${
+    url: `${
       ConfigService.config?.eosc_explore_url
     }/search/project?projectId=${encodeURIComponent(
       project?.id?.split('|')?.pop() || ''

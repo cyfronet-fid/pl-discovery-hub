@@ -3,7 +3,6 @@
 """Presentable items UI endpoint"""
 import logging
 import uuid
-from typing import Optional
 
 import httpx
 from fastapi import APIRouter, HTTPException, Request
@@ -39,11 +38,7 @@ logger = logging.getLogger(__name__)
     "/recommendations",
     responses={200: {"model": dict}, 500: {"model": BadRequest}},
 )
-async def get_recommendations(
-    panel_id: Collection,
-    request: Request,
-    scope: Optional[str] = None,
-):
+async def get_recommendations(panel_id: Collection, request: Request):
     if settings.SHOW_RECOMMENDATIONS is False:
         return []
     session, _ = await get_session(request)
@@ -55,7 +50,7 @@ async def get_recommendations(
                 uuids = await get_recommended_uuids(
                     client, session, panel_id, recommendation_visit_id
                 )
-                items = await get_recommended_items(client, uuids, scope)
+                items = await get_recommended_items(client, uuids)
                 resp = JSONResponse({"recommendations": items, "isRand": False})
                 # Let's store the recommendation visit id for retrieval in the user actions
                 resp.set_cookie("recommendation_visit_id", recommendation_visit_id)
@@ -63,17 +58,19 @@ async def get_recommendations(
             except (RecommenderError, ReadTimeout, SolrDocumentNotFoundError) as error:
                 items = []
                 if settings.SHOW_RANDOM_RECOMMENDATIONS:
-                    uuids = await get_fixed_recommendations(panel_id, scope=scope)
-                    items = await get_recommended_items(client, uuids, scope)
+                    uuids = await get_fixed_recommendations(panel_id)
+                    items = await get_recommended_items(client, uuids)
 
-                resp = JSONResponse({
-                    "recommendations": items,
-                    "isRand": bool(items),
-                    "message": (
-                        str(error)
-                        or "Solr or external recommender service read timeout"
-                    ),
-                })
+                resp = JSONResponse(
+                    {
+                        "recommendations": items,
+                        "isRand": bool(items),
+                        "message": (
+                            str(error)
+                            or "Solr or external recommender service read timeout"
+                        ),
+                    }
+                )
                 # We're storing the visit id for fixed recommendations just in case as well
                 resp.set_cookie("recommendation_visit_id", recommendation_visit_id)
                 return resp

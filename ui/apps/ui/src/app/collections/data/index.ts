@@ -22,6 +22,8 @@ import { dataSourcesNavConfig } from './data-sources/nav-config.data';
 import { servicesNavConfig } from '@collections/data/services/nav-config.data';
 import { othersResourcesProductsNavConfig } from '@collections/data/other-resources-products/nav-config.data';
 import { bundlesNavConfig } from '@collections/data/bundles/nav-config.data';
+import { adapterNavConfig } from '@collections/data/adapters/nav-config.data';
+import { deployableServiceNavConfig } from '@collections/data/deployable-services/nav-config.data';
 
 import { trainingsAdapter } from './trainings/adapter.data';
 import { guidelinesAdapter } from './guidelines/adapter.data';
@@ -37,12 +39,8 @@ import { servicesAdapter } from '@collections/data/services/adapter.data';
 import { otherResourcesProductsAdapter } from '@collections/data/other-resources-products/adapter.data';
 import { bundlesAdapter } from '@collections/data/bundles/adapter.data';
 import { cataloguesAdapter } from './catalogues/adapter.data';
-
-import { plDatasetsAdapter } from '../pl-data/datasets/adapter.data';
-import { plAllCollectionsAdapter } from '../pl-data/all/adapter.data';
-import { plProvidersAdapter } from '../pl-data/providers/adapter.data';
-import { plServicesAdapter } from '../pl-data/services/adapter.data';
-import { plDataSourcesAdapter } from '../pl-data/data-sources/adapter.data';
+import { adaptersAdapter } from './adapters/adapter.data';
+import { deployableServiceAdapter } from '@collections/data/deployable-services/adapter.data';
 
 import { trainingsSearchMetadata } from './trainings/search-metadata.data';
 import { guidelinesSearchMetadata } from './guidelines/search-metadata.data';
@@ -58,6 +56,8 @@ import { servicesSearchMetadata } from '@collections/data/services/search-metada
 import { otherResourcesProductsSearchMetadata } from '@collections/data/other-resources-products/search-metadata.data';
 import { bundlesSearchMetadata } from '@collections/data/bundles/search-metadata.data';
 import { cataloguesSearchMetadata } from './catalogues/search-metadata.data';
+import { adapterSearchMetadata } from './adapters/search-metadata.data';
+import { deployableServiceSearchMetadata } from '@collections/data/deployable-services/search-metadata.data';
 
 import { allCollectionsFilters } from './all/filters.data';
 import { publicationsFilters } from './publications/filters.data';
@@ -73,9 +73,8 @@ import { organisationsFilters } from './organisations/filters.data';
 import { otherResourcesProductsFilters } from '@collections/data/other-resources-products/filters.data';
 import { bundlesFilters } from '@collections/data/bundles/filters.data';
 import { catalogueFilters } from './catalogues/filters.data';
-
-import { plDatasetsFilters } from '../pl-data/datasets/filters.data';
-import { plAllCollectionsFilters } from '@collections/pl-data/all/filters.data';
+import { adapterFilters } from './adapters/filters.data';
+import { deployableServiceFilters } from './deployable-services/filters.data';
 
 import { excludedPublicationsFilters } from '@collections/data/publications/excluded.data';
 import { excludedDatasetsFilters } from '@collections/data/datasets/excluded.data';
@@ -91,9 +90,8 @@ import { excludedProvidersFilters } from '@collections/data/providers/excluded.d
 import { excludedProjectFilters } from './projects/excluded.data';
 import { excludedOrganisationFilters } from './organisations/excluded.data';
 import { excludedCatalogueFilters } from './catalogues/excluded.data';
-
-import { plExcludedDatasetsFilters } from '@collections/pl-data/datasets/excluded.data';
-import { plExcludedAllCollectionsFilters } from '@collections/pl-data/all/excluded.data';
+import { excludedAdapterFilters } from './adapters/excluded.data';
+import { excludedDeployableServiceFilters } from '@collections/data/deployable-services/excluded.data';
 
 import { validateCollections } from '@collections/data/validators';
 
@@ -113,17 +111,9 @@ export const ADAPTERS: IAdapter[] = [
   projectsAdapter,
   organisationsAdapter,
   cataloguesAdapter,
+  adaptersAdapter,
+  deployableServiceAdapter,
 ];
-
-export const PL_ADAPTERS: IAdapter[] = [
-  plAllCollectionsAdapter,
-  publicationsAdapter,
-  plDatasetsAdapter,
-  plServicesAdapter,
-  plDataSourcesAdapter,
-  plProvidersAdapter,
-];
-
 export const FILTERS: IFiltersConfig[] = [
   allCollectionsFilters,
   publicationsFilters,
@@ -139,15 +129,8 @@ export const FILTERS: IFiltersConfig[] = [
   projectsFilters,
   organisationsFilters,
   catalogueFilters,
-];
-
-export const PL_FILTERS: IFiltersConfig[] = [
-  plAllCollectionsFilters,
-  publicationsFilters,
-  plDatasetsFilters,
-  servicesFilters,
-  dataSourcesFilters,
-  providersFilters,
+  adapterFilters,
+  deployableServiceFilters,
 ];
 
 // Excluded filters according to adjustments in
@@ -167,15 +150,8 @@ export const EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
   excludedProjectFilters,
   excludedOrganisationFilters,
   excludedCatalogueFilters,
-];
-
-export const PL_EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
-  plExcludedAllCollectionsFilters,
-  excludedPublicationsFilters,
-  plExcludedDatasetsFilters,
-  excludedServicesFilters,
-  excludedDataSourcesFilters,
-  excludedProvidersFilters,
+  excludedAdapterFilters,
+  excludedDeployableServiceFilters,
 ];
 
 export const NAV_CONFIGS: ICollectionNavConfig[] = [
@@ -193,17 +169,9 @@ export const NAV_CONFIGS: ICollectionNavConfig[] = [
   projectNavConfig,
   organisationsNavConfig,
   cataloguesNavConfig,
+  adapterNavConfig,
+  deployableServiceNavConfig,
 ];
-
-export const PL_NAV_CONFIGS: ICollectionNavConfig[] = [
-  allCollectionsNavConfig,
-  publicationsNavConfig,
-  datasetsNavConfig,
-  servicesNavConfig,
-  dataSourcesNavConfig,
-  providersNavConfig,
-];
-
 export const SEARCH_METADATA: ICollectionSearchMetadata[] = [
   allCollectionsSearchMetadata,
   publicationsSearchMetadata,
@@ -219,15 +187,8 @@ export const SEARCH_METADATA: ICollectionSearchMetadata[] = [
   projectsSearchMetadata,
   organisationsSearchMetadata,
   cataloguesSearchMetadata,
-];
-
-export const PL_SEARCH_METADATA: ICollectionSearchMetadata[] = [
-  allCollectionsSearchMetadata,
-  publicationsSearchMetadata,
-  datasetsSearchMetadata,
-  servicesSearchMetadata,
-  dataSourcesSearchMetadata,
-  providersSearchMetadata,
+  adapterSearchMetadata,
+  deployableServiceSearchMetadata,
 ];
 
 validateCollections(
@@ -236,12 +197,4 @@ validateCollections(
   EXCLUDED_FILTERS,
   NAV_CONFIGS,
   SEARCH_METADATA
-);
-
-validateCollections(
-  PL_ADAPTERS,
-  PL_FILTERS,
-  PL_EXCLUDED_FILTERS,
-  PL_NAV_CONFIGS,
-  PL_SEARCH_METADATA
 );

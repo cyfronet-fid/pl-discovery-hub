@@ -23,7 +23,7 @@ export interface IResult {
   type: IValueWithLabel;
   collection: string;
   urls?: string[];
-  redirectUrl: string;
+  url: string;
   logoUrl?: string;
   tags: ITag[];
   date?: string;
@@ -63,6 +63,18 @@ export interface IResult {
   relatedOrganisationTitles?: string[];
   pid?: string;
   funder?: string[];
+  programmingLanguage?: string;
+  relatedGuidelineUrl?: string;
+  relatedServiceUrl?: string;
+  changelog?: string[];
+  node?: string;
+  documentationUrl?: string;
+  repository?: string;
+  keywords?: string[];
+  catalogue?: string[];
+  public_contacts?: string[];
+  releases?: string[];
+  version?: string;
 }
 
 export interface RelatedService {
@@ -104,7 +116,6 @@ export interface IColoredTag {
 export interface ISolrCollectionParams {
   qf: string;
   collection: string;
-  scope?: string;
 }
 
 export interface ISolrSuggestionQueryParams {

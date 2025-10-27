@@ -1,7 +1,6 @@
 # pylint: disable=missing-function-docstring
 
 """Presentable items UI endpoint"""
-from typing import Optional
 
 from fastapi import APIRouter, Depends
 from httpx import AsyncClient
@@ -22,16 +21,11 @@ async def read_item(
     collection: Collection,
     item_id: str,
     get_item=Depends(get_dep),
-    scope: Optional[str] = None,
 ):
     async with AsyncClient() as client:
-        response = await get_item(client, collection, item_id, scope)
+        response = await get_item(client, collection, item_id)
         if collection == Collection.GUIDELINE:
-            await extend_ig_with_related_services(
-                client=client,
-                docs=[response["doc"]],
-                scope=scope,
-            )
+            await extend_ig_with_related_services(client=client, docs=[response["doc"]])
     return {
         **response["doc"],
         "facets": response["facets"] if "facets" in response else {},

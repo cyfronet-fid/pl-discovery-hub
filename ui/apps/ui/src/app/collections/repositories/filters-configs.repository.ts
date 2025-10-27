@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createStore, withProps } from '@ngneat/elf';
 import { getEntity, setEntities, withEntities } from '@ngneat/elf-entities';
-import { ActivatedRoute } from '@angular/router';
 import {
   FiltersStoreConfig,
   IExcludedFiltersConfig,
@@ -11,13 +10,7 @@ import {
   filterUIEntitiesRef,
   withFilterUIEntities,
 } from './types';
-import {
-  DEFAULT_COLLECTION_ID,
-  EXCLUDED_FILTERS,
-  FILTERS,
-  PL_EXCLUDED_FILTERS,
-  PL_FILTERS,
-} from '../data';
+import { DEFAULT_COLLECTION_ID, EXCLUDED_FILTERS, FILTERS } from '../data';
 import { filterValueType } from '@collections/services/custom-route.type';
 import { mutateUiValue } from '@components/active-filters/utils';
 import { map } from 'rxjs';
@@ -42,19 +35,18 @@ export class FiltersConfigsRepository {
 
   public readonly isLoading$ = this._store$.pipe(map((state) => state.loading));
 
-  constructor(private _route: ActivatedRoute) {
-    this._route.queryParams.subscribe(() => this.setScope());
+  constructor() {
+    this.clear();
   }
 
   get(urlPath: string | null | undefined | ''): IFiltersConfig {
     const id = urlPath ?? DEFAULT_COLLECTION_ID;
-    const config = this._store$.query(getEntity(id)) as IFiltersConfig;
-    const filtersConfig =
-      config ||
-      (this._store$.query(getEntity(DEFAULT_COLLECTION_ID)) as IFiltersConfig);
-    const excludedFiltersConfig = (this._excludedFiltersStore$.query(
+    const filtersConfig = this._store$.query(getEntity(id)) as IFiltersConfig;
+
+    const excludedFiltersConfig = this._excludedFiltersStore$.query(
       getEntity(id)
-    ) as IExcludedFiltersConfig) || { id, excluded: [] };
+    ) as IExcludedFiltersConfig;
+
     const filtersAfterExclusion = filtersConfig.filters.filter(
       (entry) => !excludedFiltersConfig.excluded.includes(entry.filter)
     );
@@ -107,15 +99,11 @@ export class FiltersConfigsRepository {
     this._store$.update((state) => ({ ...state, loading }));
   }
 
-  setScope() {
-    const scope = this._route.snapshot.queryParamMap.get('scope') || '';
-    const filters = scope === 'eu' ? FILTERS : PL_FILTERS;
-    const excluded = scope === 'eu' ? EXCLUDED_FILTERS : PL_EXCLUDED_FILTERS;
-
-    this._excludedFiltersStore$.update(setEntities(excluded));
+  clear() {
+    this._excludedFiltersStore$.update(setEntities(EXCLUDED_FILTERS));
     this._store$.update(
-      (state) => ({ ...state }),
-      setEntities(filters),
+      (state) => ({ ...state, loading: true }),
+      setEntities(FILTERS),
       setEntities([], { ref: filterUIEntitiesRef })
     );
   }

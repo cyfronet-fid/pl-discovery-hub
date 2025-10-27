@@ -30,7 +30,6 @@ async def test_post_no_facets(
             "fq": [],
             "rows": 3,
             "cursor": "*",
-            "scope": None,
             "facets": None,
         },
     )
@@ -54,7 +53,6 @@ async def test_search_filters_one_facet(
             "exact": "false",
             "rows": 3,
             "cursor": "*",
-            "scope": None,
         },
         json={
             "facets": {

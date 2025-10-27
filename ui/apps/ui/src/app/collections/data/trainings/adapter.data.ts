@@ -29,7 +29,7 @@ export const trainingsAdapter: IAdapter = {
       value: training['type'] || '',
     },
     collection: COLLECTION,
-    redirectUrl: '/trainings/' + encodeURIComponent(training.id) || '',
+    url: '/trainings/' + encodeURIComponent(training.id) || '',
     coloredTags: [],
     tags: [
       {

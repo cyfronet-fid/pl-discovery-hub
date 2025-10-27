@@ -6,11 +6,8 @@ import {
   toArray,
   toValueWithLabel,
 } from '@collections/filters-serializers/utils';
-import { ConfigService } from '../../../services/config.service';
-import {
-  formatPublicationDate,
-  toKeywordsSecondaryTag,
-} from '@collections/data/utils';
+import { formatPublicationDate, toKeywordsSecondaryTag } from '../utils';
+import { buildCatalogueUrl } from '../url-builder-utils';
 
 export const cataloguesAdapter: IAdapter = {
   id: URL_PARAM_NAME,
@@ -47,12 +44,8 @@ export const cataloguesAdapter: IAdapter = {
     secondaryTags: [
       toKeywordsSecondaryTag(catalogue.keywords ?? [], 'keywords'),
     ],
-
-    redirectUrl: catalogue.pid
-      ? `${
-          ConfigService.config?.eu_marketplace_url
-        }/catalogues/${encodeURIComponent(catalogue.pid || '')}`
-      : '',
+    url: buildCatalogueUrl(catalogue),
+    logoUrl: buildCatalogueUrl(catalogue, '/logo'),
     coloredTags: [],
     isResearchProduct: false,
   }),

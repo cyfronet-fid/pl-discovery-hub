@@ -22,7 +22,7 @@ export class ShowRelatedResourceComponent implements OnInit {
   setUrl(): string {
     const fqDict: { [key: string]: string } = {
       provider: `fq=providers:"${this.title}"&fq=resource_organisation:"${this.title}"`,
-      data_source: `fq=datasource_pids:"${this.pid}"`,
+
       organisation: `fq=related_organisation_titles:"${this.title}"`,
       catalogue: `fq=catalogue:"${this.pid}"`,
     };
@@ -32,16 +32,8 @@ export class ShowRelatedResourceComponent implements OnInit {
     return url;
   }
 
-  setButtonLabel(): string {
-    const label =
-      this.collection == 'data_source'
-        ? 'Browse data source'
-        : 'Browse resources';
-    return label;
-  }
-
   ngOnInit() {
     this.url = this.setUrl();
-    this.label = this.setButtonLabel();
+    this.label = 'Show Resources';
   }
 }

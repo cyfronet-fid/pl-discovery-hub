@@ -2,7 +2,7 @@
 
 import asyncio
 import logging
-from typing import Callable, Optional
+from typing import Callable
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from httpx import AsyncClient
@@ -34,7 +34,6 @@ async def search_filters(
     exact: str = Query(..., description="Exact match"),
     request: SearchRequest = Body(..., description="Request body"),
     search=Depends(search_dep),
-    scope: Optional[str] = None,
 ):
     """
     Do a search for filters for specified (multiple) facets.
@@ -55,20 +54,7 @@ async def search_filters(
 
     client = make_async_http_client()
     coroutines = [
-        _search(
-            collection,
-            q,
-            qf,
-            fq,
-            rows,
-            cursor,
-            key,
-            value,
-            exact,
-            search,
-            client,
-            scope,
-        )
+        _search(collection, q, qf, fq, rows, cursor, key, value, exact, search, client)
         for key, value in request.facets.items()
     ]
 
@@ -99,7 +85,6 @@ async def _search(
     exact: str,
     search: Callable,
     client: AsyncClient,
-    scope: Optional[str] = None,
 ) -> dict:
     response = await search(
         client,
@@ -113,7 +98,6 @@ async def _search(
         cursor=cursor,
         facets={facet_key: facet_value},
         exact=exact,
-        scope=scope,
     )
 
     return create_output(response.data)

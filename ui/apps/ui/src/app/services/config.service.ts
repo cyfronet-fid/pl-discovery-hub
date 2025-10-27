@@ -7,8 +7,7 @@ import { WINDOW } from '../app.providers';
 import { EoscCommonWindow } from '@components/main-header/types';
 
 export interface BackendConfig {
-  eu_marketplace_url: string;
-  pl_marketplace_url: string;
+  marketplace_url: string;
   eosc_commons_url: string;
   eosc_commons_env: string;
   eosc_explore_url: string;
@@ -16,6 +15,8 @@ export interface BackendConfig {
   is_sort_by_relevance: boolean;
   max_results_by_page: number;
   show_beta_collections: boolean;
+  show_knowledge_base: boolean;
+  user_documentation_url: string;
 }
 
 @Injectable({

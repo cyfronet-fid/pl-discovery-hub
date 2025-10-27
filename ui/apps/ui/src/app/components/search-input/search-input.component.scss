@@ -9,19 +9,19 @@
   z-index: 10;
 }
 .form-control2 {
-  width: 580px !important;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 24px !important;
+  width: 598px !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
 }
 
 .form-control3 {
-  width: 480px !important;
+  width: 400px !important;
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
 }
 
 .form-control4 {
-  width: 480px !important;
+  width: 400px !important;
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
 }
@@ -37,16 +37,16 @@
   color: #3987be;
 }
 .btn-enter {
-  color: #000;
+  color: #ffffff;
   height: 40px;
-  background: #F39BB1;
+  background: #010E87;
   padding: 0 20px 0 20px;
-  border: 2px solid #fff;
-  border-radius: 20px;
+  border: 1px solid #fff;
+  border-radius: 0 4px 4px 0;
 }
 
 .btn-enter:hover {
-  background: #24727B;
+  background: #010B65;
   color: #ffffff;
 }
 
@@ -119,12 +119,12 @@
 
   a {
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
   }
 
   &:hover {
-    opacity: 1;
+    opacity: 0.7;
   }
 }
 
@@ -216,7 +216,7 @@
 }
 
 .ant-tag-custom {
-  background: #24727B !important;
+  background: transparent !important;
   color: white !important;
   border-radius: 16px !important;
 }
@@ -238,14 +238,14 @@
   .ant-radio-group {
     border-radius: 16px !important;
     padding: 3px !important;
-    border: 1px solid #fff !important;
+    border: 1px solid #0d6efd !important;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    color: #24727B !important;
+    color: white !important;
 
     border-radius: 16px !important;
-    background: #fff !important;
-    border: 1px solid #fff !important;
+    background: #0d6efd !important;
+    border: 1px solid #0d6efd !important;
     font-size: 11px !important;
   }
 
@@ -254,7 +254,7 @@
   }
 
   .ant-radio-button-wrapper {
-    color: #fff !important;
+    color: #0d6efd !important;
     border-radius: 16px !important;
     border: none !important;
     font-size: 11px !important;
@@ -273,8 +273,4 @@
   font-weight: 400;
   margin-top: 8px;
   margin-bottom: 7px
-}
-
-.search-box-adv .form-control3 {
-  border-radius: 24px 0 0 0 !important;
 }
