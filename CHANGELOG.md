@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.2.0...v1.3.0) (2025-10-31)
+
+
+### Features
+
+* [[#59](https://github.com/cyfronet-fid/pl-discovery-hub/issues/59)] new privacy policy ([b07a89e](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b07a89e9a04f4bb0e272d8936cdd515befad3a30))
+* [[#73](https://github.com/cyfronet-fid/pl-discovery-hub/issues/73)] EOSC PL main menu sync ([#83](https://github.com/cyfronet-fid/pl-discovery-hub/issues/83)) ([a8234f7](https://github.com/cyfronet-fid/pl-discovery-hub/commit/a8234f7a2ecd07df5d715788c783fbd59a695b1d))
+* all collection properties included in pl schema ([63fe9d9](https://github.com/cyfronet-fid/pl-discovery-hub/commit/63fe9d92a13a3cb0ce0df45cdbd40399adfc7130))
+
 ## [1.2.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.1.1...v1.2.0) (2025-06-24)
 
 
