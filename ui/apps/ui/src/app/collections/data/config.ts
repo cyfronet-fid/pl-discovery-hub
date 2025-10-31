@@ -385,6 +385,8 @@ export const DATASOURCE_PID_MAPPING: Record<string, string> = {
   'eosc.ceric-eric.ceric-data-portal': 'CERIC Data Portal',
   'eosc.cern.cod': 'CERN Open Data Portal',
   'eosc.cessda-eric.cdc': 'CESSDA Data Catalogue',
+  '21.15124/2shDkg': 'CESSDA Data Catalogue',
+  '21.15132/2shDkg': 'CESSDA Data Catalogue',
   'eosc.clarin-eric.virtual_language_observatory':
     'Virtual Language Observatory update',
   'eosc.cnr_-_isti.isti_open_portal': 'ISTI Open Portal',
@@ -407,6 +409,9 @@ export const DATASOURCE_PID_MAPPING: Record<string, string> = {
   'eosc.fris.fris': 'Flemish Research Information Space',
   'eosc.gbif.gbif_species_occurrence_data': 'GBIF Species Occurrence Data',
   'eosc.gdansk_tech.most': 'Most Wiedzy Open Research Data Catalog',
+  'eosc.gdansk_tech.ecudo':
+    'Elektroniczne Centrum Udostępniania Danych Oceanograficznych',
+  'eosc.cyfronet.onedata': 'Onedata',
   'eosc.gwdg.textgrid_repository': 'TextGrid Repository',
   'eosc.hits.fairdomhub': 'FAIRDOMHub',
   'eosc.hn.isidore': 'ISIDORE',
