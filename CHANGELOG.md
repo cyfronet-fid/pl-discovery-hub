@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.3.0...v1.3.1) (2025-11-03)
+
+
+### Bug Fixes
+
+* [[#1654](https://github.com/cyfronet-fid/pl-discovery-hub/issues/1654)] add pretty names and filter dropdown ([f4b35a4](https://github.com/cyfronet-fid/pl-discovery-hub/commit/f4b35a4f46bcbbabf2d10b1c25a45fdcef6317b5))
+
 ## [1.3.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.2.0...v1.3.0) (2025-10-31)
 
 
