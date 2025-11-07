@@ -35,10 +35,10 @@ jobs:
     - name: Install pipenv
       run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
-      run: pipenv sync --dev
+      run: python -m pipenv sync --dev
       working-directory: ./backend
     - name: Run tests
-      run: ENVIRONMENT=test pipenv run pytest -m "not integration"
+      run: ENVIRONMENT=test python -m pipenv run pytest -m "not integration"
       working-directory: ./backend
 
   backend-integration:
@@ -97,11 +97,11 @@ jobs:
     - name: Install pipenv
       run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
-      run: pipenv sync --dev
+      run: python -m pipenv sync --dev
       working-directory: ./backend
     - name: Wait for SOLR
       run: |
         timeout 500 bash -c 'while [[ "$(curl -s -o /dev/null -w "%{http_code}" http://solr1_test:8983/solr/admin/info/system)" != "200" ]]; do echo "Waiting for Solr..."; sleep 5; done' || false
     - name: Run tests
-      run: ENVIRONMENT=test pipenv run pytest -m "integration"
+      run: ENVIRONMENT=test python -m pipenv run pytest -m "integration"
       working-directory: ./backend
