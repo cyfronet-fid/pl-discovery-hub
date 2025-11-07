@@ -68,8 +68,11 @@ jobs:
           ZK_HOST: zoo1_test:2181
         options: >-
           -v "${{ github.workspace }}/solr/config/configsets:/configsets"
-          -v "${{ github.workspace }}/solr/config/solr.xml:/opt/solr/server/solr/solr.xml"
+          -v "${{ github.workspace }}/solr/config:/app/solr-config"
           -v "${{ github.workspace }}/solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+          --entrypoint bash
+          solr
+          -lc "cp /app/solr-config/solr.xml /opt/solr/server/solr/solr.xml && exec docker-entrypoint.sh solr -f"
       rabbitmq:
         image: itzg/rabbitmq-stomp:latest
         env:
