@@ -12,13 +12,15 @@ jobs:
           POSTGRES_DB: ess_test
           POSTGRES_USER: ess_test
           POSTGRES_PASSWORD: ess_test
+        ports:
+          - 127.0.0.1:5452:5432
         options: >-
           --health-cmd "pg_isready -U ess_test"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
     env:
-      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test
+      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@localhost:5452/ess_test
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v5
@@ -42,6 +44,7 @@ jobs:
         TESTING: 1
   backend-integration:
     runs-on: self-hosted
+    needs: backend
     services:
       db_test:
         image: postgres:14
@@ -49,6 +52,8 @@ jobs:
           POSTGRES_DB: ess_test
           POSTGRES_USER: ess_test
           POSTGRES_PASSWORD: ess_test
+        ports:
+          - 127.0.0.1:5452:5432
         options: >-
           --health-cmd "pg_isready -U ess_test"
           --health-interval 10s
@@ -58,6 +63,8 @@ jobs:
         image: zookeeper:3.7
         env:
           ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
+        ports:
+          - 127.0.0.1:12181:2181
       solr1_test:
         image: solr:8.11
         env:
@@ -69,16 +76,22 @@ jobs:
           --entrypoint bash
           solr
           -lc "cp /app/solr-config/solr.xml /opt/solr/server/solr/solr.xml && exec docker-entrypoint.sh solr -f"
+        ports:
+          - 127.0.0.1:8993:8983
       rabbitmq:
         image: itzg/rabbitmq-stomp:latest
         env:
           RABBITMQ_DEFAULT_USER: guest
           RABBITMQ_DEFAULT_PASS: guest
+        ports:
+          - 127.0.0.1:5672:5672
+          - 127.0.0.1:61613:61613
+          - 127.0.0.1:15672:15672
     env:
-      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test
-      SOLR_URL: http://solr1_test:8983/solr/
-      TEST_SOLR_URL: http://solr1_test:8983/solr/
-      STOMP_HOST: rabbitmq
+      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@localhost:5452/ess_test
+      SOLR_URL: http://localhost:8993/solr/
+      TEST_SOLR_URL: http://localhost:8993/solr/
+      STOMP_HOST: localhost
       STOMP_PORT: "61613"
     steps:
     - uses: actions/checkout@v3
