@@ -28,12 +28,8 @@ jobs:
         python-version: '3.10'
         cache: 'pipenv'
         cache-dependency-path: backend/Pipfile.lock
-    - name: Install pipx
-      run: |
-        apt-get update
-        apt-get install -y pipx
     - name: Install pipenv
-      run: pipx install pipenv
+      run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
       run: pipenv sync --dev
       working-directory: ./backend
@@ -91,12 +87,8 @@ jobs:
         python-version: '3.10'
         cache: 'pipenv'
         cache-dependency-path: backend/Pipfile.lock
-    - name: Install pipx
-      run: |
-        apt-get update
-        apt-get install -y pipx
     - name: Install pipenv
-      run: pipx install pipenv
+      run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
       run: pipenv sync --dev
       working-directory: ./backend
