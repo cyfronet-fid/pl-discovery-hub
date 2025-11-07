@@ -20,7 +20,6 @@ services:
     volumes:
       - solr-data-test:/var/solr
       - ./solr/config/configsets:/configsets
-      - ./solr/config/solr.xml:/opt/solr/server/solr/solr.xml
       - ./solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     networks:
       - ess-local-test
