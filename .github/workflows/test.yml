@@ -5,8 +5,6 @@ on: push
 jobs:
   backend:
     runs-on: self-hosted
-    container:
-      image: python:3.10
     services:
       db_test:
         image: postgres:14
@@ -40,8 +38,6 @@ jobs:
         TESTING: 1
   backend-integration:
     runs-on: self-hosted
-    container:
-      image: python:3.10
     services:
       db_test:
         image: postgres:14
