@@ -43,65 +43,41 @@ jobs:
 
   backend-integration:
     runs-on: self-hosted
-    container:
-      image: python:3.10
-      volumes:
-        - ${{ github.workspace }}:${{ github.workspace }}
-    services:
-      db_test:
-        image: postgres:14
-        env:
-          POSTGRES_DB: ess_test
-          POSTGRES_USER: ess_test
-          POSTGRES_PASSWORD: ess_test
-        options: >-
-          --health-cmd "pg_isready -U ess_test"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      zoo1_test:
-        image: zookeeper:3.7
-        env:
-          ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
-      solr1_test:
-        image: solr:8.11
-        env:
-          ZK_HOST: zoo1_test:2181
-        volumes:
-          - ${{ github.workspace }}/solr/config/configsets:/configsets
-          - ${{ github.workspace }}/solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-      rabbitmq:
-        image: itzg/rabbitmq-stomp:latest
-        env:
-          RABBITMQ_DEFAULT_USER: guest
-          RABBITMQ_DEFAULT_PASS: guest
     env:
-      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test
-      SOLR_URL: http://solr1_test:8983/solr/
-      TEST_SOLR_URL: http://solr1_test:8983/solr/
-      STOMP_HOST: rabbitmq
-      STOMP_PORT: "61613"
-      TEST_STOMP_HOST: rabbitmq
-      TEST_STOMP_PORT: "61613"
+      COMPOSE_PROJECT_NAME: backend-int-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pipenv'
-        cache-dependency-path: backend/Pipfile.lock
-    - name: Install system dependencies
+    - name: Start containers
+      run: docker compose -f dc-test.yml up -d
+    - name: Get container network
+      id: network
       run: |
-        apt-get update
-        apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev curl
-    - name: Install pipenv
-      run: python -m pip install --upgrade pip pipenv
-    - name: Install dependencies
-      run: python -m pipenv sync --dev
-      working-directory: ./backend
-    - name: Wait for SOLR
+        NETWORK=$(docker inspect $(docker compose -f dc-test.yml ps -q db_test) --format='{{range .NetworkSettings.Networks}}{{.NetworkName}}{{end}}')
+        echo "network=$NETWORK" >> $GITHUB_OUTPUT
+    - name: Run tests in container
       run: |
-        timeout 500 bash -c 'while [[ "$(curl -s -o /dev/null -w "%{http_code}" http://solr1_test:8983/solr/admin/info/system)" != "200" ]]; do echo "Waiting for Solr..."; sleep 5; done' || false
-    - name: Run tests
-      run: ENVIRONMENT=test python -m pipenv run pytest -m "integration"
-      working-directory: ./backend
+        docker run --rm \
+          --network ${{ steps.network.outputs.network }} \
+          -v ${{ github.workspace }}:/workspace \
+          -w /workspace/backend \
+          -e ENVIRONMENT=test \
+          -e TEST_DATABASE_URI=postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test \
+          -e SOLR_URL=http://solr1_test:8983/solr/ \
+          -e TEST_SOLR_URL=http://solr1_test:8983/solr/ \
+          -e STOMP_HOST=rabbitmq \
+          -e STOMP_PORT=61613 \
+          -e TEST_STOMP_HOST=rabbitmq \
+          -e TEST_STOMP_PORT=61613 \
+          python:3.10 bash -c "
+            apt-get update && apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev curl &&
+            python -m pip install --upgrade pip pipenv &&
+            python -m pipenv sync --dev &&
+            timeout 500 bash -c 'while [[ \"\$(curl -s -o /dev/null -w \"%{http_code}\" http://solr1_test:8983/solr/admin/info/system)\" != \"200\" ]]; do echo \"Waiting for Solr...\"; sleep 5; done' || false &&
+            python -m pipenv run pytest -m integration
+          "
+    - name: Containers logs
+      if: always()
+      run: docker compose -f dc-test.yml logs
+    - name: Stop containers
+      if: always()
+      run: docker compose -f dc-test.yml down
