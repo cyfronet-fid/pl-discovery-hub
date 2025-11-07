@@ -4,7 +4,7 @@ on: push
 
 jobs:
   backend:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: python:3.10
     services:
@@ -39,7 +39,7 @@ jobs:
       env:
         TESTING: 1
   backend-integration:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: python:3.10
     services:
