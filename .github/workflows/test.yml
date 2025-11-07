@@ -5,24 +5,16 @@ on: push
 jobs:
   backend:
     runs-on: self-hosted
-    container:
-      image: python:3.10
-    services:
-      db_test:
-        image: postgres:14
-        env:
-          POSTGRES_DB: ess_test
-          POSTGRES_USER: ess_test
-          POSTGRES_PASSWORD: ess_test
-        options: >-
-          --health-cmd "pg_isready -U ess_test"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     env:
-      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test
+      COMPOSE_PROJECT_NAME: backend-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
     - uses: actions/checkout@v3
+    - name: Start containers
+      run: docker compose -f dc-test.yml up -d db_test
+    - name: Export database URI
+      run: |
+        DB_PORT=$(docker compose -f dc-test.yml port db_test 5432 | awk -F: '{print $NF}')
+        echo "TEST_DATABASE_URI=postgresql+psycopg2://ess_test:ess_test@127.0.0.1:${DB_PORT}/ess_test" >> "$GITHUB_ENV"
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10'
@@ -30,8 +22,8 @@ jobs:
         cache-dependency-path: backend/Pipfile.lock
     - name: Install system dependencies
       run: |
-        apt-get update
-        apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev
+        sudo apt-get update
+        sudo apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev
     - name: Install pipenv
       run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
@@ -42,51 +34,32 @@ jobs:
       working-directory: ./backend
       env:
         TESTING: 1
+    - name: Containers logs
+      if: always()
+      run: docker compose -f dc-test.yml logs
+    - name: Stop containers
+      if: always()
+      run: docker compose -f dc-test.yml down
   backend-integration:
     runs-on: self-hosted
-    needs: backend
-    container:
-      image: python:3.10
-    services:
-      db_test:
-        image: postgres:14
-        env:
-          POSTGRES_DB: ess_test
-          POSTGRES_USER: ess_test
-          POSTGRES_PASSWORD: ess_test
-        options: >-
-          --health-cmd "pg_isready -U ess_test"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      zoo1_test:
-        image: zookeeper:3.7
-        env:
-          ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
-      solr1_test:
-        image: solr:8.11
-        env:
-          ZK_HOST: zoo1_test:2181
-        options: >-
-          -v "${{ github.workspace }}/solr/config/configsets:/configsets"
-          -v "${{ github.workspace }}/solr/config:/app/solr-config"
-          -v "${{ github.workspace }}/solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
-          --entrypoint bash
-          solr
-          -lc "cp /app/solr-config/solr.xml /opt/solr/server/solr/solr.xml && exec docker-entrypoint.sh solr -f"
-      rabbitmq:
-        image: itzg/rabbitmq-stomp:latest
-        env:
-          RABBITMQ_DEFAULT_USER: guest
-          RABBITMQ_DEFAULT_PASS: guest
     env:
-      TEST_DATABASE_URI: postgresql+psycopg2://ess_test:ess_test@db_test:5432/ess_test
-      SOLR_URL: http://solr1_test:8983/solr/
-      TEST_SOLR_URL: http://solr1_test:8983/solr/
-      STOMP_HOST: rabbitmq
-      STOMP_PORT: "61613"
+      COMPOSE_PROJECT_NAME: backend-int-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
     - uses: actions/checkout@v3
+    - name: Start containers
+      run: docker compose -f dc-test.yml up -d
+    - name: Export service endpoints
+      run: |
+        DB_PORT=$(docker compose -f dc-test.yml port db_test 5432 | awk -F: '{print $NF}')
+        SOLR_PORT=$(docker compose -f dc-test.yml port solr1_test 8983 | awk -F: '{print $NF}')
+        STOMP_PORT=$(docker compose -f dc-test.yml port rabbitmq 61613 | awk -F: '{print $NF}')
+        echo "TEST_DATABASE_URI=postgresql+psycopg2://ess_test:ess_test@127.0.0.1:${DB_PORT}/ess_test" >> "$GITHUB_ENV"
+        echo "SOLR_URL=http://127.0.0.1:${SOLR_PORT}/solr/" >> "$GITHUB_ENV"
+        echo "TEST_SOLR_URL=http://127.0.0.1:${SOLR_PORT}/solr/" >> "$GITHUB_ENV"
+        echo "STOMP_HOST=127.0.0.1" >> "$GITHUB_ENV"
+        echo "STOMP_PORT=${STOMP_PORT}" >> "$GITHUB_ENV"
+        echo "TEST_STOMP_HOST=127.0.0.1" >> "$GITHUB_ENV"
+        echo "TEST_STOMP_PORT=${STOMP_PORT}" >> "$GITHUB_ENV"
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10'
@@ -94,8 +67,8 @@ jobs:
         cache-dependency-path: backend/Pipfile.lock
     - name: Install system dependencies
       run: |
-        apt-get update
-        apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev
+        sudo apt-get update
+        sudo apt-get install -y build-essential libpq-dev python3-dev libxml2-dev libxslt1-dev zlib1g-dev
     - name: Install pipenv
       run: python -m pip install --upgrade pip pipenv
     - name: Install dependencies
@@ -109,3 +82,9 @@ jobs:
       working-directory: ./backend
       env:
         TESTING: 1
+    - name: Containers logs
+      if: always()
+      run: docker compose -f dc-test.yml logs
+    - name: Stop containers
+      if: always()
+      run: docker compose -f dc-test.yml down
