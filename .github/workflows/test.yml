@@ -52,7 +52,7 @@ jobs:
     - name: Get container network
       id: network
       run: |
-        NETWORK=$(docker inspect $(docker compose -f dc-test.yml ps -q db_test) --format='{{range .NetworkSettings.Networks}}{{.NetworkName}}{{end}}')
+        NETWORK=$(docker inspect $(docker compose -f dc-test.yml ps -q db_test) --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}{{end}}')
         echo "network=$NETWORK" >> $GITHUB_OUTPUT
     - name: Run tests in container
       run: |
