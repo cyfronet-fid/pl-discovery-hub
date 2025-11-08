@@ -345,6 +345,11 @@ import { Observable, map } from 'rxjs';
         </div>
       </div>
 
+      <div class="results-info">
+        <div class="results-txt">Your search results for: “Cloud compute”</div>
+        <div class="results-count">(156 352 search results)</div>
+      </div>
+
       <nav
         aria-label="breadcrumb"
         *ngIf="activeNavConfig$ | async as activeNavConfig"

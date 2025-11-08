@@ -714,6 +714,24 @@ h3,
   width: 20%;
 }
 
+.results-info {
+  display: flex;
+  margin: 35px 0 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #24727B;
+  align-items: center;
+  column-gap: 20px;
+
+  .results-count {
+    color: #363939;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
 #breadcrumbs {
   padding: 5px 0 15px;
 }
@@ -722,8 +740,9 @@ h3,
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: 18px;
   gap: 0.25rem;
+  color: #000;
   margin-bottom: 30px;
 
   a {
@@ -733,7 +752,7 @@ h3,
   .active {
     font-weight: 500;
     border: none;
-    color: #24727B;
+    color: #000;
   }
 }
 
