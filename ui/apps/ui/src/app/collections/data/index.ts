@@ -94,6 +94,9 @@ import { excludedCatalogueFilters } from './catalogues/excluded.data';
 
 import { plExcludedDatasetsFilters } from '@collections/pl-data/datasets/excluded.data';
 import { plExcludedAllCollectionsFilters } from '@collections/pl-data/all/excluded.data';
+import { plExcludedProvidersFilters } from '@collections/pl-data/providers/excluded.data';
+import { plExcludedOrganisationsFilters } from '@collections/pl-data/organisations/excluded.data';
+import { plExcludedSoftwareFilters } from '@collections/pl-data/software/excluded.data';
 
 import { validateCollections } from '@collections/data/validators';
 
@@ -119,9 +122,17 @@ export const PL_ADAPTERS: IAdapter[] = [
   plAllCollectionsAdapter,
   publicationsAdapter,
   plDatasetsAdapter,
+  softwareAdapter,
+  otherResourcesProductsAdapter,
   plServicesAdapter,
   plDataSourcesAdapter,
+  bundlesAdapter,
+  trainingsAdapter,
+  guidelinesAdapter,
   plProvidersAdapter,
+  projectsAdapter,
+  organisationsAdapter,
+  cataloguesAdapter,
 ];
 
 export const FILTERS: IFiltersConfig[] = [
@@ -145,9 +156,17 @@ export const PL_FILTERS: IFiltersConfig[] = [
   plAllCollectionsFilters,
   publicationsFilters,
   plDatasetsFilters,
+  softwareFilters,
+  otherResourcesProductsFilters,
   servicesFilters,
   dataSourcesFilters,
+  bundlesFilters,
+  trainingsFilters,
+  guidelinesFilters,
   providersFilters,
+  projectsFilters,
+  organisationsFilters,
+  catalogueFilters,
 ];
 
 // Excluded filters according to adjustments in
@@ -173,9 +192,17 @@ export const PL_EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
   plExcludedAllCollectionsFilters,
   excludedPublicationsFilters,
   plExcludedDatasetsFilters,
+  plExcludedSoftwareFilters,
+  excludedOtherResourcesProductsFilters,
   excludedServicesFilters,
   excludedDataSourcesFilters,
-  excludedProvidersFilters,
+  excludedBundlesFilters,
+  excludedTrainingsFilters,
+  excludedGuidelinesFilters,
+  plExcludedProvidersFilters,
+  excludedProjectFilters,
+  plExcludedOrganisationsFilters,
+  excludedCatalogueFilters,
 ];
 
 export const NAV_CONFIGS: ICollectionNavConfig[] = [
@@ -199,9 +226,17 @@ export const PL_NAV_CONFIGS: ICollectionNavConfig[] = [
   allCollectionsNavConfig,
   publicationsNavConfig,
   datasetsNavConfig,
+  softwareNavConfig,
+  othersResourcesProductsNavConfig,
   servicesNavConfig,
   dataSourcesNavConfig,
+  bundlesNavConfig,
+  trainingsNavConfig,
+  guidelinesNavConfig,
   providersNavConfig,
+  projectNavConfig,
+  organisationsNavConfig,
+  cataloguesNavConfig,
 ];
 
 export const SEARCH_METADATA: ICollectionSearchMetadata[] = [
@@ -225,9 +260,17 @@ export const PL_SEARCH_METADATA: ICollectionSearchMetadata[] = [
   allCollectionsSearchMetadata,
   publicationsSearchMetadata,
   datasetsSearchMetadata,
+  softwareSearchMetadata,
+  otherResourcesProductsSearchMetadata,
   servicesSearchMetadata,
   dataSourcesSearchMetadata,
+  bundlesSearchMetadata,
+  trainingsSearchMetadata,
+  guidelinesSearchMetadata,
   providersSearchMetadata,
+  projectsSearchMetadata,
+  organisationsSearchMetadata,
+  cataloguesSearchMetadata,
 ];
 
 validateCollections(
