@@ -9,7 +9,8 @@
           type="button"
         >
           <ng-container *ngIf="!showFilters; else hideFiltersCaption"
-            >Show filters</ng-container
+          >Show filters
+          </ng-container
           >
           <ng-template #hideFiltersCaption>Hide filters</ng-template>
           <i class="bi bi-filter"></i>
@@ -22,7 +23,8 @@
           type="button"
         >
           <ng-container *ngIf="!showCollections; else hideCollectionsCaption"
-            >All catalogs</ng-container
+          >All catalogs
+          </ng-container
           >
           <ng-template #hideCollectionsCaption>Hide catalogs</ng-template>
           <i class="bi bi-chevron-down"></i>
@@ -36,9 +38,7 @@
       'mobile-collections-show': showCollections
     }"
   >
-    <ess-collections-navigation
-      *ngIf="!this.isSpecialCollection"
-    ></ess-collections-navigation>
+    <ess-collections-navigation/>
   </div>
   <div class="container--xxl">
     <div class="dashboard" style="position: relative">
@@ -77,20 +77,22 @@
             <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
           </a> --->
 
-         <ess-right-panel></ess-right-panel>
+          <ess-right-panel></ess-right-panel>
 
           <h4>Knowledge</h4>
 
           <a href="https://knowledge-hub.sandbox.eosc-beyond.eu/" class="right-column-link-alt">
             <div class="right-link-title">Knowledge hub</div>
-            <div class="right-link-desc">Discover training materials, courses and learning paths supporting open science and FAIR sharing.</div>
-            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
+            <div class="right-link-desc">Discover training materials, courses and learning paths supporting open science
+              and FAIR sharing.
+            </div>
+            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more"/></div>
           </a>
 
           <a href="{{marketplaceUrl}}user_documentation" class="right-column-link-alt">
             <div class="right-link-title">Check user documentation</div>
             <div class="right-link-desc">Browse our guides for useful EOSC insights</div>
-            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
+            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more"/></div>
           </a>
 
         </div>

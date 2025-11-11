@@ -21,11 +21,19 @@ export const ORGANISATION_QF = 'alternative_names title abbreviation';
 
 export const PL_CONTEXT_COLLECTIONS = [
   'all_collection',
+  'bundle',
+  'catalogue',
+  'data_source',
   'dataset',
+  'guideline',
+  'organisation',
+  'other_rp',
+  'project',
+  'provider',
   'publication',
   'service',
-  'data_source',
-  'provider',
+  'software',
+  'training',
 ];
 
 export const EU_CONTEXT_COLLECTIONS = [
