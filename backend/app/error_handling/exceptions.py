@@ -1,3 +1,5 @@
+"""Custom exceptions related to provide components"""
+
 from fastapi import HTTPException
 
 
