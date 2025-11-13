@@ -16,7 +16,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-# pylint: disable=too-many-arguments
+# pylint: disable=too-many-arguments, too-many-positional-arguments
 @router.post("/search-suggestions", name="web:post-search-suggestions")
 async def search_suggestions(
     collection: Collection = Query(..., description="Collection"),
@@ -49,23 +49,26 @@ async def search_suggestions(
         ]
     )
 
-    gathered_result = await asyncio.gather(*[
-        _search(
-            col,
-            q,
-            qf,
-            exact,
-            fq,
-            results_per_collection,
-            search,
-            scope,
-        )
-        for col in collections
-    ])
+    gathered_result = await asyncio.gather(
+        *[
+            _search(
+                col,
+                q,
+                qf,
+                exact,
+                fq,
+                results_per_collection,
+                search,
+                scope,
+            )
+            for col in collections
+        ]
+    )
 
     return dict(gathered_result)
 
 
+# pylint: disable=too-many-positional-arguments
 async def _search(
     collection: str = Query(..., description="Collection"),
     q: str = Query(..., description="Free-form query string"),
