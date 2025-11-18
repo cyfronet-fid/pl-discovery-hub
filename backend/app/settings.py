@@ -71,6 +71,12 @@ class GlobalSettings(BaseSettings):
     # - Sentry
     SENTRY_DSN: Optional[str] = None
 
+    # - Helpdesk
+    EOSC_HELPDESK_FORM_URL: Url = (
+        "https://helpdesk.sandbox.eosc-beyond.eu/assets/form/form.js"
+    )
+    HELPDESK_TARGET_ID: int = 38
+
     # - Other
     RELATED_SERVICES_ENDPOINT: Url = (
         "https://integration.providers.sandbox.eosc-beyond.eu/"

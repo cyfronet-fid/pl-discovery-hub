@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeedbackPanelComponent } from './feedback-panel.component';
+import { HelpdeskComponent } from './helpdesk.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [FeedbackPanelComponent],
+  declarations: [HelpdeskComponent],
   imports: [CommonModule, NgbDropdownModule, FormsModule],
-  exports: [FeedbackPanelComponent],
+  exports: [HelpdeskComponent],
 })
-export class FeedbackPanelModule {}
+export class HelpdeskModule {}
