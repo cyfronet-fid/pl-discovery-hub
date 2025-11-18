@@ -3059,6 +3059,68 @@ h6 {
   }
 }
 
+
+/* Helpdesk */
+
+#zammad-helpdesk-form {
+  color: #fff;
+  background: #257B85;
+  font-size: 14px;
+  border: 1px solid #fff; //none;
+  padding: 8px 20px;
+  font-weight: 500;
+  border-radius: 25px;
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 900;
+
+  &:hover {
+    background: #000;
+  }
+}
+
+.helpdesk {
+  z-index: 100 !important;
+}
+.zammad-form-modal-body {
+  z-index: 1005 !important;
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 20px !important;
+  margin: 0 !important;
+  border-radius: 16px 0 0 16px !important;
+
+  .zammad-form {
+    h2 {
+      font-size: 21px;
+      font-weight: 500;
+      color: #24727B;
+    }
+
+    label {
+      font-size: 12px;
+      margin-bottom: 7px;
+      font-weight: 400;
+    }
+
+    .zammad-form-control {
+      font-size: 13px;
+    }
+
+    .btn {
+      border-radius: 25px;
+      font-size: 13px;
+      background: #257B85;
+
+      &:hover {
+        background: #000;
+      }
+    }
+  }
+}
+
 @media (max-width: 1360px) {
   #sub-nav a {
     font-size: 13px;

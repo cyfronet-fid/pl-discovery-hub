@@ -12,6 +12,8 @@ export interface BackendConfig {
   eosc_commons_url: string;
   eosc_commons_env: string;
   eosc_explore_url: string;
+  eosc_helpdesk_form_url: string;
+  helpdesk_target_id: number;
   knowledge_hub_url: string;
   is_sort_by_relevance: boolean;
   max_results_by_page: number;
@@ -52,11 +54,11 @@ export class ConfigService {
       }),
       switchMap((config) =>
         forkJoin([
-          // this._loadAsset(
-          //   `https://eosc-helpdesk.eosc-portal.eu/assets/form/form.js`,
-          //   'javascript',
-          //   'zammad_form_script'
-          // ),
+          this._loadAsset(
+            `${config.eosc_helpdesk_form_url}`,
+            'javascript',
+            'zammad_form_script'
+          ),
           this._loadAsset(
             `${config.eosc_commons_url}index.${config.eosc_commons_env}.min.js`,
             'javascript'

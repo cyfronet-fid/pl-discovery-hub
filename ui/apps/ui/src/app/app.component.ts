@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <ess-main-header></ess-main-header>
     <router-outlet></router-outlet>
+    <ess-helpdesk></ess-helpdesk>
   `,
 })
 export class AppComponent {}
