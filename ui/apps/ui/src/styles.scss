@@ -275,7 +275,7 @@ btn-primary.disabled,
 .suggestions {
   text-align: left;
   position: absolute;
-  top: 40px;
+  top: 105%;
   max-width: 730px;
   left: 20px;
   border-radius: 0 0 10px 10px;
@@ -371,7 +371,7 @@ btn-primary.disabled,
 
 .top-nav {
   background-color: #E4F9FA;
-  z-index: 100;
+  z-index: 10;
   margin-bottom: 25px;
   position: relative;
   color: #4C505A;
@@ -1745,7 +1745,7 @@ h6 {
   }
 
   .suggestions {
-    top: 40px;
+    top: 105%;;
     max-width: 80%;
     left: 10%;
   }
@@ -2061,7 +2061,7 @@ h6 {
   }
 
   .suggestions {
-    top: 40px;
+    top: 105%;;
     max-width: 80%;
     left: 10%;
   }

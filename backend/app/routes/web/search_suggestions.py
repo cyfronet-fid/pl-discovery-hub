@@ -2,7 +2,7 @@
 
 import asyncio
 import logging
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict
 
 from fastapi import APIRouter, Depends, Query
 from httpx import AsyncClient
@@ -81,22 +81,26 @@ async def _search(
     ),
     search=Depends(search_dep),
     scope: Optional[str] = None,
-) -> Tuple[str, Dict]:
+) -> tuple[str, list[Any]]:
     """Performs the search in a single collection"""
     if "provider" in collection:
         qf = PROVIDER_QF
-    async with AsyncClient() as client:
-        response = await search(
-            client,
-            collection,
-            q=q,
-            qf=qf,
-            fq=fq,
-            sort=DEFAULT_SORT,
-            rows=results_per_collection,
-            exact=exact,
-            scope=scope,
-        )
+    try:
+        async with AsyncClient() as client:
+            response = await search(
+                client,
+                collection,
+                q=q,
+                qf=qf,
+                fq=fq,
+                sort=DEFAULT_SORT,
+                rows=results_per_collection,
+                exact=exact,
+                scope=scope,
+            )
+    except SolrCollectionEmptyError as e:
+        logger.error("Search suggestion request failure, %s: %r", collection, e)
+        return collection, []
 
     res_json = response.data
     collection = response.collection
