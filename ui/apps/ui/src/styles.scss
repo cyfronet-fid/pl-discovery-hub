@@ -275,10 +275,10 @@ btn-primary.disabled,
 .suggestions {
   text-align: left;
   position: absolute;
-  top: 40px;
-  max-width: 730px;
-  left: 20px;
-  border-radius: 0 0 10px 10px;
+  top: 110px;
+  width: 680px;
+  left: 1px;
+  border-radius: 4px;
   z-index: 10;
 }
 
@@ -371,7 +371,7 @@ btn-primary.disabled,
 
 .top-nav {
   background-color: #E4F9FA;
-  z-index: 100;
+  z-index: 10;
   margin-bottom: 25px;
   position: relative;
   color: #4C505A;
@@ -1751,7 +1751,7 @@ h6 {
   }
 
   .suggestions {
-    top: 40px;
+    top: 130px;
     max-width: 80%;
     left: 10%;
   }
@@ -2067,7 +2067,7 @@ h6 {
   }
 
   .suggestions {
-    top: 40px;
+    top: 190px;
     max-width: 80%;
     left: 10%;
   }
@@ -2393,7 +2393,7 @@ h6 {
 }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
-  .ant-select-selector {
+.ant-select-selector {
   border: 1px solid #257b85;
   background: #fff url(assets/icon-search.svg) no-repeat;
   background-position: 95.5% 11px;
@@ -2476,7 +2476,7 @@ h6 {
 
   .search-box {
     input {
-      max-width: 185px;
+      max-width: 240px;
     }
   }
   .search-box-adv {

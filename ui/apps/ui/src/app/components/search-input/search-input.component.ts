@@ -542,12 +542,12 @@ export class SearchInputComponent implements OnInit {
 
   getLabel(label: string): string {
     switch (label) {
+      case 'other rp':
+        return 'OTHER RESEARCH PRODUCT';
       case 'guideline':
         return 'INTEROPERABILITY GUIDELINES';
-        break;
       case 'bundle':
         return 'BUNDLES';
-        break;
       default:
         return label;
     }
