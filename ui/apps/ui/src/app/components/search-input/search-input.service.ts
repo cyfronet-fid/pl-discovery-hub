@@ -13,6 +13,7 @@ import {
   queryChanger,
   queryChangerAdv,
 } from '@collections/filters-serializers/utils';
+import {ISuggestedResultsGroup} from "@components/search-input/types";
 
 const MAX_COLLECTION_RESULTS = 3; // TODO: Move to env file
 
@@ -97,7 +98,9 @@ export class SearchInputService {
       map((response) =>
         Object.entries(response)
           .map((response_item) => {
+            // console.log('uno  response_item', response_item);
             const [collection, results] = response_item;
+            // console.log(collection, results);
             return {
               collection: collection,
               results: results,
@@ -106,14 +109,39 @@ export class SearchInputService {
           .filter((response_item) => response_item.results.length > 0)
       ),
       map((response) =>
-        response.map((response_item) => {
-          const collection: ICollectionSearchMetadata =
-            this._searchMetadataRepository.get(response_item.collection);
+        response
+          .map((response_item) => {
+            // console.log('dos  response_item', response_item);
+            const collection: ICollectionSearchMetadata =
+              this._searchMetadataRepository.get(response_item.collection);
+            console.log('collection key:', response_item.collection);
+            console.log(
+              'metadata:',
+              this._searchMetadataRepository.get(response_item.collection)
+            );
+            if (!collection) {
+              console.warn(
+                'WARNING: Missing metadata for collection:',
+              response_item.collection
+            );
+              return null;
+            // throw new Error('cos sie wybombilo');
+          }
+          console.log('collection', collection);
           const adapter = this._adaptersRepository.get(collection.id)
-            ?.adapter as adapterType;
+              ?.adapter as adapterType;
+
+          if (!adapter) {
+              console.warn(
+              'Pomijam element — brak adaptera dla:',
+              collection.id
+              );
+            return null;
+          }
 
           return toSuggestedResults(response_item, adapter);
-        })
+          })
+          .filter((item): item is ISuggestedResultsGroup => item !== null)
       )
     );
   }
