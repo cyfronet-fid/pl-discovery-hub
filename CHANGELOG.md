@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.3.1...v1.4.0) (2025-12-01)
+
+
+### Features
+
+* [[#1711](https://github.com/cyfronet-fid/pl-discovery-hub/issues/1711)] decreased paging from 50 to 20 ([47791d1](https://github.com/cyfronet-fid/pl-discovery-hub/commit/47791d17daddc3e92e849e4dfd1e714e1b68c461))
+* [[#97](https://github.com/cyfronet-fid/pl-discovery-hub/issues/97)] visualize searched phrase ([#104](https://github.com/cyfronet-fid/pl-discovery-hub/issues/104)) ([bb1a2c2](https://github.com/cyfronet-fid/pl-discovery-hub/commit/bb1a2c20370b1286f4b8b1a8217a72a2e2010932))
+
+
+### Bug Fixes
+
+* [[#110](https://github.com/cyfronet-fid/pl-discovery-hub/issues/110)] change eu marketplace url default ([5be3501](https://github.com/cyfronet-fid/pl-discovery-hub/commit/5be35014ded878079343514af22147e264cc16a1))
+* [[#1738](https://github.com/cyfronet-fid/pl-discovery-hub/issues/1738)] nav persistence bug ([af96e0d](https://github.com/cyfronet-fid/pl-discovery-hub/commit/af96e0d3ee6638120d67072d5f06cf88fe485218))
+* [[#89](https://github.com/cyfronet-fid/pl-discovery-hub/issues/89)] remove scope parameter from link ([c949e51](https://github.com/cyfronet-fid/pl-discovery-hub/commit/c949e51f6ec73da9a6679af787052c8c5deca200))
+* remove "o eosc pl" from footer ([b7634e9](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b7634e91e4de78f8599f6558a2e87e751b1c049f))
+* suggestions ([8809244](https://github.com/cyfronet-fid/pl-discovery-hub/commit/88092446c1e22ec95d5b3f8f0a76b22deb515dbe))
+
 ## [1.3.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.3.0...v1.3.1) (2025-11-03)
 
 
