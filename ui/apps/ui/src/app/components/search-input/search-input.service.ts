@@ -13,6 +13,7 @@ import {
   queryChanger,
   queryChangerAdv,
 } from '@collections/filters-serializers/utils';
+import { ISuggestedResultsGroup } from '@components/search-input/types';
 
 const MAX_COLLECTION_RESULTS = 3; // TODO: Move to env file
 
@@ -106,14 +107,30 @@ export class SearchInputService {
           .filter((response_item) => response_item.results.length > 0)
       ),
       map((response) =>
-        response.map((response_item) => {
-          const collection: ICollectionSearchMetadata =
-            this._searchMetadataRepository.get(response_item.collection);
-          const adapter = this._adaptersRepository.get(collection.id)
-            ?.adapter as adapterType;
+        response
+          .map((response_item) => {
+            const collection: ICollectionSearchMetadata =
+              this._searchMetadataRepository.get(response_item.collection);
 
-          return toSuggestedResults(response_item, adapter);
-        })
+            if (!collection) {
+              console.warn(
+                'WARNING: Missing metadata for collection:',
+                response_item.collection
+              );
+              return null;
+            }
+
+            const adapter = this._adaptersRepository.get(collection.id)
+              ?.adapter as adapterType;
+
+            if (!adapter) {
+              console.warn('WARNING: Missing adapter for:', collection.id);
+              return null;
+            }
+
+            return toSuggestedResults(response_item, adapter);
+          })
+          .filter((item): item is ISuggestedResultsGroup => item !== null)
       )
     );
   }

@@ -2,13 +2,14 @@
 
 import asyncio
 import logging
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional
 
 from fastapi import APIRouter, Depends, Query
 from httpx import AsyncClient
 
 from app.consts import ALL_COLLECTION_LIST, DEFAULT_SORT, PROVIDER_QF
 from app.schemas.solr_response import Collection
+from app.solr.error_handling import SolrCollectionEmptyError
 from app.solr.operations import search_dep
 
 router = APIRouter()
@@ -16,7 +17,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-# pylint: disable=too-many-arguments
+# pylint: disable=too-many-arguments, too-many-positional-arguments
 @router.post("/search-suggestions", name="web:post-search-suggestions")
 async def search_suggestions(
     collection: Collection = Query(..., description="Collection"),
@@ -49,23 +50,26 @@ async def search_suggestions(
         ]
     )
 
-    gathered_result = await asyncio.gather(*[
-        _search(
-            col,
-            q,
-            qf,
-            exact,
-            fq,
-            results_per_collection,
-            search,
-            scope,
-        )
-        for col in collections
-    ])
+    gathered_result = await asyncio.gather(
+        *[
+            _search(
+                col,
+                q,
+                qf,
+                exact,
+                fq,
+                results_per_collection,
+                search,
+                scope,
+            )
+            for col in collections
+        ]
+    )
 
     return dict(gathered_result)
 
 
+# pylint: disable=too-many-positional-arguments
 async def _search(
     collection: str = Query(..., description="Collection"),
     q: str = Query(..., description="Free-form query string"),
@@ -81,22 +85,26 @@ async def _search(
     ),
     search=Depends(search_dep),
     scope: Optional[str] = None,
-) -> Tuple[str, Dict]:
+) -> tuple[str, list[Any]]:
     """Performs the search in a single collection"""
     if "provider" in collection:
         qf = PROVIDER_QF
-    async with AsyncClient() as client:
-        response = await search(
-            client,
-            collection,
-            q=q,
-            qf=qf,
-            fq=fq,
-            sort=DEFAULT_SORT,
-            rows=results_per_collection,
-            exact=exact,
-            scope=scope,
-        )
+    try:
+        async with AsyncClient() as client:
+            response = await search(
+                client,
+                collection,
+                q=q,
+                qf=qf,
+                fq=fq,
+                sort=DEFAULT_SORT,
+                rows=results_per_collection,
+                exact=exact,
+                scope=scope,
+            )
+    except SolrCollectionEmptyError as e:
+        logger.error("Search suggestion request failure, %s: %r", collection, e)
+        return collection, []
 
     res_json = response.data
     collection = response.collection

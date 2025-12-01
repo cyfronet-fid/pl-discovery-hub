@@ -163,6 +163,6 @@ export class ResultsWithPaginationComponent implements OnInit {
   }
 
   redirectToRoot() {
-    this._router.navigate(['/']);
+    this._router.navigate(['/search']);
   }
 }

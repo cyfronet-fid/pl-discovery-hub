@@ -314,6 +314,12 @@ import { Observable, map } from 'rxjs';
       </div>
     </nav>
 
+    <div class="container--xxl search-results-info" *ngIf="q$ | async as query">
+      <ng-container *ngIf="query && query !== '*'">
+        Your search results for: “{{ query }}”
+      </ng-container>
+    </div>
+
     <div class="container--xxl navigation">
       <div id="sub-nav" class="d-md-none">
         <div id="bottom-border-wrapper">

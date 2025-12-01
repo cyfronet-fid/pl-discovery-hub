@@ -27,7 +27,7 @@ class GlobalSettings(BaseSettings):
     BACKEND_BASE_URL: Url = "http://localhost:8000/"
     UI_BASE_URL: Url = "http://localhost:4200/"
     DATABASE_URI: PostgresDsn = "postgresql+psycopg2://ess:ess@localhost:5442/ess"
-    MAX_RESULTS_BY_PAGE: int = 50
+    MAX_RESULTS_BY_PAGE: int = 20
     SHOW_BETA_COLLECTIONS: bool = False
     SHOW_KNOWLEDGE_BASE: bool = True
 
@@ -78,7 +78,7 @@ class GlobalSettings(BaseSettings):
     )
 
     # Redirections
-    EU_MARKETPLACE_BASE_URL: Url = "https://marketplace.sandbox.eosc-beyond.eu/"
+    EU_MARKETPLACE_BASE_URL: Url = "https://userspace.sandbox.eosc-beyond.eu/"
     PL_MARKETPLACE_BASE_URL: Url = "https://marketplace.eosc.pl/"
     EOSC_COMMONS_URL: Url = (  # Without / at the end it doesn't work
         "https://s3.cloud.cyfronet.pl/eosc-pl-common/"
