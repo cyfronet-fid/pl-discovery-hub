@@ -78,7 +78,7 @@ class GlobalSettings(BaseSettings):
     )
 
     # Redirections
-    EU_MARKETPLACE_BASE_URL: Url = "https://marketplace.sandbox.eosc-beyond.eu/"
+    EU_MARKETPLACE_BASE_URL: Url = "https://userspace.sandbox.eosc-beyond.eu/"
     PL_MARKETPLACE_BASE_URL: Url = "https://marketplace.eosc.pl/"
     EOSC_COMMONS_URL: Url = (  # Without / at the end it doesn't work
         "https://s3.cloud.cyfronet.pl/eosc-pl-common/"
