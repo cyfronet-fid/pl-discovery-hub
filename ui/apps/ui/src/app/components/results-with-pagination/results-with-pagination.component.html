@@ -75,16 +75,7 @@
   <ng-container
     *ngIf="$any(results$ | async)?.length > 0 && (isLoading$ | async) === false"
   >
-    <div class="pagination-wrapper">
-      <ess-pagination
-        [paginationData]="$any(paginationData$ | async)"
-        [loading]="(isLoading$ | async) ?? false"
-        (activePageChange)="pageNr$.next($event)"
-      ></ess-pagination>
-      <ess-sort-by-functionality
-      *ngIf="this.getCollectionName() !== 'organisation'"
-      ></ess-sort-by-functionality>
-    </div>
+
     <ng-container *ngIf="this.getCollectionName() === 'training'">
       <a [href]="getKnowledgeHubUrl()">
         <div class="redirect-kh_box">

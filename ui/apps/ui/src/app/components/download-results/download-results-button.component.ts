@@ -31,7 +31,7 @@ const DEFAULT_NO_OF_RESULTS = 2000;
         src="assets/download-button.svg"
         alt="download-icon"
       />
-      Download Results
+      Download search results
     </div>
 
     <ng-template #content let-modal>
