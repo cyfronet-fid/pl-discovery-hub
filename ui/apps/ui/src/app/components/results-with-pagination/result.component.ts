@@ -86,28 +86,6 @@ export class ResultComponent implements OnInit {
     return '';
   }
 
-  get redirectOrderUrl(): string | null {
-    if (this.orderUrl == null || this.orderUrl === '') {
-      return null;
-    }
-    if (this.type.value === 'bundle') {
-      this.redirectService.internalUrl(
-        this.orderUrl,
-        this.id,
-        this.type.value,
-        this.offers[0]?.main_offer_id
-          ? '#offer-' + this.offers[0].main_offer_id.toString().substring(2)
-          : ''
-      );
-    }
-    return this.redirectService.internalUrl(
-      this.orderUrl,
-      this.id,
-      this.type.value,
-      ''
-    );
-  }
-
   @Input()
   type!: IValueWithLabel;
 

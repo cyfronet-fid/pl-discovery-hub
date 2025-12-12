@@ -41,8 +41,11 @@ import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
     </div>
     <div id="container-lower" class="page-heading">
       <div>
-        <span id="results-count" i18n>{{ resultsCount }} search results</span>
+        <span id="results-count" i18n>({{ resultsCount }} results)</span>
       </div>
+      <ess-sort-by-functionality *ngIf="getCollectionName() !== 'organisation'">
+      </ess-sort-by-functionality>
+
       <ess-download-results-button></ess-download-results-button>
     </div>
   `,
@@ -68,15 +71,17 @@ export class PageHeaderComponent {
   resultsCount!: number;
 
   activeNavConfig$ = this._navConfigsRepository.activeEntity$;
-
   filtersConfigs$ = this.selectActiveFilters$();
-
   isLoading$: Observable<boolean> = this._filtersConfigsRepository.isLoading$;
 
   scope: string =
     this._route.snapshot.queryParamMap.get('scope') || DEFAULT_SCOPE;
 
   showGlobalFilters: boolean = this.scope === DEFAULT_SCOPE;
+
+  getCollectionName(): string {
+    return (this._route.snapshot.paramMap.get('collection') ?? '') as string;
+  }
 
   constructor(
     private _router: Router,
