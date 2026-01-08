@@ -22,7 +22,6 @@ import { RecommendationsModule } from '@components/recommendations/recommendatio
 import { DownloadResultsModule } from '@components/download-results/download-results.module';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FeedbackPanelModule } from '@components/feedback-panel/feedback-panel.module';
 
 import { SearchPageComponent } from './search-page.component';
 import { ArticlesModule } from '@components/articles/articles.module';
@@ -59,7 +58,6 @@ import { RightPanelModule } from '@components/right-panel/right-panel.module';
     ActiveFiltersModule,
     RecommendationsModule,
     DownloadResultsModule,
-    FeedbackPanelModule,
     ArticlesModule,
     RightPanelModule,
   ],

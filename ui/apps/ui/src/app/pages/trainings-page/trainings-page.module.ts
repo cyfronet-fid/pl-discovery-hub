@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { SearchBarModule } from '@components/search-bar/search-bar.module';
 import { BackToSearchBarModule } from '@components/back-to-search-bar/back-to-search-bar.module';
 import { InteroperabilityGuidelinesPipeModule } from '../../pipe/interoperability-guidelines.pipe.module';
-import { FeedbackPanelModule } from '@components/feedback-panel/feedback-panel.module';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { FeedbackPanelModule } from '@components/feedback-panel/feedback-panel.m
     ]),
     SearchBarModule,
     BackToSearchBarModule,
-    FeedbackPanelModule,
   ],
   declarations: [TrainingDetailPageComponent],
   exports: [TrainingDetailPageComponent],

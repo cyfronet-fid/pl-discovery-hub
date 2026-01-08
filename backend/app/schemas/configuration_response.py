@@ -10,6 +10,8 @@ class ConfigurationResponse(BaseModel):
     eosc_commons_url: Url
     eosc_commons_env: str
     eosc_explore_url: Url
+    eosc_helpdesk_form_url: Url
+    helpdesk_target_id: int
     knowledge_hub_url: Url
     is_sort_by_relevance: bool
     max_results_by_page: int

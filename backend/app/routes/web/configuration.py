@@ -17,6 +17,8 @@ async def config():
         eosc_explore_url=settings.EOSC_EXPLORE_URL,
         eosc_commons_url=settings.EOSC_COMMONS_URL,
         eosc_commons_env=settings.EOSC_COMMONS_ENV,
+        eosc_helpdesk_form_url=settings.EOSC_HELPDESK_FORM_URL,
+        helpdesk_target_id=settings.HELPDESK_TARGET_ID,
         knowledge_hub_url=settings.KNOWLEDGE_HUB_URL,
         is_sort_by_relevance=settings.IS_SORT_BY_RELEVANCE,
         max_results_by_page=settings.MAX_RESULTS_BY_PAGE,

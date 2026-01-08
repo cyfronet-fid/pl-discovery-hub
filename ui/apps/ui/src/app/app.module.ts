@@ -24,6 +24,8 @@ import { ConfigService } from './services/config.service';
 import { WINDOW } from './app.providers';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { HelpdeskModule } from '@components/helpdesk/helpdesk.module';
+
 registerLocaleData(en);
 
 export const getUserProfileFactory$ = (
@@ -49,6 +51,7 @@ const googleAnalyticsId = (
     AppRoutingModule,
     MainHeaderModule,
     NgbModule,
+    HelpdeskModule,
 
     ...(googleAnalyticsId == null
       ? []

@@ -64,7 +64,7 @@ import { ConfigService } from '../../services/config.service';
         position: relative;
       }
 
-      .feedback-panel {
+      .helpdesk {
         position: fixed;
         bottom: 20px;
         right: 20px;
