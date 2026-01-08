@@ -56,7 +56,7 @@
             [isError]="response?.isError"
           ></ess-filters>
         </div>
-        <div class="col-sm-7 col-12 center-column">
+        <div class="col-sm-9 col-12 center-column">
           <ess-page-header
             *ngIf="!response?.isError"
             [resultsCount]="response?.numFound ?? 0"
@@ -66,35 +66,6 @@
             [response]="response"
             (clearSearchInput)="searchBar.clearInput($event)"
           ></ess-results-with-pagination>
-        </div>
-        <div
-          class="col-sm-3 col-12 right-column pl-0"
-        >
-          <!---
-          <a href="#" class="right-column-back">
-            <div class="right-link-title">Go back to resource discovery service</div>
-            <div class="right-link-desc">Return to browsing resources in the resource discovery service.</div>
-            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more" /></div>
-          </a> --->
-
-          <ess-right-panel></ess-right-panel>
-
-          <h4>Knowledge</h4>
-
-          <a href="https://knowledge-hub.sandbox.eosc-beyond.eu/" class="right-column-link-alt">
-            <div class="right-link-title">Knowledge hub</div>
-            <div class="right-link-desc">Discover training materials, courses and learning paths supporting open science
-              and FAIR sharing.
-            </div>
-            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more"/></div>
-          </a>
-
-          <a href="{{marketplaceUrl}}user_documentation" class="right-column-link-alt">
-            <div class="right-link-title">Check user documentation</div>
-            <div class="right-link-desc">Browse our guides for useful EOSC insights</div>
-            <div class="right-link-arrow"><img src="assets/arrow-right-dark.svg" alt="more"/></div>
-          </a>
-
         </div>
       </div>
     </div>

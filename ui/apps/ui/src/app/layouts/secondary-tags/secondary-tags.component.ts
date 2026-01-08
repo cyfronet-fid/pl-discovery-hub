@@ -20,12 +20,14 @@ import { combineHighlightsWith } from './utils';
         <ng-container [ngSwitch]="tag.type">
           <ng-container *ngSwitchCase="'url'">
             <span *ngIf="tag.values.length > 0" class="statistic text-muted">
-              <ng-container *ngIf="tag.iconPath">
-                <img [src]="tag.iconPath" alt="" />
-              </ng-container>
-              <ng-container *ngIf="tag.label">
-                <span class="label-text">{{ tag.label }}</span>
-              </ng-container>
+              <div class="title-holder">
+                <ng-container *ngIf="tag.iconPath">
+                  <img [src]="tag.iconPath" alt="" />
+                </ng-container>
+                <ng-container *ngIf="tag.label">
+                  <span class="label-text">{{ tag.label }}</span>
+                </ng-container>
+              </div>
               <ng-container *ngFor="let keyword of tag.values">
                 <a
                   href="javascript:void(0)"
@@ -60,7 +62,6 @@ import { combineHighlightsWith } from './utils';
         font-size: 11px;
         display: block;
         overflow: hidden;
-        margin-right: 15px;
         line-height: 1.7;
       }
 
@@ -76,6 +77,18 @@ import { combineHighlightsWith } from './utils';
         display: inline;
         float: left;
         margin-right: 10px;
+      }
+
+      .usage .title-holder {
+        display: flex;
+        column-gap: 5px;
+        margin-bottom: 8px;
+        font-size: 12px;
+
+        img {
+          width: 11px;
+          height: auto;
+        }
       }
 
       ::ng-deep .highlighted {

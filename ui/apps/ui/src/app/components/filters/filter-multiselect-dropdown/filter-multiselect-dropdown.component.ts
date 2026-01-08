@@ -17,7 +17,7 @@ import { IFqMap } from '@collections/services/custom-route.type';
 @Component({
   selector: 'ess-filter-multiselect-dropdown',
   template: `
-    <div *ngIf="isLoading || show" id="container">
+    <div *ngIf="isLoading || show" id="container" class="filter-box">
       <div id="dropdown-filter-title">
         <b> {{ formatLabel(label) }} </b>
         <div id="tooltipIcon">
