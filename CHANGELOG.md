@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.4.0...v1.5.0) (2026-01-08)
+
+
+### Features
+
+* [[#93](https://github.com/cyfronet-fid/pl-discovery-hub/issues/93)] integrate helpdesk ([616e65a](https://github.com/cyfronet-fid/pl-discovery-hub/commit/616e65aeb8520b92f793819e2d6950a2bd72bea4))
+* hide access the button ([caa3f1d](https://github.com/cyfronet-fid/pl-discovery-hub/commit/caa3f1d529cc0920f72f69623b823ad81ef31b95))
+
+
+### Bug Fixes
+
+* add styles for breadcrumbs ([f24e660](https://github.com/cyfronet-fid/pl-discovery-hub/commit/f24e660efd451916ac74ee2663ed51991e084c49))
+
 ## [1.4.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.3.1...v1.4.0) (2025-12-01)
 
 
