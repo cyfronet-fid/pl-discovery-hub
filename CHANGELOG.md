@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.0...v1.5.1) (2026-01-09)
+
+
+### Bug Fixes
+
+* oidc endpoints ([d8e8327](https://github.com/cyfronet-fid/pl-discovery-hub/commit/d8e8327566712dd141d6671e2c41e001bff682a6))
+
 ## [1.5.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.4.0...v1.5.0) (2026-01-08)
 
 
