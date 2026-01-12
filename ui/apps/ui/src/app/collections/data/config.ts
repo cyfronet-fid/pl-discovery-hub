@@ -415,6 +415,7 @@ export const DATASOURCE_PID_MAPPING: Record<string, string> = {
   'eosc.eudat.b2safe': 'B2SAFE',
   'eosc.eudat.b2share': 'B2SHARE',
   'eosc.fris.fris': 'Flemish Research Information Space',
+  'eosc.ega.ega': 'The European Genome-phenome Archive',
   'eosc.gbif.gbif_species_occurrence_data': 'GBIF Species Occurrence Data',
   'eosc.gdansk_tech.most': 'Most Wiedzy Open Research Data Catalog',
   'eosc.gdansk_tech.ecudo':
