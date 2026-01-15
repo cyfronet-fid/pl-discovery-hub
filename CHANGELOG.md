@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.1...v1.5.2) (2026-01-15)
+
+
+### Bug Fixes
+
+* [[#123](https://github.com/cyfronet-fid/pl-discovery-hub/issues/123)] add pretty name and filters for EGA ([1d809af](https://github.com/cyfronet-fid/pl-discovery-hub/commit/1d809af3444a4e60e0452a762787e8d603a6552b))
+
 ## [1.5.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.0...v1.5.1) (2026-01-09)
 
 
