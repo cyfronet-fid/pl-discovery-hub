@@ -14,6 +14,16 @@ export const servicesFilters: IFiltersConfig = {
   id: URL_PARAM_NAME,
   filters: [
     {
+      id: 'catalogue',
+      filter: 'catalogue',
+      label: 'Community Catalog',
+      type: 'dropdown',
+      defaultCollapsed: false,
+      tooltipText: '',
+      global: true,
+      transformNodes: transformCatalogueNames,
+    },
+    {
       id: 'node',
       filter: 'node',
       label: 'EOSC Node',
@@ -174,16 +184,6 @@ export const servicesFilters: IFiltersConfig = {
       type: 'tag',
       defaultCollapsed: false,
       tooltipText: '',
-    },
-    {
-      id: 'catalogue',
-      filter: 'catalogue',
-      label: 'Community Catalog',
-      type: 'dropdown',
-      defaultCollapsed: false,
-      tooltipText: '',
-      global: true,
-      transformNodes: transformCatalogueNames,
     },
   ],
 };
