@@ -19,26 +19,6 @@ import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
 @Component({
   selector: 'ess-page-header',
   template: `
-    <div
-      id="container-upper"
-      class="page-heading"
-      *ngIf="this.showGlobalFilters"
-    >
-      <ng-container *ngFor="let filterConfig of filtersConfigs$ | async">
-        <ng-container [ngSwitch]="filterConfig.type">
-          <ess-filter-multiselect-dropdown
-            class="multiselect-dropdown"
-            *ngSwitchCase="'dropdown'"
-            [label]="filterConfig.label"
-            [filterId]="filterConfig.id"
-            [data]="filterConfig.options"
-            [isLoading]="!!(isLoading$ | async)"
-            [show]="resultsCount > 0 && filterConfig.options.length > 0"
-            [tooltipText]="filterConfig.tooltipText"
-          ></ess-filter-multiselect-dropdown>
-        </ng-container>
-      </ng-container>
-    </div>
     <div id="container-lower" class="page-heading">
       <div>
         <span id="results-count" i18n>({{ resultsCount }} results)</span>
@@ -51,13 +31,6 @@ import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
   `,
   styles: [
     `
-      #container-upper {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
-        align-items: flex-start;
-      }
-
       #container-lower {
         display: flex;
         flex-direction: row;
