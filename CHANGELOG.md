@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.2...v1.6.0) (2026-01-21)
+
+
+### Features
+
+* [[#122](https://github.com/cyfronet-fid/pl-discovery-hub/issues/122)] get silver badge ([28c2186](https://github.com/cyfronet-fid/pl-discovery-hub/commit/28c218607ec2db168ff33f452f4a4efa1742b128))
+
 ## [1.5.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.1...v1.5.2) (2026-01-15)
 
 
