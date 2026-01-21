@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.0...v1.6.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* top switch removed ([ee5b2e8](https://github.com/cyfronet-fid/pl-discovery-hub/commit/ee5b2e8799f382c9f0aad640ff171c5a1bf95025))
+
 ## [1.6.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.5.2...v1.6.0) (2026-01-21)
 
 
