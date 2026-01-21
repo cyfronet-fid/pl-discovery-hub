@@ -878,7 +878,7 @@ h6 {
 }
 
 .usage {
-  padding: 0 0 12px 0;
+  padding: 10px 0 13px;
 }
 
 .bottom-actions {
@@ -1509,17 +1509,21 @@ h6 {
   margin-bottom: 5px;
   display: flex;
   color: #233d4c;
+  column-gap: 5px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
 
   .tag-title {
     margin-top: 3px;
+    flex: 0 0 75px;
+    width: 75px;
   }
 
   .tag-content {
     font-size: 12px;
     flex-wrap: wrap;
+    flex: 1 1 auto;
     row-gap: 4px;
   }
 

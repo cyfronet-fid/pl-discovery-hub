@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: PL Discovery Hub
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Michał
+    family-names: Kołomański
+    url: https://github.com/Michal-Kolomanski
+  - given-names: Jarosław
+    family-names: Zbozien
+    url: https://github.com/jarekzet
+  - given-names: Maria
+    family-names: Kowalska
+    url: https://github.com/maria-j-k
+  - given-names: Szymon
+    family-names: Figura
+    url: https://github.com/sqrasdf
+  - given-names: Joanna
+    family-names: Rogóż
+    url: https://github.com/jrogoz
+  - given-names: Patryk
+    family-names: Wójtowicz
+    url: https://github.com/wujuu
+  - given-names: Wojciech
+    family-names: Ziajka
+    url: https://github.com/wziajka
+repository-code: 'https://github.com/cyfronet-fid/pl-discovery-hub'
+abstract: >-
+  PL Discovery Hub is a backend and frontend system
+  designed to support discovery and recommendation of
+  research resources within the European Open Science Cloud.
+  It integrates with Solr for metadata indexing, provides an
+  API and user interface, and can be deployed using Docker.
+  The system also supports an optional recommender engine
+  and offers configurable deployment options for production
+  and development environments.
+keywords:
+  - discovery-hub
+  - management
+  - marketplace
+license: GPL-3.0
