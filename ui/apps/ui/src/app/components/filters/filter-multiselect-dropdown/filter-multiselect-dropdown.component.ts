@@ -17,9 +17,13 @@ import { IFqMap } from '@collections/services/custom-route.type';
 @Component({
   selector: 'ess-filter-multiselect-dropdown',
   template: `
-    <div *ngIf="isLoading || show" id="container" class="filter-box">
+    <div
+      *ngIf="(isLoading || show) && hasData"
+      id="container"
+      class="filter-box"
+    >
       <div id="dropdown-filter-title">
-        <b> {{ formatLabel(label) }} </b>
+        <div class="data-source-title">{{ formatLabel(label) }}</div>
         <div id="tooltipIcon">
           <img
             src="assets/tooltip_prompt.svg"
@@ -60,6 +64,18 @@ import { IFqMap } from '@collections/services/custom-route.type';
       #container {
         display: flex;
         flex-direction: column;
+        padding: 10px;
+        gap: 7px;
+        width: 100%;
+        background: #e4f9fa;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .data-source-title {
+        font-weight: 600;
+        font-size: 14px;
+        color: #000;
       }
 
       .tooltip-prompt-icon {
@@ -73,7 +89,6 @@ import { IFqMap } from '@collections/services/custom-route.type';
       }
 
       ::ng-deep .global-select {
-        width: 240px;
         border-radius: 10px;
       }
     `,
@@ -99,6 +114,10 @@ export class FilterMultiselectDropdownComponent {
 
   @Input()
   filterId!: string;
+
+  get hasData(): boolean {
+    return Array.isArray(this._data) && this._data.length > 0;
+  }
 
   onChange($event: string[]): void {
     const newData: [IUIFilterTreeNode, boolean][] = this._previousData.map(

@@ -1,7 +1,6 @@
 import { IFiltersConfig } from '../../repositories/types';
 import { URL_PARAM_NAME } from './nav-config.data';
 import {
-  DATASOURCE_FILTER_TOOLTIP_TEXT,
   HORIZONTAL_TOOLTIP_TEXT,
   INTEROPERABILITY_PATTERNS_TOOLTIP_TEXT,
 } from '@collections/data/config';
@@ -14,6 +13,16 @@ import {
 export const allCollectionsFilters: IFiltersConfig = {
   id: URL_PARAM_NAME,
   filters: [
+    {
+      id: 'datasource_pids',
+      filter: 'datasource_pids',
+      label: 'Data Source',
+      type: 'dropdown',
+      defaultCollapsed: false,
+      tooltipText: '',
+      global: true,
+      transformNodes: transformDataSourceNames,
+    },
     {
       id: 'node',
       filter: 'node',
@@ -229,16 +238,6 @@ export const allCollectionsFilters: IFiltersConfig = {
       type: 'tag',
       defaultCollapsed: false,
       tooltipText: '',
-    },
-    {
-      id: 'datasource_pids',
-      filter: 'datasource_pids',
-      label: 'Data Source',
-      type: 'dropdown',
-      defaultCollapsed: false,
-      tooltipText: DATASOURCE_FILTER_TOOLTIP_TEXT,
-      global: true,
-      transformNodes: transformDataSourceNames,
     },
   ],
 };

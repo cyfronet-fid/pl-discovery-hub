@@ -356,8 +356,6 @@ btn-primary.disabled,
 .filter-box {
   display: flex;
   column-gap: 15px;
-  flex-direction: row !important;
-  align-items: center;
 }
 
 .page-heading {
@@ -2463,6 +2461,11 @@ h6 {
   display: none;
 }
 
+.ant-select-selection-placeholder {
+  font-weight: 600;
+  color: #000;
+}
+
 .ant-select-dropdown {
   box-shadow: none;
   border-radius: 8px;
@@ -2493,7 +2496,7 @@ h6 {
 
 .ant-select-dropdown.ant-select-tree-dropdown {
   top: 100%;
-  width: 240px;
+  width: 292px;
   border-radius: 0 0 8px 8px;
   margin-top: -6px;
   padding: 20px 12px 15px;
