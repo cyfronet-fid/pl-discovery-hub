@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.1...v1.6.2) (2026-01-23)
+
+
+### Bug Fixes
+
+* [[#114](https://github.com/cyfronet-fid/pl-discovery-hub/issues/114)] fix data source and community catalog filter ([4010453](https://github.com/cyfronet-fid/pl-discovery-hub/commit/4010453d8bdb29dcf628091e70e943b7c4eec18a))
+
 ## [1.6.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.0...v1.6.1) (2026-01-21)
 
 
