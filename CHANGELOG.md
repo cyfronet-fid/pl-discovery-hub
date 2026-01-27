@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.2...v1.7.0) (2026-01-27)
+
+
+### Features
+
+* add totop wrapper component ([75a5f98](https://github.com/cyfronet-fid/pl-discovery-hub/commit/75a5f988bdda1c619830ecf4a1b658a7662e3dd9))
+
+
+### Bug Fixes
+
+* remove dataset types filters ([84869c8](https://github.com/cyfronet-fid/pl-discovery-hub/commit/84869c86dd7adb1f9a1ea733395231bbeb0e159d))
+
 ## [1.6.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.1...v1.6.2) (2026-01-23)
 
 
