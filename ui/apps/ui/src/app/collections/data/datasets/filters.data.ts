@@ -78,15 +78,6 @@ export const datasetsFilters: IFiltersConfig = {
       expandArrow: true,
     },
     {
-      id: 'dataset_types',
-      filter: 'dataset_types',
-      label: 'Dataset types',
-      type: 'multiselect',
-      defaultCollapsed: false,
-      tooltipText: '',
-      expandArrow: true,
-    },
-    {
       id: 'publisher',
       filter: 'publisher',
       label: 'Publisher',
