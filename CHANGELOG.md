@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.0...v1.7.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* [[#126](https://github.com/cyfronet-fid/pl-discovery-hub/issues/126)] add country filter ([73bd578](https://github.com/cyfronet-fid/pl-discovery-hub/commit/73bd578cf048d91b540950f0a990f59fe6667f29))
+* [[#142](https://github.com/cyfronet-fid/pl-discovery-hub/issues/142)] hide recommender ([c4b698c](https://github.com/cyfronet-fid/pl-discovery-hub/commit/c4b698cc58a29ae3ec7b09d1d6c7bb09377210bc))
+
 ## [1.7.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.6.2...v1.7.0) (2026-01-27)
 
 
