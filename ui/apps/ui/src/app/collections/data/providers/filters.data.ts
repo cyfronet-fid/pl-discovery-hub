@@ -69,6 +69,15 @@ export const providersFilters: IFiltersConfig = {
       tooltipText: '',
     },
     {
+      id: 'country',
+      filter: 'country',
+      label: 'Country',
+      type: 'multiselect',
+      defaultCollapsed: false,
+      tooltipText: '',
+      expandArrow: true,
+    },
+    {
       id: 'keywords',
       filter: 'keywords',
       label: 'Keywords',
