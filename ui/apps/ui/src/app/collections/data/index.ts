@@ -43,6 +43,7 @@ import { plAllCollectionsAdapter } from '../pl-data/all/adapter.data';
 import { plProvidersAdapter } from '../pl-data/providers/adapter.data';
 import { plServicesAdapter } from '../pl-data/services/adapter.data';
 import { plDataSourcesAdapter } from '../pl-data/data-sources/adapter.data';
+import { plCataloguesAdapter } from '../pl-data/catalogues/adapter.data';
 
 import { trainingsSearchMetadata } from './trainings/search-metadata.data';
 import { guidelinesSearchMetadata } from './guidelines/search-metadata.data';
@@ -132,7 +133,7 @@ export const PL_ADAPTERS: IAdapter[] = [
   plProvidersAdapter,
   projectsAdapter,
   organisationsAdapter,
-  cataloguesAdapter,
+  plCataloguesAdapter,
 ];
 
 export const FILTERS: IFiltersConfig[] = [

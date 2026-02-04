@@ -58,6 +58,15 @@ export const catalogueFilters: IFiltersConfig = {
       expandArrow: true,
     },
     {
+      id: 'publication_date',
+      filter: 'publication_date',
+      label: 'Year range',
+      type: 'date-year',
+      defaultCollapsed: false,
+      tooltipText: '',
+      expandArrow: true,
+    },
+    {
       id: 'keywords',
       filter: 'keywords',
       label: 'Keywords',
