@@ -40,7 +40,7 @@ export const cataloguesAdapter: IAdapter = {
       },
     ],
     collection: COLLECTION,
-    title: catalogue.title ?? '',
+    title: catalogue['title'] ? catalogue['title'].toString() : '',
     abbreviation: catalogue.abbreviation ?? '',
     description: [catalogue?.description]?.join(' ') || '',
     date: formatPublicationDate(catalogue['publication_date']),
@@ -52,6 +52,11 @@ export const cataloguesAdapter: IAdapter = {
       ? `${
           ConfigService.config?.eu_marketplace_url
         }/catalogues/${encodeURIComponent(catalogue.pid || '')}`
+      : '',
+    logoUrl: catalogue.pid
+      ? `${
+          ConfigService.config?.eu_marketplace_url
+        }/catalogues/${encodeURIComponent(catalogue.pid)}/logo`
       : '',
     coloredTags: [],
     isResearchProduct: false,
