@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.1...v1.7.2) (2026-02-06)
+
+
+### Bug Fixes
+
+* [[#128](https://github.com/cyfronet-fid/pl-discovery-hub/issues/128)] fix catalogues tab ([62eee12](https://github.com/cyfronet-fid/pl-discovery-hub/commit/62eee12ccd9929f4f8725f36f13fe7a40f44c069))
+
 ## [1.7.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.0...v1.7.1) (2026-01-28)
 
 
