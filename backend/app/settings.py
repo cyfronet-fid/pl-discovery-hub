@@ -130,13 +130,13 @@ class EnvironmentConfig(GlobalSettings):
         """Make and return final settings"""
         s = self.TYPES_TO_SETTINGS_MAP[self.ENVIRONMENT]()
         if s.OIDC_AAI_NEW_API:  # Adjust OIDC integration params for the new API
-            s.OIDC_ISSUER = urljoin(s.OIDC_HOST, "/auth/realms/pl-node")
-            s.OIDC_JWKS_ENDPOINT = "/auth/realms/pl-node/protocol/openid-connect/certs"
+            s.OIDC_ISSUER = urljoin(s.OIDC_HOST, "/auth/realms/egi")
+            s.OIDC_JWKS_ENDPOINT = "/auth/realms/egi/protocol/openid-connect/certs"
             s.OIDC_USERINFO_ENDPOINT = (
-                "/auth/realms/pl-node/protocol/openid-connect/userinfo"
+                "/auth/realms/egi/protocol/openid-connect/userinfo"
             )
-            s.OIDC_TOKEN_ENDPOINT = "/auth/realms/pl-node/protocol/openid-connect/token"
-            s.OIDC_AUTH_ENDPOINT = "/auth/realms/pl-node/protocol/openid-connect/auth"
+            s.OIDC_TOKEN_ENDPOINT = "/auth/realms/egi/protocol/openid-connect/token"
+            s.OIDC_AUTH_ENDPOINT = "/auth/realms/egi/protocol/openid-connect/auth"
 
         return s
 
