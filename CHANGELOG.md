@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.3](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.2...v1.7.3) (2026-02-16)
+
+
+### Bug Fixes
+
+* fix pagination error ([7f94def](https://github.com/cyfronet-fid/pl-discovery-hub/commit/7f94defcdfc398c542ca99f8f4a1e6d69d89dd52))
+
 ## [1.7.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.1...v1.7.2) (2026-02-06)
 
 
