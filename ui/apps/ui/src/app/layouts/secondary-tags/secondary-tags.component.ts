@@ -177,7 +177,7 @@ import { combineHighlightsWith } from './utils';
         border: 0;
         font-size: 12px;
         line-height: 1;
-        color: #24727b;
+        color: #34503E;
         text-decoration: none;
         cursor: pointer;
         opacity: 0.85;
