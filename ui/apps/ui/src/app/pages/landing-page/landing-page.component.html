@@ -1,9 +1,11 @@
+
+
 <main class="landing_page">
   <div class="landing-header">
     <section class="heading">
       <div class="container">
-        <div class="row py-lg-3">
-          <div class="col-lg-7 col-sm-12 pr-0">
+        <div class="row py-lg-3 justify-content-center">
+          <div class="col-lg-6 col-sm-12 pr-0 text-center">
             <h1>Polish Open Science Platform</h1>
             <p class="intro-text">
               We support the development of Polish science and innovation by offering
@@ -20,87 +22,362 @@
     </section>
   </div>
 
-  <section class="research-activity">
+  <section class="resource-categories">
+    <div class="container">
+      <ul>
+        <li><a href="/search/dataset">Datasets</a></li>
+        <li><a href="/search/data_source">Data sources</a></li>
+        <li><a href="/search/publication">Publications</a></li>
+        <li><a href="/search/service">Services</a></li>
+        <li><a href="/search/">See more</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="data-sources">
     <div class="container">
       <div class="row">
 
-        <div class="col-md-8 col-sm-12">
-          <div class="eoscpl-intro pink right-intro">
-            <div class="eoscpl-intro-title">
-              EOSC.pl Scientific Resources
+        <div class="col-md-7 col-sm-12">
+          <h3>Our Data Sources</h3>
+          <p>
+            Our data sources bring together trusted research outputs, institutional repositories, and verified
+            scientific datasets in one connected ecosystem. Access reliable, high-quality data from across Poland
+            and Europe ready to discover, reuse, and build upon.</p>
+          <a href="/search/data_source" class="more-button white-bg">
+            Browse Data Sources
+            <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
+          </a>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+          <div class="carousel-wrapper">
+
+            <ngb-carousel
+              #c="ngbCarousel"
+              [interval]="4000"
+              [pauseOnHover]="false"
+              [pauseOnFocus]="false"
+              [wrap]="true"
+              [keyboard]="true"
+              [animation]="true"
+            >
+              <!-- SLIDE 1 -->
+              <ng-template ngbSlide>
+                <div class="card-slide">
+                  <div class="d-flex align-items-center gap-3 card-title-row">
+                    <div class="logo-box">
+                      <img src="assets/logo-rohub.png" alt="ROHub" />
+                    </div>
+                    <div class="min-w-0">
+                      <div class="carousel-sources-title text-truncate">ROHub</div>
+                      <div class="carousel-sources-subtitle text-truncate">ROHub</div>
+                    </div>
+                  </div>
+
+                  <div class="row-sep">
+                    <div class="desc-2lines">
+                      ROHub enables the management, sharing and preservation of research artefacts related to a
+                      particular investigation/research challenge as a single information unit through the Research
+                      Object (RO) concept and model.
+                    </div>
+                  </div>
+
+                  <div class="row-sep taglist-holder">
+                    <span class="tag-item text-truncate">Poznan Supercomputing and Networking Center</span>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!-- SLIDE 2 -->
+              <ng-template ngbSlide>
+                <div class="card-slide">
+                  <div class="d-flex align-items-center gap-3 card-title-row">
+                    <div class="logo-box">
+                      <img src="assets/logo-rodbuk.png" alt="RODBUK" />
+                    </div>
+                    <div class="min-w-0">
+                      <div class="carousel-sources-title text-truncate">RODBUK</div>
+                      <div class="carousel-sources-subtitle text-truncate">Cracow Open Research Data Repository</div>
+                    </div>
+                  </div>
+
+                  <div class="row-sep">
+                    <div class="desc-2lines">
+                      The purpose of RODBUK is to collect, develop, archive and make available in open access all types
+                      of research data created by researchers, PhD candidates and students in the course of scientific activity.
+                    </div>
+                  </div>
+
+                  <div class="row-sep taglist-holder">
+                    <span class="tag-item text-truncate">Academic Computer Centre CYFRONET AGH</span>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!-- SLIDE 3 -->
+              <ng-template ngbSlide>
+                <div class="card-slide">
+                  <div class="d-flex align-items-center gap-3 card-title-row">
+                    <div class="logo-box">
+                      <img src="assets/logo-bridge.png" alt="Most Wiedzy Open Research Data Catalog" />
+                    </div>
+                    <div class="min-w-0">
+                      <div class="carousel-sources-title">Most Wiedzy Open Research Data Catalog</div>
+                    </div>
+                  </div>
+
+                  <div class="row-sep">
+                    <div class="desc-2lines">
+                      The nature of the ‘Bridge of Data’ project is to design and build a platform that allows collecting,
+                      searching, analyzing and sharing open research data and to provide it with unique data collected from
+                      the three most important Pomeranian universities
+                    </div>
+                  </div>
+
+                  <div class="row-sep taglist-holder">
+                    <span class="tag-item text-truncate">Gdańsk University of Technology</span>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!-- SLIDE 4 -->
+              <ng-template ngbSlide>
+                <div class="card-slide">
+                  <div class="d-flex align-items-center gap-3 card-title-row">
+                    <div class="logo-box">
+                      <img src="assets/logo-repod.png" alt="RepOD Repository for Open Data" />
+                    </div>
+                    <div class="min-w-0">
+                      <div class="carousel-sources-title">RepOD Repository for Open Data</div>
+                    </div>
+                  </div>
+
+                  <div class="row-sep">
+                    <div class="desc-2lines">
+                      RepOD is the first Polish repository for open research data. All researchers, regardless of affiliation
+                      and academic discipline, can create a free account and start sharing data produced, collected, or
+                      described during research activities.
+                    </div>
+                  </div>
+
+                  <div class="row-sep taglist-holder">
+                    <span class="tag-item text-truncate">Interdisciplinary Centre for Mathematical and Computational Modelling, University of Warsaw</span>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!-- SLIDE 5 -->
+              <ng-template ngbSlide>
+                <div class="card-slide">
+                  <div class="d-flex align-items-center gap-3 card-title-row">
+                    <div class="logo-box">
+                      <img src="assets/logo-ecudo.png" alt="Elektroniczne Centrum Udostępniania Danych Oceanograficznych" />
+                    </div>
+                    <div class="min-w-0">
+                      <div class="carousel-sources-title">Elektroniczne Centrum Udostępniania Danych Oceanograficznych</div>
+                    </div>
+                  </div>
+
+                  <div class="row-sep">
+                    <div class="desc-2lines">
+                      The eCUDO.pl project is created by a consortium of Project partners. These are research units,
+                      scientific institutes and universities whose scientific activity focuses on the area of knowledge
+                      related to the seas and oceans.
+                    </div>
+                  </div>
+
+                  <div class="row-sep taglist-holder">
+                    <span class="tag-item">Institute of Oceanology Polish Academy of Sciences</span>
+                  </div>
+                </div>
+              </ng-template>
+
+            </ngb-carousel>
+
+            <!-- CONTROLS -->
+            <!-- CONTROLS -->
+            <div class="carousel-controls">
+              <button class="carousel-ctrl" type="button" (click)="c.prev()" aria-label="Poprzedni">
+                <!-- LEFT -->
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.87931 6.58511L6.58679 9.87764L9.87931 13.1702L11.0317 12.0178L9.71469 10.7008H13.1718V9.0545H9.71469L11.0317 7.73749L9.87931 6.58511ZM9.87931 1.64632C11.018 1.64632 12.0881 1.86239 13.0895 2.29454C14.091 2.72668 14.9622 3.31316 15.703 4.05398C16.4438 4.7948 17.0303 5.66595 17.4624 6.66742C17.8946 7.6689 18.1106 8.73897 18.1106 9.87764C18.1106 11.0163 17.8946 12.0864 17.4624 13.0879C17.0303 14.0893 16.4438 14.9605 15.703 15.7013C14.9622 16.4421 14.091 17.0286 13.0895 17.4607C12.0881 17.8929 11.018 18.109 9.87931 18.109C8.74065 18.109 7.67058 17.8929 6.6691 17.4607C5.66762 17.0286 4.79648 16.4421 4.05566 15.7013C3.31484 14.9605 2.72836 14.0893 2.29621 13.0879C1.86407 12.0864 1.648 11.0163 1.648 9.87764C1.648 8.73897 1.86407 7.6689 2.29621 6.66742C2.72836 5.66595 3.31484 4.7948 4.05566 4.05398C4.79648 3.31316 5.66762 2.72668 6.6691 2.29454C7.67058 1.86239 8.74065 1.64632 9.87931 1.64632ZM9.87931 3.29258C8.04099 3.29258 6.4839 3.93051 5.20804 5.20636C3.93219 6.48222 3.29426 8.03931 3.29426 9.87764C3.29426 11.716 3.93219 13.2731 5.20804 14.5489C6.4839 15.8248 8.04099 16.4627 9.87931 16.4627C11.7176 16.4627 13.2747 15.8248 14.5506 14.5489C15.8264 13.2731 16.4644 11.716 16.4644 9.87764C16.4644 8.03931 15.8264 6.48222 14.5506 5.20636C13.2747 3.93051 11.7176 3.29258 9.87931 3.29258Z" fill="#363939"/>
+                </svg>
+              </button>
+
+              <button class="carousel-ctrl carousel-ctrl--primary" type="button" (click)="togglePaused(c)" aria-label="Pauza/Start">
+                <!-- PAUSE / PLAY -->
+                <ng-container *ngIf="!paused; else playIcon">
+                  <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.41036 13.1701H9.05662V6.58503H7.41036V13.1701ZM10.7029 13.1701H12.3491V6.58503H10.7029V13.1701ZM9.87976 18.1089C8.74109 18.1089 7.67102 17.8928 6.66954 17.4607C5.66806 17.0285 4.79692 16.442 4.0561 15.7012C3.31528 14.9604 2.7288 14.0892 2.29665 13.0878C1.86451 12.0863 1.64844 11.0162 1.64844 9.87756C1.64844 8.73889 1.86451 7.66882 2.29665 6.66734C2.7288 5.66587 3.31528 4.79472 4.0561 4.0539C4.79692 3.31308 5.66806 2.7266 6.66954 2.29446C7.67102 1.86231 8.74109 1.64624 9.87976 1.64624C11.0184 1.64624 12.0885 1.86231 13.09 2.29446C14.0914 2.7266 14.9626 3.31308 15.7034 4.0539C16.4442 4.79472 17.0307 5.66587 17.4629 6.66734C17.895 7.66882 18.1111 8.73889 18.1111 9.87756C18.1111 11.0162 17.895 12.0863 17.4629 13.0878C17.0307 14.0892 16.4442 14.9604 15.7034 15.7012C14.9626 16.442 14.0914 17.0285 13.09 17.4607C12.0885 17.8928 11.0184 18.1089 9.87976 18.1089ZM9.87976 16.4626C11.7181 16.4626 13.2752 15.8247 14.551 14.5488C15.8269 13.273 16.4648 11.7159 16.4648 9.87756C16.4648 8.03923 15.8269 6.48214 14.551 5.20629C13.2752 3.93043 11.7181 3.2925 9.87976 3.2925C8.04143 3.2925 6.48434 3.93043 5.20848 5.20629C3.93263 6.48214 3.2947 8.03923 3.2947 9.87756C3.2947 11.7159 3.93263 13.273 5.20848 14.5488C6.48434 15.8247 8.04143 16.4626 9.87976 16.4626Z" fill="#24727B"/>
+                  </svg>
+                </ng-container>
+
+                <ng-template #playIcon>
+                  <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.82344 13.585L13.5868 9.88L7.82344 6.175V13.585ZM9.88177 18.1133C8.74283 18.1133 7.67249 17.8972 6.67077 17.465C5.66905 17.0327 4.79769 16.4461 4.05669 15.7051C3.31569 14.9641 2.72906 14.0927 2.29681 13.091C1.86456 12.0893 1.64844 11.0189 1.64844 9.88C1.64844 8.74106 1.86456 7.67072 2.29681 6.669C2.72906 5.66728 3.31569 4.79592 4.05669 4.05492C4.79769 3.31392 5.66905 2.72729 6.67077 2.29504C7.67249 1.86279 8.74283 1.64667 9.88177 1.64667C11.0207 1.64667 12.091 1.86279 13.0928 2.29504C14.0945 2.72729 14.9659 3.31392 15.7069 4.05492C16.4479 4.79592 17.0345 5.66728 17.4667 6.669C17.899 7.67072 18.1151 8.74106 18.1151 9.88C18.1151 11.0189 17.899 12.0893 17.4667 13.091C17.0345 14.0927 16.4479 14.9641 15.7069 15.7051C14.9659 16.4461 14.0945 17.0327 13.0928 17.465C12.091 17.8972 11.0207 18.1133 9.88177 18.1133ZM9.88177 16.4667C11.7205 16.4667 13.278 15.8286 14.5542 14.5524C15.8304 13.2763 16.4684 11.7188 16.4684 9.88C16.4684 8.04122 15.8304 6.48375 14.5542 5.20758C13.278 3.93142 11.7205 3.29333 9.88177 3.29333C8.04299 3.29333 6.48552 3.93142 5.20935 5.20758C3.93319 6.48375 3.2951 8.04122 3.2951 9.88C3.2951 11.7188 3.93319 13.2763 5.20935 14.5524C6.48552 15.8286 8.04299 16.4667 9.88177 16.4667Z" fill="#257B85"/>
+                  </svg>
+                </ng-template>
+              </button>
+
+              <button class="carousel-ctrl" type="button" (click)="c.next()" aria-label="Następny">
+                <!-- RIGHT -->
+                <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.87585 13.1701L13.1684 9.87756L9.87585 6.58503L8.72346 7.73742L10.0405 9.05443H6.58332V10.7007H10.0405L8.72346 12.0177L9.87585 13.1701ZM9.87585 18.1089C8.73718 18.1089 7.66711 17.8928 6.66563 17.4607C5.66416 17.0285 4.79301 16.442 4.05219 15.7012C3.31137 14.9604 2.72489 14.0892 2.29275 13.0878C1.8606 12.0863 1.64453 11.0162 1.64453 9.87756C1.64453 8.73889 1.8606 7.66882 2.29275 6.66734C2.72489 5.66587 3.31137 4.79472 4.05219 4.0539C4.79301 3.31308 5.66416 2.7266 6.66563 2.29446C7.66711 1.86231 8.73718 1.64624 9.87585 1.64624C11.0145 1.64624 12.0846 1.86231 13.0861 2.29446C14.0875 2.7266 14.9587 3.31308 15.6995 4.0539C16.4403 4.79472 17.0268 5.66587 17.4589 6.66734C17.8911 7.66882 18.1072 8.73889 18.1072 9.87756C18.1072 11.0162 17.8911 12.0863 17.4589 13.0878C17.0268 14.0892 16.4403 14.9604 15.6995 15.7012C14.9587 16.442 14.0875 17.0285 13.0861 17.4607C12.0846 17.8928 11.0145 18.1089 9.87585 18.1089ZM9.87585 16.4626C11.7142 16.4626 13.2713 15.8247 14.5471 14.5488C15.823 13.273 16.4609 11.7159 16.4609 9.87756C16.4609 8.03923 15.823 6.48214 14.5471 5.20629C13.2713 3.93043 11.7142 3.2925 9.87585 3.2925C8.03752 3.2925 6.48043 3.93043 5.20458 5.20629C3.92872 6.48214 3.29079 8.03923 3.29079 9.87756C3.29079 11.7159 3.92872 13.273 5.20458 14.5488C6.48043 15.8247 8.03752 16.4626 9.87585 16.4626Z" fill="#363939"/>
+                </svg>
+              </button>
             </div>
-            <div class="eoscpl-intro-desc">
-              Explore a rich collection of scientific repositories, providing access to a broad selection of
-              publications, services, software, and other tools. Strengthen international collaboration and advance
-              your research projects with these valuable resources.
-            </div>
-            <a class="eoscpl-more-link">
-              <a
-                [routerLink]="allUrlPath"
-                [queryParams]="{ q: '*' }"
-              >
-                Discover more
-              </a>
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="one-data">
+    <div class="container">
+      <div class="row">
+        <h3>Onedata</h3>
+        <div class="col-md-6 col-sm-12">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/VroPDGtugx8"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
         </div>
 
-        <div class="col-md-4 col-sm-12">
-          <img alt="Service name" class="img-fluid" src="assets/eoscpl-pic-01.jpg">
+        <div class="col-md-6 col-sm-12 onedata-content">
+          <h4>Global data access solution for science</h4>
+          <p>OneData is an open-source data management platform that virtualises distributed storage into a single,
+            unified workspace, so researchers can access, share, and collaborate on data from diverse repositories
+            and infrastructures.</p>
+          <p>Within eosc.pl, OneData acts as the core integration layer, bringing disparate national and European
+            data sources together under FAIR principles, powering discovery, analysis workflows, and cross-border
+            scientific collaboration that wouldn’t be possible with siloed systems alone.</p>
+          <a href="https://onedata.org/#/home)" class="more-button button-border" target="_blank">
+            Learn more about Onedata
+            <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="learn-more">
+
+  <section class="become-provider" id="become-provider">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <h4>Learn more</h4>
+      <div class="container">
+        <h3>Become a provider</h3>
+        <div class="row">
+
+          <div class="col-md-7 col-sm-12">
+            <h4>Ready to share your resources? We are here to help.</h4>
+            <p>Joining the EOSC ecosystem is a great way to make your services, data, and tools visible to the entire
+              European research community. Our team is dedicated to making the integration process as smooth as
+              possible for you.</p>
+            <a href="mailto:contact@eosc.pl" class="become-link">
+              Contact our team
+              <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
+            </a>
+          </div>
+
+          <div class="col-md-5 col-sm-12">
+            <img src="assets/become-provider.png" alt="Become a provider" class="img-fluid">
+          </div>
+
         </div>
-        <div class="col-md-8 col-sm-12">
-          <a href="#partners" class="learn-more-link">
-            <div class="link-title">Partners</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
-          <a href="#initiatives" class="learn-more-link">
-            <div class="link-title">Related Initiatives</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
-          <a href="#open-science" class="learn-more-link">
-            <div class="link-title">Polish Open Science Platform</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
-          <a href="#programme" class="learn-more-link">
-            <div class="link-title">About National Node EOSC.PL</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
-          <a href="#research" class="learn-more-link">
-            <div class="link-title">Popular Services</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
-          <a href="#become-provider" class="learn-more-link">
-            <div class="link-title">Become a provider</div>
-            <div class="link-more">Check
-              <svg class="svg-inline--fa fa-arrow-right ml-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fas fa-arrow-right ml-2"></i> Font Awesome fontawesome.com -->
-            </div>
-          </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="about-eosc">
+    <div class="container">
+      <div class="row about-box align-items-center">
+
+        <div class="col-auto">
+          <img src="assets/about-eosc.png" alt="About eosc.pl" class="img-fluid">
         </div>
+
+        <div class="col">
+          <h4>About eosc.pl</h4>
+          <p>
+            The Polish Open Science Platform is part of the European Open Science Cloud (EOSC) initiative, which
+            aims to develop open and accessible research resources on a European scale. As one of the national nodes,
+            Poland supports researchers by providing access to data, publications, and infrastructure that facilitates
+            advanced research and international collaboration.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
 
+  <section class="initiatives" id="initiatives">
+    <div class="container">
+      <div class="container">
+        <h3>Related Initiatives</h3>
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+
+            <a href="#" target="_blank" class="initiatives-box">
+              <div class="initiatives-title">EOSC Beyond</div>
+              <div class="initiatives-desc">
+                EOSC Beyond is a project carried out within the framework of the European Open Science Cloud, designed
+                to foster collaboration among researchers across Europe. Through it’s advanced infrastructure,
+                scientists gain access to tools that facilitate and enhance research activities. The primary objective
+                of EOSC Beyond is to introduce new features to the EOSC Core platform, enabling research service
+                providers to access, integrate, and share research resources more efficiently.
+              </div>
+              <div class="initiatives-pic">
+                <img src="assets/logo-beyond.png" alt="EOSC Beyond">
+              </div>
+            </a>
+
+          </div>
+          <div class="col-md-4 col-sm-12">
+
+            <a href="#" target="_blank" class="initiatives-box">
+              <div class="initiatives-title">eosc.gov.pl</div>
+              <div class="initiatives-desc">
+                EOSC.gov.pl  is an initiative of the Polish EOSC partnership aimed at promoting and supporting the
+                development of open science in Poland. It provides information on national activities related to open
+                science and serves as a platform for exchanging experiences and best practices among Polish institutions
+                involved in EOSC projects. The website is coordinated by the National Science Centre, which oversees
+                the national implementation of the initiative.
+              </div>
+              <div class="initiatives-pic">
+                <img src="assets/logo-eosc-m.png" alt="eosc.gov.pl">
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+
+            <a href="#" target="_blank" class="initiatives-box">
+              <div class="initiatives-title">EOSC Association</div>
+              <div class="initiatives-desc">
+                EOSC Association brings together institutions and organisations committed to building an open scientific
+                ecosystem in Europe. It works to improve access to research data, tools, and services while fostering
+                collaboration between countries and research institutions. The Association also coordinates the
+                development of common standards and infrastructure to ensure sustainable and open access to scientific
+                resources for all users.
+              </div>
+              <div class="initiatives-pic">
+                <img src="assets/logo-eosc-a.png" alt="EOSC Association" style="max-height: 42px">
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <section class="partners" id="partners">
     <div class="container">
@@ -120,7 +397,7 @@
           <img alt="Partner" class="img-fluid" src="assets/partner-02.png">
         </div>
         <div class="partner-title">
-          Politechnika Gdańska
+          Politechnika<br>Gdańska
         </div>
       </a>
       <a href="https://www.uw.edu.pl" class="partner-box" target="_blank">
@@ -128,7 +405,7 @@
           <img alt="Partner" class="img-fluid" src="assets/partner-03.png">
         </div>
         <div class="partner-title">
-          Uniwersytet Warszawski
+          Uniwersytet<br>Warszawski
         </div>
       </a>
       <a href="https://www.ncn.gov.pl" class="partner-box" target="_blank">
@@ -136,301 +413,9 @@
           <img alt="Partner" class="img-fluid mt-4" src="assets/partner-04.png">
         </div>
         <div class="partner-title">
-          Narodowe Centrum Nauki
+          Narodowe Centrum<br>Nauki
         </div>
       </a>
-    </div>
-  </section>
-
-  <section class="initiatives" id="initiatives">
-    <div class="container">
-      <div class="container">
-        <h3>Related Initiatives</h3>
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-
-            <a href="https://eosc.gov.pl/" target="_blank" class="initiatives-pic">
-              <img src="assets/initiative-01.jpg" alt="eosc.gov.pl">
-            </a>
-            <div class="initiatives-title">eosc.gov.pl</div>
-            <div class="initiatives-desc">
-              EOSC.gov.pl  is an initiative of the Polish EOSC partnership aimed at promoting and supporting the development of open science in Poland. It provides information on national activities related to open science and serves as a platform
-              for exchanging experiences and best practices among Polish institutions involved in EOSC projects. The website
-              is coordinated by the National Science Centre, which oversees the national implementation of the initiative.
-            </div>
-            <a class="initiatives-link" href="https://eosc.gov.pl/" target="_blank">
-              Check
-              <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
-            </a>
-          </div>
-          <div class="col-md-4 col-sm-12">
-
-            <a href="https://www.eosc-beyond.eu/" target="_blank" class="initiatives-pic">
-              <img src="assets/initiative-02.jpg" alt="eosc.gov.pl">
-            </a>
-            <div class="initiatives-title">EOSC Beyond</div>
-            <div class="initiatives-desc">
-              EOSC Beyond is a project carried out within the framework
-              of the European Open Science Cloud, designed to foster collaboration among researchers across Europe. Through it’s advanced infrastructure, scientists gain access to tools that facilitate and enhance research activities. The primary objective of EOSC Beyond is to introduce new features
-              to the EOSC Core platform, enabling research service providers to access, integrate, and share research resources more efficiently.
-            </div>
-            <a class="initiatives-link" href="https://www.eosc-beyond.eu/" target="_blank">
-              Check
-              <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
-            </a>
-          </div>
-          <div class="col-md-4 col-sm-12">
-
-            <a href="https://eosc.eu/" target="_blank" class="initiatives-pic">
-              <img src="assets/initiative-03.jpg" alt="eosc.gov.pl">
-            </a>
-            <div class="initiatives-title">EOSC Association</div>
-            <div class="initiatives-desc">
-              EOSC Association brings together institutions and organisations committed to building an open scientific ecosystem in Europe. It works to improve access to research data, tools, and services while fostering collaboration between countries and research institutions. The Association
-              also coordinates the development of common standards
-              and infrastructure to ensure sustainable and open access
-              to scientific resources for all users.
-            </div>
-            <a class="initiatives-link" href="https://eosc.eu/" target="_blank">
-              Check
-              <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="open-science" id="open-science">
-    <div class="container">
-      <div class="row">
-        <h3>Polish Open Science Platform</h3>
-        <div class="col-md-8 col-sm-12">
-          <div class="container">
-
-            <div class="row">
-
-              <div class="openscience-intro top-intro">
-                <div class="openscience-container">
-                  <div class="openscience-intro-title">Services</div>
-                  <div class="openscience-intro-desc">
-                    Discover platforms providing access to advanced research infrastructure, including cloud services,
-                    computing power, and storage resources. Everything you need to support your research.
-                  </div>
-                </div>
-                <a class="openscience-more-link" href="https://eosc.pl/search/service?q=*&standard=true&exact=false&scope=pl&radioValueAuthor=A&radioValueExact=A&radioValueTitle=A&radioValueKeyword=A" target="_blank">
-                  Check
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14" fill="none">
-                    <path d="M6.25529 0.436386L12.9254 6.9574L6.40442 13.6275L5.44172 12.6864L11.0216 6.97892L5.31411 1.39909L6.25529 0.436386Z" fill="#0E0F0F"/>
-                    <path d="M11.9844 7.64844L0.425113 7.77912L0.409739 6.41921L11.969 6.28852L11.9844 7.64844Z" fill="#0E0F0F"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="openscience-intro middle-intro">
-                <div class="openscience-container">
-                  <div class="openscience-intro-title">Data Sources</div>
-                  <div class="openscience-intro-desc">
-                    Gain access to a vast database of datasets to support the development of your research projects.
-                    Browse data from various fields, analyze it, and use it in your scientific work.
-                  </div>
-                </div>
-                <a class="openscience-more-link" href="https://eosc.pl/search/data_source?q=*&standard=true&exact=false&scope=pl&radioValueAuthor=A&radioValueExact=A&radioValueTitle=A&radioValueKeyword=A" target="_blank">
-                  Check
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14" fill="none">
-                    <path d="M6.25529 0.436386L12.9254 6.9574L6.40442 13.6275L5.44172 12.6864L11.0216 6.97892L5.31411 1.39909L6.25529 0.436386Z" fill="#0E0F0F"/>
-                    <path d="M11.9844 7.64844L0.425113 7.77912L0.409739 6.41921L11.969 6.28852L11.9844 7.64844Z" fill="#0E0F0F"/>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="openscience-intro bottom-intro">
-                <div class="openscience-container">
-                  <div class="openscience-intro-title">Publications</div>
-                  <div class="openscience-intro-desc">
-                    Find the latest articles, reports, and studies published by Polish and international researchers.
-                    The platform provides access to a catalog of publications from various fields and research areas.
-                  </div>
-                </div>
-                <a class="openscience-more-link" href="https://eosc.pl/search/publication?q=*&standard=true&exact=false&scope=pl&radioValueAuthor=A&radioValueExact=A&radioValueTitle=A&radioValueKeyword=A" target="_blank">
-                  Check
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14" fill="none">
-                    <path d="M6.25529 0.436386L12.9254 6.9574L6.40442 13.6275L5.44172 12.6864L11.0216 6.97892L5.31411 1.39909L6.25529 0.436386Z" fill="#0E0F0F"/>
-                    <path d="M11.9844 7.64844L0.425113 7.77912L0.409739 6.41921L11.969 6.28852L11.9844 7.64844Z" fill="#0E0F0F"/>
-                  </svg>
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <img alt="Service name" class="img-fluid" src="assets/eoscpl-pic-02.jpg">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="programme" id="programme">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-12">
-          <h4>
-            National Node
-            <br>EOSC.PL
-          </h4>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <p>
-            The Polish Open Science Platform is part of the European Open Science Cloud (EOSC) initiative, which aims to develop open and accessible research resources on a European scale.
-            As one of the national nodes, Poland supports researchers by providing access to data, publications, and infrastructure that facilitates advanced research and international collaboration. National, regional, and thematic EOSC nodes, including the Polish Open Science Platform, serve
-            as access points to the EOSC Federation, offering both proprietary and external services, such
-            as data management and sharing.
-          </p>
-        </div>
-        <div class="col-md-3 col-sm-12 d-flex">
-          <a class="programme-link" href="https://eosc.pl/search/all_collection?q=*&standard=true&exact=false&scope=pl&radioValueAuthor=A&radioValueExact=A&radioValueTitle=A&radioValueKeyword=A" target="_blank">
-            Browse european resources
-            <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="research" id="research">
-    <div class="container">
-      <h3>Popular Services</h3>
-      <div class="row">
-        <a href="https://marketplace.eosc.pl/services/lokalny-dostep-do-klastrow-wcss/offers" class="col-md-3 col-sm-12 d-flex align-items-stretch">
-          <div class="popular-services-box card">
-            <div class="popular-top">
-              <img src="assets/service-01.png">
-            </div>
-            <a class="popular-title" href="https://marketplace.eosc.pl/services/lokalny-dostep-do-klastrow-wcss/offers">Lokalny dostęp do klastrów WCSS</a>
-            <a class="popular-provider" href="#">
-              Wrocławskie Centrum Sieciowo-Superkomputerowe
-            </a>
-            <div class="popular-description">
-              Lokalny dostęp do klastrów WCSS Offer
-            </div>
-            <div class="taglist-holder">
-              <div class="tag-item">
-                <a href="#">Service</a>
-              </div>
-              <div class="tag-item">
-                <a href="#">Natural Sciences - Computer & Information Sciences</a>
-              </div>
-            </div>
-          </div>
-        </a>
-        <div class="col-md-3 col-sm-12 d-flex align-items-stretch">
-          <a href="https://marketplace.eosc.pl/services/eosc-synergy-online-training-platform/offers" class="popular-services-box card">
-            <div class="popular-top">
-              <img src="assets/service-02.png">
-            </div>
-            <a class="popular-title" href="https://marketplace.eosc.pl/services/eosc-synergy-online-training-platform/offers">EOSC Synergy Online Training Platform</a>
-            <a class="popular-provider" href="#">
-              Poznan Supercomputing and Networking Center
-            </a>
-            <div class="popular-description">
-              Modular online training platform for EOSC
-            </div>
-            <div class="taglist-holder">
-              <div class="tag-item">
-                <a href="#">Service</a>
-              </div>
-              <div class="tag-item">
-                <a href="#">Generic - Generic</a>
-              </div>
-              <div class="tag-item">
-                <a href="#">Education & Training - Training Platform</a>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-3 col-sm-12 d-flex align-items-stretch">
-          <a href="https://marketplace.eosc.pl//services/ai4eosc-platform/offers" class="popular-services-box card">
-            <div class="popular-top">
-              <img src="assets/service-03.png">
-            </div>
-            <a class="popular-title" href="https://marketplace.eosc.pl//services/ai4eosc-platform/offers">AI4EOSC platform</a>
-            <a class="popular-provider" href="#">
-              Institute of Physics of Cantabria (IFCA)
-            </a>
-            <div class="popular-description">
-              Artificial Intelligence for the EOSC
-            </div>
-            <div class="taglist-holder">
-              <div class="tag-item">
-                <a href="#">Service</a>
-              </div>
-              <div class="tag-item">
-                <a href="#">Data Analysis - Image/Data Analysis</a>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-3 col-sm-12 d-flex align-items-stretch">
-          <a href="https://marketplace.eosc.pl//services/high-performance-computing-hpc/offers" class="popular-services-box card">
-            <div class="popular-top">
-              <img src="assets/service-04.png">
-            </div>
-            <a class="popular-title" href="https://marketplace.eosc.pl//services/high-performance-computing-hpc/offers">Dostęp do klastra Athena w ośrodku Cyfronet</a>
-            <a class="popular-provider" href="#">
-              Academic Computer Centre CYFRONET AGH
-            </a>
-            <div class="popular-description">
-              Klaster Athena w ośrodku Cyfronet
-            </div>
-            <div class="taglist-holder">
-              <div class="tag-item">
-                <a href="#">Service</a>
-              </div>
-              <div class="tag-item">
-                <a href="#">Engineering & Technology</a>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="become-provider" id="become-provider">
-    <div class="container">
-      <div class="container">
-        <h3>Become a provider</h3>
-        <div class="row">
-          <div class="col-md-7 col-sm-12">
-              <img src="assets/become-provider.jpg" alt="Become a provider" class="img-fluid">
-          </div>
-          <div class="col-md-5 col-sm-12">
-
-            <h4>Add your service</h4>
-            <p>Gain full control and manage your offerings with ease.
-              Create, delete, and update their services at any time.</p>
-
-            <h4>Create offers</h4>
-            <p>Add new offers, modify existing ones, and monitor their statuses.
-              Stay responsive to users demands and keep your offers up-to-date.</p>
-
-            <h4>Group providers into catalogues</h4>
-            <p>Use catalogues to manage and organise multiple providers.
-              Add, remove, and arrange them to keep your marketplace in order.</p>
-
-            <a href="https://marketplace.eosc.pl/backoffice/providers" class="become-link">
-              Become a provider
-              <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg><!-- <i class="fa fa-arrow-right"></i> Font Awesome fontawesome.com -->
-            </a>
-          </div>
-
-        </div>
-      </div>
-
     </div>
   </section>
 

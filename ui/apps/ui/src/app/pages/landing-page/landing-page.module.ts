@@ -4,10 +4,13 @@ import { LandingPageComponent } from './landing-page.component';
 import { RouterModule } from '@angular/router';
 import { SearchInputModule } from '../../components/search-input/search-input.module';
 
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [
     CommonModule,
+    NgbCarouselModule,
     RouterModule.forChild([
       {
         path: '',
