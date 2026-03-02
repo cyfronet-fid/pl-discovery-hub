@@ -41,7 +41,6 @@
   height: 40px;
   background: #F39BB1;
   padding: 0 20px 0 20px;
-  border: 2px solid #fff;
   border-radius: 20px;
 }
 
@@ -97,6 +96,7 @@
   flex-basis: 150px;
   width: auto;
   min-width: auto;
+  border-radius: 0 20px 20px 0 !important;
 }
 .form-select-adv {
   flex-grow: 0;
