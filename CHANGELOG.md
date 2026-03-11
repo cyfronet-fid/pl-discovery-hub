@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.4](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.3...v1.7.4) (2026-03-11)
+
+
+### Bug Fixes
+
+* [[#30](https://github.com/cyfronet-fid/pl-discovery-hub/issues/30)] update meta descriptions ([82a1f47](https://github.com/cyfronet-fid/pl-discovery-hub/commit/82a1f477bf66b10cb2dec1e217cbf5376ec2ab23))
+
 ## [1.7.3](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.2...v1.7.3) (2026-02-16)
 
 
