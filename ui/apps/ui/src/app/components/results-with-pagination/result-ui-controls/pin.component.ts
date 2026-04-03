@@ -20,7 +20,7 @@ import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
   template: `
     <a style="display: flex;" [attr.href]="pinUrl" target="_blank">
       <span class="pin-icon"></span>
-      <span class="pin-icon-text">Pin to the Marketplace Project</span>
+      <span class="pin-icon-text">Pin</span>
     </a>
   `,
   styles: [
