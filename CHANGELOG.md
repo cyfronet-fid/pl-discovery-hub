@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.5](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.4...v1.7.5) (2026-04-09)
+
+
+### Bug Fixes
+
+* read the guideline btn ([43a18ea](https://github.com/cyfronet-fid/pl-discovery-hub/commit/43a18ea334eac7f9a8de425dcf93f3c74b899e45))
+* update dependencies ([b19bf75](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b19bf754da7067de04facce6b9ac1de8bb67250d))
+
 ## [1.7.4](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.3...v1.7.4) (2026-03-11)
 
 
