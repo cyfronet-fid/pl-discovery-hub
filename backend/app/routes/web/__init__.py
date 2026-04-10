@@ -13,6 +13,7 @@ from .search_filters import router as filters_router
 from .search_results import router as results_router
 from .search_suggestions import router as suggestions_router
 from .user_actions import router as user_actions_router
+from .contact import router as contact_router
 
 web_api_router = APIRouter()
 web_api_router.include_router(results_router)
@@ -26,3 +27,4 @@ web_api_router.include_router(presentable_router)
 web_api_router.include_router(recommendation_router, tags=["recommendations"])
 web_api_router.include_router(configuration_router, tags=["configuration"])
 web_api_router.include_router(bibliography_router)
+web_api_router.include_router(contact_router)

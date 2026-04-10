@@ -22,6 +22,7 @@ sentry-sdk = "*"
 psycopg2-binary = "==2.9.9"
 setuptools = "<82,>=65"
 fastapi = {extras = ["all"], version = "==0.108.0"}
+fastapi-mail = "*"
 
 [dev-packages]
 pylint = "*"
