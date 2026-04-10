@@ -5,3 +5,20 @@
 .provider {
   margin-bottom: 15px;
 }
+
+.contact-wrapper {
+  display: inline-block;
+}
+
+.contact-popup {
+  position: fixed;
+  bottom: 24px;
+  max-height: 95vh;
+  overflow-y: auto;
+  right: 0;
+  max-width: 550px;
+  z-index: 9999;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
+

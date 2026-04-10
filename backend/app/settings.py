@@ -97,6 +97,16 @@ class GlobalSettings(BaseSettings):
     # Get config from .env
     model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")
 
+    # SMTP
+    EMAIL_SENDER: str = "noreply@example.com"  # Who will send those emails?
+    EMAIL_RECEIVER: str = "support@example.com"  # Who will receive emails?
+
+    EMAIL_SMTP_USER: str = "username"  # Actual account
+    EMAIL_SMTP_PASSWORD: str = "password"
+
+    EMAIL_SMTP_SERVER: str = "smtp.gmail.com"
+    EMAIL_SMTP_PORT: int = 587
+
 
 class DevSettings(GlobalSettings):
     """Dev Settings"""
