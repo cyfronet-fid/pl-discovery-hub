@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.8](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.7...v1.7.8) (2026-04-21)
+
+
+### Bug Fixes
+
+* docker dependencies installation ([1f6d96f](https://github.com/cyfronet-fid/pl-discovery-hub/commit/1f6d96fd6c1e21b71115fb66dab33b5abb91b13e))
+
 ## [1.7.7](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.6...v1.7.7) (2026-04-21)
 
 
