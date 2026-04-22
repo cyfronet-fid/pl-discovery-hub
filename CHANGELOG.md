@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.9](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.8...v1.7.9) (2026-04-22)
+
+
+### Bug Fixes
+
+* fix guideline btn link ([af6ee46](https://github.com/cyfronet-fid/pl-discovery-hub/commit/af6ee46baa7d02d7dc7188ac97d0cc6f7c198067))
+* fix guideline dropdown filter ([b783766](https://github.com/cyfronet-fid/pl-discovery-hub/commit/b7837661c850043ff5975db085a156abb92a0652))
+
 ## [1.7.8](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.7...v1.7.8) (2026-04-21)
 
 
