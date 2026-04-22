@@ -103,9 +103,10 @@ import { selectEntities } from '@ngneat/elf-entities';
               [isExpanded]="!filterConfig.defaultCollapsed"
               [expandArrow]="filterConfig.expandArrow"
             ></ess-filter-range>
-
+          </ng-container>
+          <ng-container *ngIf="filterConfig.type === 'dropdown'">
             <ess-filter-multiselect-dropdown
-              *ngSwitchCase="'dropdown'"
+              *ngIf="filterConfig.options.length > 0"
               [label]="filterConfig.label"
               [filterId]="filterConfig.id"
               [data]="filterConfig.options"
