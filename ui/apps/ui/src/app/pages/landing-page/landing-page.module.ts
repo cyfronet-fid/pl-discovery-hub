@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from './landing-page.component';
 import { RouterModule } from '@angular/router';
 import { SearchInputModule } from '../../components/search-input/search-input.module';
-import { BecomeProviderModule } from '@components/become-provider/become-provider.module'
+import { BecomeProviderModule } from '@components/become-provider/become-provider.module';
 
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 

@@ -5,6 +5,7 @@ from fastapi import APIRouter
 from .auth import router as auth_router
 from .bibliography import router as bibliography_router
 from .configuration import router as configuration_router
+from .contact import router as contact_router
 from .mocks import router as mocks_router
 from .presentable import router as presentable_router
 from .recommendation import router as recommendation_router
@@ -13,7 +14,6 @@ from .search_filters import router as filters_router
 from .search_results import router as results_router
 from .search_suggestions import router as suggestions_router
 from .user_actions import router as user_actions_router
-from .contact import router as contact_router
 
 web_api_router = APIRouter()
 web_api_router.include_router(results_router)

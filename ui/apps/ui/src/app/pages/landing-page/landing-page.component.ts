@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener} from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { DEFAULT_COLLECTION_ID } from '@collections/data';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 

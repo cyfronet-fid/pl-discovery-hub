@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from './contact.service';
+import { ContactForm } from '@components/become-provider/types';
 
 @Component({
   selector: 'ess-become-provider',
@@ -9,12 +10,15 @@ import { ContactService } from './contact.service';
 })
 export class BecomeProviderComponent implements OnInit {
   contactForm!: FormGroup;
-  lastSubmittedData: any = null;
+  lastSubmittedData: ContactForm | null = null;
   isResendingBlocked: boolean = false;
   isLoading: boolean = false;
   submissionError: string | null = null;
 
-  constructor(private fb: FormBuilder, private contactService: ContactService) {}
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService
+  ) {}
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
@@ -35,7 +39,7 @@ export class BecomeProviderComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const currentData = this.contactForm.value;
+      const currentData = this.contactForm.getRawValue();
 
       // Block resending the same message
       if (this.isResendingBlocked) {
@@ -48,7 +52,7 @@ export class BecomeProviderComponent implements OnInit {
       this.submissionError = null;
 
       this.contactService.sendMessage(currentData).subscribe({
-        next: (response) => {
+        next: () => {
           this.lastSubmittedData = currentData;
           this.isResendingBlocked = true;
           this.isLoading = false;
@@ -56,12 +60,12 @@ export class BecomeProviderComponent implements OnInit {
         },
         error: (err) => {
           this.isLoading = false;
-          this.submissionError = 'Failed to send the message. Please try again later.';
+          this.submissionError =
+            'Failed to send the message. Please try again later.';
           console.error('Error sending contact message:', err);
-        }
+        },
       });
-    }
-    else{
+    } else {
       this.contactForm.markAllAsTouched();
       return;
     }
@@ -69,9 +73,10 @@ export class BecomeProviderComponent implements OnInit {
 
   checkForResending(): void {
     const currentData = this.contactForm.value;
-    this.isResendingBlocked =
+    this.isResendingBlocked = !!(
       this.lastSubmittedData &&
-      JSON.stringify(this.lastSubmittedData) === JSON.stringify(currentData);
+      JSON.stringify(this.lastSubmittedData) === JSON.stringify(currentData)
+    );
   }
 
   @Output() closed = new EventEmitter();
