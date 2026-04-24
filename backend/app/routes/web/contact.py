@@ -1,20 +1,19 @@
 """Contact endpoint"""
-import os
-
-from fastapi import APIRouter, HTTPException
-from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 
 import logging
 import smtplib
 
+from fastapi import APIRouter, HTTPException
+from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
 
 from app.schemas.contact import BecomeProviderForm
 from app.settings import settings
 
 router = APIRouter()
 
-logging.basicConfig(level=logging.DEBUG)
-smtplib.SMTP.debuglevel = 1
+logging.basicConfig(level=logging.INFO)
+smtplib.SMTP.debuglevel = 0
+
 
 @router.post("/contact")
 async def send_contact_message(contact_form: BecomeProviderForm):
@@ -49,6 +48,5 @@ async def send_contact_message(contact_form: BecomeProviderForm):
         return {"detail": "Message sent successfully"}
     except Exception as e:
         raise HTTPException(
-            status_code=500,
-            detail=f"Failed to send email: {str(e)}"
+            status_code=500, detail=f"Failed to send email: {str(e)}"
         ) from e
