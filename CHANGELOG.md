@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.9...v1.8.0) (2026-05-18)
+
+
+### Features
+
+* [[#156](https://github.com/cyfronet-fid/pl-discovery-hub/issues/156)] create become provider form ([a6698ec](https://github.com/cyfronet-fid/pl-discovery-hub/commit/a6698ec54f20cf03f52cbedb815c2633c7406b61))
+
 ## [1.7.9](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.8...v1.7.9) (2026-04-22)
 
 
