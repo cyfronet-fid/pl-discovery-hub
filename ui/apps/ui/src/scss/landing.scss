@@ -568,9 +568,16 @@ h2 {
     background: #FAFAFA;
     border-radius: 24px;
     padding: 40px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 140%;
     color: #363939;
+
+    figure {
+      max-width: 550px;
+      font-size: 12px;
+      line-height: 140%;
+      text-align: left;
+    }
   }
 
   h4 {
@@ -587,48 +594,157 @@ h2 {
 .resource-categories {
   padding: 72px 0;
 
-  ul {
-    display: flex;
-    margin: 0 auto;      // WYŚRODKOWANIE
-    list-style: none;
+  h3 {
+    font-family: "Quicksand";
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0.64px;
+    color: #363939;
+    display: inline-block;
+    margin: 0 auto 72px;
+    width: 100%;
+    text-align: center;
     padding: 0;
-    justify-content: space-around;
-    max-width: 1100px;
+    border: none;
   }
 
-  ul li {
+  .explore-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    white-space: nowrap;
-    font-size: 24px;
-    font-family: "Quicksand";
+    justify-content: space-between;
 
-    a {
-      text-decoration: underline;
-      color: #363939;
+    .explore-box {
+      position: relative;
+      width: 31%;
+      display: flex;
+      height: 425px;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 32px 30px 90px;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 24px 0 24px 24px;
+      border: 2px solid #E9E9E9;
+      background: #F8F8F8;
 
-      &:hover {
-        color: #257b85;
+      h4 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-family: "Quicksand";
+      }
+
+      .highlight-text {
+        background: #E4F9FA;
+        padding: 3px 8px;
+        color: #363939;
+        font-size: 16px;
+        margin-bottom: 9px;
+      }
+
+      .more-button {
+        position: absolute !important;
+        left: 30px;
+        bottom: 32px;
+        z-index: 2;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background-color 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .more-button svg {
+        width: 14px;
+        height: 14px;
+        transition: transform 0.25s ease;
+      }
+
+      .more-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+      }
+
+      .more-button:hover svg {
+        transform: translateX(4px);
+      }
+
+      .more-button.white-bg {
+        background: #fff;
+        color: #257B85;
+      }
+
+      .more-button.white-bg:hover {
+        background: #fff;
+        color: #1d6971;
+      }
+
+      &:nth-child(2) {
+        h4 {
+          color: #EB5D81;
+        }
+      }
+
+      &:nth-child(3) {
+        h4 {
+          color: #24727B;
+        }
+
+        .highlight-text {
+          background: #FEF2F4;
+        }
+      }
+
+      &.special-box {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background: #257B85;
+        border: 2px solid #257B85;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: url(../assets/explore-box-bg.jpg) no-repeat center / cover;
+          opacity: 0.35;
+          pointer-events: none;
+        }
+
+        > * {
+          position: relative;
+          z-index: 1;
+        }
+
+        h4 {
+          color: #fff;
+        }
       }
     }
+  }
+}
 
-    &::before {
-      content: "";
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+.highlight-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
 
-    &:nth-child(odd)::before {
-      background: #257B85;
-    }
-
-    &:nth-child(even)::before {
-      background: #EB5D81;
-    }
+  .highlight-text {
+    background: #E4F9FA;
+    padding: 3px 8px;
+    color: #363939;
+    font-size: 16px;
+    margin-bottom: 9px;
   }
 }
 
@@ -916,7 +1032,7 @@ h2 {
 
   .video-wrapper {
     border-radius: 32px 0 32px 32px;
-    border: 6px solid #EB5D81;
+    border: 6px solid #C0C3C3;
     overflow: hidden;
 
     aspect-ratio: 16 / 9;   /* kluczowe */
@@ -965,12 +1081,18 @@ h2 {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-decoration: none;
+      transition: transform 0.25s ease, opacity 0.25s ease;
 
       .partner-logo {
         height: 90px;
+        display: flex;
+        align-items: center;
 
         img {
           max-height: 120px;
+          max-width: 190px;
+          transition: transform 0.25s ease, filter 0.25s ease;
         }
       }
 
@@ -981,7 +1103,17 @@ h2 {
         font-size: 24px;
         font-weight: 500;
         margin-top: 20px;
-        line-height: 140%; /* 33.6px */
+        line-height: 140%;
+        transition: color 0.25s ease;
+      }
+
+      &:hover {
+        transform: translateY(-6px);
+
+        .partner-logo img {
+          transform: scale(1.04);
+          filter: brightness(1.05);
+        }
       }
     }
   }
@@ -1039,7 +1171,7 @@ h2 {
     }
 
     .initiatives-desc {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
       color: #050101;
       line-height: 140%; /* 19.6px */
@@ -1115,6 +1247,18 @@ h2 {
     &:hover {
       background: #fff;
       color: #257b85;
+    }
+  }
+
+  figure {
+    max-width: 610px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 140%;
+    text-align: left;
+
+    a {
+      color: #fff;
     }
   }
 }
@@ -1311,6 +1455,25 @@ footer {
 
 @media (max-width: 768px) {
 
+  .resource-categories {
+    h3 {
+      font-size: 27px;
+      margin: 0 auto 25px;
+    }
+
+    .explore-wrapper {
+      flex-direction: column;
+      row-gap: 30px;
+
+      .explore-box {
+        width: 100%;
+        height: auto;
+        font-size: 15px;
+        padding: 20px 20px 90px;
+      }
+    }
+  }
+
   .data-sources {
     padding: 32px 0;
     font-size: 14px;
@@ -1360,11 +1523,25 @@ footer {
 
     h3 {
       font-size: 27px;
+      text-align: center;
     }
 
     h4 {
       font-size: 20px;
       margin-top: 30px;
+    }
+  }
+
+  .partners {
+    .container {
+      .partner-box {
+        .partner-logo {
+          img {
+            max-height: 90px;
+            max-width: 140px;
+          }
+        }
+      }
     }
   }
 

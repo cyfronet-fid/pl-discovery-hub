@@ -1,0 +1,92 @@
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="col-12 mx-auto">
+      <div class="popup-header">
+        <h2>Become a provider</h2>
+        <button type="button" class="close-btn become-provider-close" (click)="closePopup()">✕</button>
+      </div>
+      <div class="subtitle">Please share the basic information below and our onboarding specialist will reach out to guide you through the next steps.</div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group mt-4">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            [ngClass]="{'is-invalid': formControls['email'].touched && formControls['email'].invalid}"
+          />
+          <div *ngIf="formControls['email'].touched && formControls['email'].invalid" class="text-danger">
+            <div *ngIf="formControls['email'].errors?.['required']">Email is required.</div>
+            <div *ngIf="formControls['email'].errors?.['email']">Enter your email address in the correct format, e.g. {{'example@example.com'}}</div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="option">What would you like to onboard?</label>
+
+          <label class="option_label">
+            <input type="radio" formControlName="option" value="service"> Service - e.g. compute, storage.
+          </label>
+
+          <label class="option_label">
+            <input type="radio" formControlName="option" value="data_source"> Data source - e.g. repositories, databases.
+          </label>
+
+          <label class="option_label">
+            <input type="radio" formControlName="option" value="other"> Other
+          </label>
+          <div *ngIf="formControls['option'].touched && formControls['option'].invalid" class="text-danger">
+            <div *ngIf="formControls['option'].errors?.['required']">Select what you would like to onboard.</div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="message">Additional information (optional)</label>
+          <textarea
+            class="form-control"
+            id="message"
+            formControlName="message"
+            rows="3"
+            [ngClass]="{'is-invalid': formControls['message'].touched && formControls['message'].invalid}"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" formControlName="agree" style="margin: 5px 7px 0 0"> Accept <a target="_blank" href="/terms-of-use">Use Policy</a>
+          </label>
+          <div *ngIf="formControls['agree'].touched && formControls['agree'].invalid" class="text-danger">
+            <div *ngIf="formControls['agree'].errors?.['required']">Please accept the Use Policy to continue.</div>
+          </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div *ngIf="isLoading" class="text-info mt-2">
+          Sending your message...
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="submissionError" class="text-danger mt-2">
+          {{ submissionError }}
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="!isLoading && lastSubmittedData" class="text-success mt-2">
+          Your message was sent successfully. Thank you!
+        </div>
+
+        <button
+          type="submit"
+          class="btn-more mt-4 mb-0"
+          [disabled]="isResendingBlocked || isLoading"
+        >
+          Send information
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+

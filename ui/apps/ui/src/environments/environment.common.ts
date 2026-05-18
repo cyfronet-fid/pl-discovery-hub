@@ -15,6 +15,7 @@ export const commonEnvironment = {
   userApiPath: 'auth/userinfo',
   recommendationsApiPath: 'recommendations',
   feedbackApiPath: 'feedback',
+  contactApiPath: 'contact',
   search: {
     apiResultsPath: 'search-results',
     apiFiltersPath: 'search-filters',
