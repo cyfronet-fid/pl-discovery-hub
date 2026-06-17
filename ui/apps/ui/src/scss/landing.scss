@@ -1088,6 +1088,7 @@ h2 {
         height: 90px;
         display: flex;
         align-items: center;
+        justify-content: center;
 
         img {
           max-height: 120px;
@@ -1453,7 +1454,46 @@ footer {
   }
 }
 
+@media (max-width: 1200px) {
+
+  .partners .container {
+    flex-wrap: wrap;
+    gap: 40px;
+    row-gap: 50px;
+    justify-content: center;
+  }
+
+  .partners .container .partner-box {
+    width: 30%;
+  }
+
+  .partners .container .partner-box .partner-title {
+    font-size: 20px;
+  }
+
+  .partners .container .partner-box .partner-title br {
+    display: none;
+  }
+
+}
+
 @media (max-width: 768px) {
+
+  .partners .container {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 0;
+    row-gap: 30px;
+  }
+
+  .partners .container .partner-box .partner-logo img {
+    max-height: 100px;
+    max-width: 90% !important;
+  }
+
+  .partners .container .partner-box {
+    width: 45%;
+  }
 
   .resource-categories {
     h3 {
