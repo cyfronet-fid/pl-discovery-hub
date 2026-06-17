@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.8.0...v1.9.0) (2026-06-17)
+
+
+### Features
+
+* [[#177](https://github.com/cyfronet-fid/pl-discovery-hub/issues/177)] documentation page ([6dcda1d](https://github.com/cyfronet-fid/pl-discovery-hub/commit/6dcda1d680c3abd0900eb3bf42be36407caf5449))
+
 ## [1.8.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.7.9...v1.8.0) (2026-05-18)
 
 
