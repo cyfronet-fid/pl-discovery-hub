@@ -13,7 +13,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
           routerLink="/{{ return_path }}"
           [queryParams]="parsedQueryParams"
           i18n
-          >Go to Search</a
+          >Go back to resource discovery service</a
         >
       </div>
     </div>
