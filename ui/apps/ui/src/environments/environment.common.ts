@@ -7,6 +7,7 @@
 
 import { sharedEnvironment } from '@environment/environment.generated';
 
+
 export const commonEnvironment = {
   // @ts-ignore
   ...sharedEnvironment,
