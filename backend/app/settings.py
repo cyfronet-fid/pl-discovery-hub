@@ -107,6 +107,9 @@ class GlobalSettings(BaseSettings):
     EMAIL_SMTP_SERVER: str = "smtp.gmail.com"
     EMAIL_SMTP_PORT: int = 587
 
+    # user roles token
+    PL_MARKETPLACE_USER_ROLES_TOKEN: str = "CHANGE_ME"
+
 
 class DevSettings(GlobalSettings):
     """Dev Settings"""

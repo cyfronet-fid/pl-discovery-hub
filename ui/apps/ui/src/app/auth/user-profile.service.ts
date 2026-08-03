@@ -15,12 +15,19 @@ export class UserProfileService {
     {
       name: 'user-profile',
     },
-    withProps<{ user: UserProfile | null }>({ user: null })
+    withProps<{ user: UserProfile | null; roles: string[] }>({
+      user: null,
+      roles: [],
+    })
   );
 
   readonly user$: Observable<UserProfile> = this._store$.pipe(
     select((state) => state.user as UserProfile),
     filter((user) => user !== null)
+  );
+
+  readonly roles$: Observable<string[]> = this._store$.pipe(
+    select((state) => state.roles)
   );
 
   get$(): Observable<UserProfile> {
@@ -30,7 +37,28 @@ export class UserProfileService {
       )
       .pipe(
         catchError(() => of({ username: '', aai_id: '' })),
-        tap((user) => this._store$.update(() => ({ user: user })))
+        tap((user) =>
+          this._store$.update((state) => ({
+            ...state,
+            user,
+          }))
+        )
+      );
+  }
+
+  getUserRole$(): Observable<string[]> {
+    return this._http
+      .get<string[]>(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      )
+      .pipe(
+        catchError(() => of([])),
+        tap((roles) =>
+          this._store$.update((state) => ({
+            ...state,
+            roles,
+          }))
+        )
       );
   }
 }
