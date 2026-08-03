@@ -5,6 +5,9 @@
   "references": [
     {
       "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ],
   "compilerOptions": {
@@ -15,6 +18,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "target": "es2020",
+    "types": ["jest", "jasmine", "node"],
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@environment/*": ["apps/ui/src/environments/*"],

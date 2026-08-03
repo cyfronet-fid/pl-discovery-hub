@@ -184,6 +184,11 @@ See docker-compose.yml for components.
 - `EOSC_COMMONS_ENV`: `str = "production"` - Environment used to load eosc commons. Together with `EOSC_COMMONS_URL` two assets are loaded:
   > `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.js` and `<EOSC_COMMONS_URL>index.<EOSC_COMMONS_ENV>.min.css`
 
+- `PL_MARKETPLACE_USER_ROLES_TOKEN`: `str` - Authentication token of a user from the pl-marketplace project with role = 7.
+The token is used to retrieve the user's user_roles and display the appropriate tabs in the main header based on their assigned roles.
+By convention, the `authentication_token` of the user with `uid = iamasomboadmin` is used for this purpose, but this is not required and any user with role = 7 can be used.
+The token should be provided through the deployment environment and must not be committed to the repository.
+
 - `EOSC_EXPLORE_URL`: `Url = "https://explore.eosc-portal.eu/"` - base URL to OpenAire Explore - used when constructing links for publications, datasets ETC.
 - `KNOWLEDGE_HUB_URL`: `Url = "https://knowledge-hub.eosc-portal.eu/"` - base URL to Knowledge Hub.
 
