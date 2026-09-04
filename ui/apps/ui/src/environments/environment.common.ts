@@ -13,6 +13,7 @@ export const commonEnvironment = {
   backendApiPath: 'api/web',
   navigationApiPath: 'navigate',
   userApiPath: 'auth/userinfo',
+  userRolesPath: 'auth/user-roles',
   recommendationsApiPath: 'recommendations',
   feedbackApiPath: 'feedback',
   contactApiPath: 'contact',

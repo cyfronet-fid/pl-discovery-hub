@@ -4,3 +4,4 @@ from pydantic import BaseModel
 
 class UserInfoResponse(BaseModel):
     username: str
+    aai_id: str | None = None
