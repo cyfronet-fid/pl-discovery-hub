@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.9.0...v1.10.0) (2026-09-04)
+
+
+### Features
+
+* unify commons ([044f7fd](https://github.com/cyfronet-fid/pl-discovery-hub/commit/044f7fd0d75995267314bbc8f1ddf0b60aa00c31))
+
 ## [1.9.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.8.0...v1.9.0) (2026-06-17)
 
 
