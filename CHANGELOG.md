@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.0...v1.10.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* [[#207](https://github.com/cyfronet-fid/pl-discovery-hub/issues/207)] fix term of use links ([afa1d18](https://github.com/cyfronet-fid/pl-discovery-hub/commit/afa1d18b81eaec06a2497b3c92fd0abaa344637c))
+
 ## [1.10.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.9.0...v1.10.0) (2026-09-04)
 
 
