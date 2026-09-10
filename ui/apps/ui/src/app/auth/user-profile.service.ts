@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, filter, of, tap } from 'rxjs';
 import { environment } from '@environment/environment';
-import { UserProfile } from './user-profile.types';
+import { UserProfile, UserRolesResponse } from './user-profile.types';
 import { createStore, select, withProps } from '@ngneat/elf';
 
 @Injectable({
@@ -15,9 +15,14 @@ export class UserProfileService {
     {
       name: 'user-profile',
     },
-    withProps<{ user: UserProfile | null; roles: string[] }>({
+    withProps<{
+      user: UserProfile | null;
+      roles: string[];
+      providers: (string | null)[];
+    }>({
       user: null,
       roles: [],
+      providers: [],
     })
   );
 
@@ -28,6 +33,10 @@ export class UserProfileService {
 
   readonly roles$: Observable<string[]> = this._store$.pipe(
     select((state) => state.roles)
+  );
+
+  readonly providers$: Observable<(string | null)[]> = this._store$.pipe(
+    select((state) => state.providers)
   );
 
   get$(): Observable<UserProfile> {
@@ -46,17 +55,18 @@ export class UserProfileService {
       );
   }
 
-  getUserRole$(): Observable<string[]> {
+  getUserRole$(): Observable<UserRolesResponse> {
     return this._http
-      .get<string[]>(
+      .get<UserRolesResponse>(
         `${environment.backendApiPath}/${environment.userRolesPath}`
       )
       .pipe(
-        catchError(() => of([])),
-        tap((roles) =>
+        catchError(() => of({ roles: [], providers: [] })),
+        tap((res) =>
           this._store$.update((state) => ({
             ...state,
-            roles,
+            roles: res?.roles ?? [],
+            providers: res?.providers ?? [],
           }))
         )
       );

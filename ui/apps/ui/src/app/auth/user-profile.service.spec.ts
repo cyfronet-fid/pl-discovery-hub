@@ -6,6 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { UserProfileService } from './user-profile.service';
+import { UserRolesResponse } from './user-profile.types';
 import { environment } from '@environment/environment';
 
 describe('UserProfileService', () => {
@@ -27,18 +28,29 @@ describe('UserProfileService', () => {
   });
 
   describe('getUserRole$', () => {
-    it('should fetch user roles successfully and update the store', () => {
-      const mockRoles = ['admin', 'coordinator'];
+    it('should fetch user roles and providers successfully and update the store', () => {
+      const mockRolesResponse = {
+        uid: 'testuser@access.eosc.pl',
+        roles: ['admin', 'coordinator'],
+        providers: [null, 'pncel'],
+      };
 
-      let receivedRoles: string[] | undefined;
+      let receivedResponse: UserRolesResponse | undefined;
       let storeRoles: string[] | undefined;
+      let storeProviders: (string | null)[] | undefined;
 
-      service.getUserRole$().subscribe((roles: string[]) => {
-        receivedRoles = roles;
+      service.getUserRole$().subscribe((res: UserRolesResponse) => {
+        receivedResponse = res;
 
         service.roles$.subscribe((rolesFromStore: string[]) => {
           storeRoles = rolesFromStore;
         });
+
+        service.providers$.subscribe(
+          (providersFromStore: (string | null)[]) => {
+            storeProviders = providersFromStore;
+          }
+        );
       });
 
       const req = httpMock.expectOne(
@@ -47,10 +59,11 @@ describe('UserProfileService', () => {
 
       expect(req.request.method).toBe('GET');
 
-      req.flush(mockRoles);
+      req.flush(mockRolesResponse);
 
-      expect(receivedRoles).toEqual(mockRoles);
-      expect(storeRoles).toEqual(mockRoles);
+      expect(receivedResponse).toEqual(mockRolesResponse);
+      expect(storeRoles).toEqual(['admin', 'coordinator']);
+      expect(storeProviders).toEqual([null, 'pncel']);
     });
 
     it.each([
@@ -58,12 +71,12 @@ describe('UserProfileService', () => {
       [404, 'Not Found'],
       [500, 'Internal Server Error'],
     ])(
-      'should return empty roles for %i (%s)',
+      'should return empty roles and providers for %i (%s)',
       (status: number, statusText: string) => {
-        let receivedRoles: string[] | undefined;
+        let receivedResponse: UserRolesResponse | undefined;
 
-        service.getUserRole$().subscribe((roles) => {
-          receivedRoles = roles;
+        service.getUserRole$().subscribe((res) => {
+          receivedResponse = res;
         });
 
         const req = httpMock.expectOne(
@@ -77,7 +90,7 @@ describe('UserProfileService', () => {
           statusText,
         });
 
-        expect(receivedRoles).toEqual([]);
+        expect(receivedResponse).toEqual({ roles: [], providers: [] });
       }
     );
   });

@@ -37,26 +37,38 @@ async def test_user_roles_unauthenticated(client: AsyncClient) -> None:
 async def test_user_roles_success(auth_client: AsyncClient) -> None:
     marketplace_res = httpx.Response(
         status_code=200,
-        json={"roles": ["admin", "coordinator"]},
+        json={
+            "uid": "testuser@access.eosc.pl",
+            "roles": ["admin", "coordinator"],
+            "providers": [None, "pncel"],
+        },
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
         response = await auth_client.get("/api/web/auth/user-roles")
         assert response.status_code == status.HTTP_200_OK
-        assert response.json() == ["admin", "coordinator"]
+        assert response.json() == {
+            "uid": "testuser@access.eosc.pl",
+            "roles": ["admin", "coordinator"],
+            "providers": [None, "pncel"],
+        }
 
 
 @pytest.mark.asyncio
 async def test_user_roles_success_no_roles(auth_client: AsyncClient) -> None:
     marketplace_res = httpx.Response(
         status_code=200,
-        json={"roles": []},
+        json={"uid": "testuser@access.eosc.pl", "roles": [], "providers": []},
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
         response = await auth_client.get("/api/web/auth/user-roles")
         assert response.status_code == status.HTTP_200_OK
-        assert response.json() == []
+        assert response.json() == {
+            "uid": "testuser@access.eosc.pl",
+            "roles": [],
+            "providers": [],
+        }
 
 
 @pytest.mark.asyncio

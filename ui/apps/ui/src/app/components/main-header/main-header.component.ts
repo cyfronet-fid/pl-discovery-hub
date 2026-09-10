@@ -8,7 +8,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { EoscCommonWindow } from './types';
 import { environment } from '@environment/environment';
-import { map, of, switchMap } from 'rxjs';
+import { combineLatest, map, of, switchMap } from 'rxjs';
 
 declare let window: EoscCommonWindow;
 
@@ -22,6 +22,7 @@ declare let window: EoscCommonWindow;
       [attr.data-logout-url]="backendUrl + '/auth/logout'"
       [attr.show-eosc-links]="'true'"
       [attr.user-roles]="JSON.stringify(userRoles)"
+      [attr.providers]="JSON.stringify(providers)"
       #h5er
     ></div>
   `,
@@ -31,6 +32,7 @@ export class MainHeaderComponent implements OnInit {
   id = 'eosc-common-main-header';
   backendUrl = `${environment.backendApiPath}`;
   userRoles: string[] = [];
+  providers: (string | null)[] = [];
 
   constructor(
     private _userProfileService: UserProfileService,
@@ -46,19 +48,23 @@ export class MainHeaderComponent implements OnInit {
               .getUserRole$()
               .pipe(
                 switchMap(() =>
-                  this._userProfileService.roles$.pipe(
-                    map((roles) => ({ profile, roles }))
+                  combineLatest([
+                    this._userProfileService.roles$,
+                    this._userProfileService.providers$,
+                  ]).pipe(
+                    map(([roles, providers]) => ({ profile, roles, providers }))
                   )
                 )
               );
           } else {
-            return of({ profile, roles: [] });
+            return of({ profile, roles: [], providers: [] });
           }
         }),
         untilDestroyed(this)
       )
-      .subscribe(({ profile, roles }) => {
+      .subscribe(({ profile, roles, providers }) => {
         this.userRoles = roles;
+        this.providers = providers;
         this._cdr.detectChanges();
         if (
           window.eosccommon &&

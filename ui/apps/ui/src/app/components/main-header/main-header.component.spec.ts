@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { MainHeaderComponent } from './main-header.component';
 import { UserProfileService } from '../../auth/user-profile.service';
-import { UserProfile } from '../../auth/user-profile.types';
+import { UserProfile, UserRolesResponse } from '../../auth/user-profile.types';
 import { EoscCommonWindow } from './types';
 
 declare let window: EoscCommonWindow;
@@ -17,9 +17,10 @@ describe('MainHeaderComponent', () => {
 
   let userSubject: BehaviorSubject<UserProfile>;
   let rolesSubject: BehaviorSubject<string[]>;
+  let providersSubject: BehaviorSubject<(string | null)[]>;
 
   let renderMainHeaderSpy: jest.Mock<void, [string, object?]>;
-  let getUserRoleSpy: jest.Mock<Observable<string[]>, []>;
+  let getUserRoleSpy: jest.Mock<Observable<UserRolesResponse>, []>;
 
   beforeEach(async () => {
     userSubject = new BehaviorSubject<UserProfile>({
@@ -28,15 +29,19 @@ describe('MainHeaderComponent', () => {
     });
 
     rolesSubject = new BehaviorSubject<string[]>([]);
+    providersSubject = new BehaviorSubject<(string | null)[]>([]);
 
     renderMainHeaderSpy = jest.fn<void, [string, object?]>();
 
-    getUserRoleSpy = jest.fn<Observable<string[]>, []>(() => {
+    getUserRoleSpy = jest.fn<Observable<UserRolesResponse>, []>(() => {
       const roles = rolesSubject.value;
+      const providers = providersSubject.value;
+      const res: UserRolesResponse = { roles, providers };
 
-      return of(roles).pipe(
-        tap((fetchedRoles) => {
-          rolesSubject.next(fetchedRoles);
+      return of(res).pipe(
+        tap((fetchedRes) => {
+          rolesSubject.next(fetchedRes.roles ?? []);
+          providersSubject.next(fetchedRes.providers ?? []);
         })
       );
     });
@@ -44,6 +49,7 @@ describe('MainHeaderComponent', () => {
     mockUserProfileService = {
       user$: userSubject.asObservable(),
       roles$: rolesSubject.asObservable(),
+      providers$: providersSubject.asObservable(),
       getUserRole$: getUserRoleSpy,
     };
 
@@ -236,7 +242,61 @@ describe('MainHeaderComponent', () => {
 
       expect(el.getAttribute('user-roles')).toBe(JSON.stringify(roles));
     });
+  });
 
+  describe('providers integration', () => {
+    it('should pass non-null providers through the providers attribute', () => {
+      const mockUser: UserProfile = {
+        username: 'provideruser',
+        aai_id: '1234',
+      };
+
+      const providers = [null, null, 'pncel', 'pncel', null];
+
+      rolesSubject.next([]);
+      providersSubject.next(providers);
+
+      fixture.detectChanges();
+      userSubject.next(mockUser);
+      fixture.detectChanges();
+
+      expect(component.providers).toEqual(providers);
+
+      const el: HTMLElement = fixture.nativeElement.querySelector(
+        '#eosc-common-main-header'
+      );
+
+      expect(el.getAttribute('providers')).toBe(JSON.stringify(providers));
+    });
+
+    it('should pass providers even when user has no roles', () => {
+      const mockUser: UserProfile = {
+        username: 'regularuser',
+        aai_id: '5678',
+      };
+
+      const providers = ['pncel'];
+
+      rolesSubject.next([]);
+      providersSubject.next(providers);
+
+      fixture.detectChanges();
+      userSubject.next(mockUser);
+      fixture.detectChanges();
+
+      expect(component.userRoles).toEqual([]);
+      expect(component.providers).toEqual(['pncel']);
+
+      const el: HTMLElement = fixture.nativeElement.querySelector(
+        '#eosc-common-main-header'
+      );
+
+      expect(el.getAttribute('user-roles')).toBe('[]');
+      expect(el.getAttribute('providers')).toBe(JSON.stringify(providers));
+    });
+  });
+
+  describe('roles and common header integration', () => {
     it('should pass the expected user profile to renderMainHeader', () => {
       const mockUser: UserProfile = {
         username: 'testuser',
