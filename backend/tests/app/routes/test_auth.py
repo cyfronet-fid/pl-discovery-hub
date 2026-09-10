@@ -26,7 +26,7 @@ def mock_marketplace_get(marketplace_response: httpx.Response):
 
 @pytest.mark.asyncio
 async def test_user_roles_unauthenticated(client: AsyncClient) -> None:
-    response = await client.get("/api/web/auth/user-roles")
+    response = await client.get("/api/web/auth/user-data")
     assert response.status_code in (
         status.HTTP_401_UNAUTHORIZED,
         status.HTTP_403_FORBIDDEN,
@@ -45,7 +45,7 @@ async def test_user_roles_success(auth_client: AsyncClient) -> None:
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
-        response = await auth_client.get("/api/web/auth/user-roles")
+        response = await auth_client.get("/api/web/auth/user-data")
         assert response.status_code == status.HTTP_200_OK
         assert response.json() == {
             "uid": "testuser@access.eosc.pl",
@@ -62,7 +62,7 @@ async def test_user_roles_success_no_roles(auth_client: AsyncClient) -> None:
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
-        response = await auth_client.get("/api/web/auth/user-roles")
+        response = await auth_client.get("/api/web/auth/user-data")
         assert response.status_code == status.HTTP_200_OK
         assert response.json() == {
             "uid": "testuser@access.eosc.pl",
@@ -79,7 +79,7 @@ async def test_user_roles_marketplace_401(auth_client: AsyncClient) -> None:
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
-        response = await auth_client.get("/api/web/auth/user-roles")
+        response = await auth_client.get("/api/web/auth/user-data")
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
         assert response.json()["detail"] == "Invalid marketplace token"
 
@@ -92,7 +92,7 @@ async def test_user_roles_marketplace_404(auth_client: AsyncClient) -> None:
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
-        response = await auth_client.get("/api/web/auth/user-roles")
+        response = await auth_client.get("/api/web/auth/user-data")
         assert response.status_code == status.HTTP_404_NOT_FOUND
         assert "not found" in response.json()["detail"]
 
@@ -104,5 +104,5 @@ async def test_user_roles_unexpected_error(auth_client: AsyncClient) -> None:
         request=dummy_request,
     )
     with patch.object(AsyncClient, "get", mock_marketplace_get(marketplace_res)):
-        response = await auth_client.get("/api/web/auth/user-roles")
+        response = await auth_client.get("/api/web/auth/user-data")
         assert response.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
