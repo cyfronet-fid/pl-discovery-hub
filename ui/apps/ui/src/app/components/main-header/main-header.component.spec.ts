@@ -1,10 +1,10 @@
 /// <reference types="jest" />
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { MainHeaderComponent } from './main-header.component';
 import { UserProfileService } from '../../auth/user-profile.service';
-import { UserProfile, UserRolesResponse } from '../../auth/user-profile.types';
+import { UserDataResponse, UserProfile } from '../../auth/user-profile.types';
 import { EoscCommonWindow } from './types';
 
 declare let window: EoscCommonWindow;
@@ -20,7 +20,7 @@ describe('MainHeaderComponent', () => {
   let providersSubject: BehaviorSubject<(string | null)[]>;
 
   let renderMainHeaderSpy: jest.Mock<void, [string, object?]>;
-  let getUserRoleSpy: jest.Mock<Observable<UserRolesResponse>, []>;
+  let getUserDataSpy: jest.Mock<Observable<UserDataResponse>, []>;
 
   beforeEach(async () => {
     userSubject = new BehaviorSubject<UserProfile>({
@@ -33,24 +33,18 @@ describe('MainHeaderComponent', () => {
 
     renderMainHeaderSpy = jest.fn<void, [string, object?]>();
 
-    getUserRoleSpy = jest.fn<Observable<UserRolesResponse>, []>(() => {
-      const roles = rolesSubject.value;
-      const providers = providersSubject.value;
-      const res: UserRolesResponse = { roles, providers };
+    const userData$ = combineLatest([rolesSubject, providersSubject]).pipe(
+      map(([roles, providers]) => ({ roles, providers }))
+    );
 
-      return of(res).pipe(
-        tap((fetchedRes) => {
-          rolesSubject.next(fetchedRes.roles ?? []);
-          providersSubject.next(fetchedRes.providers ?? []);
-        })
-      );
-    });
+    getUserDataSpy = jest.fn<Observable<UserDataResponse>, []>(() => userData$);
 
     mockUserProfileService = {
       user$: userSubject.asObservable(),
       roles$: rolesSubject.asObservable(),
       providers$: providersSubject.asObservable(),
-      getUserRole$: getUserRoleSpy,
+      userData$: userData$,
+      getUserData$: getUserDataSpy,
     };
 
     window.eosccommon = {
@@ -92,7 +86,7 @@ describe('MainHeaderComponent', () => {
       userSubject.next(mockUser);
       fixture.detectChanges();
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       expect(component.userRoles).toEqual([]);
 
@@ -125,7 +119,7 @@ describe('MainHeaderComponent', () => {
         userSubject.next(mockUser);
         fixture.detectChanges();
 
-        expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+        expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
         expect(component.userRoles).toEqual(providerRoles);
 
@@ -187,7 +181,7 @@ describe('MainHeaderComponent', () => {
       userSubject.next(mockUser);
       fixture.detectChanges();
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       expect(component.userRoles).toEqual(otherRoles);
 
@@ -214,12 +208,12 @@ describe('MainHeaderComponent', () => {
 
       fixture.detectChanges();
 
-      expect(getUserRoleSpy).not.toHaveBeenCalled();
+      expect(getUserDataSpy).not.toHaveBeenCalled();
 
       userSubject.next(mockUser);
       fixture.detectChanges();
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should expose fetched roles through the user-roles attribute', () => {
@@ -330,7 +324,7 @@ describe('MainHeaderComponent', () => {
       const initialCallCount = renderMainHeaderSpy.mock.calls.length;
 
       expect(component.userRoles).toEqual([]);
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       rolesSubject.next(['executive']);
       fixture.detectChanges();
@@ -344,7 +338,7 @@ describe('MainHeaderComponent', () => {
         mockUser
       );
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       const el: HTMLElement = fixture.nativeElement.querySelector(
         '#eosc-common-main-header'
@@ -377,7 +371,7 @@ describe('MainHeaderComponent', () => {
         mockUser
       );
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       const el: HTMLElement = fixture.nativeElement.querySelector(
         '#eosc-common-main-header'
@@ -410,7 +404,7 @@ describe('MainHeaderComponent', () => {
         mockUser
       );
 
-      expect(getUserRoleSpy).toHaveBeenCalledTimes(1);
+      expect(getUserDataSpy).toHaveBeenCalledTimes(1);
 
       const el: HTMLElement = fixture.nativeElement.querySelector(
         '#eosc-common-main-header'

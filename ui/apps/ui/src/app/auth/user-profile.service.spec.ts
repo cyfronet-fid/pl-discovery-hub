@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { UserProfileService } from './user-profile.service';
-import { UserRolesResponse } from './user-profile.types';
+import { UserDataResponse } from './user-profile.types';
 import { environment } from '@environment/environment';
 
 describe('UserProfileService', () => {
@@ -27,7 +27,7 @@ describe('UserProfileService', () => {
     httpMock.verify();
   });
 
-  describe('getUserRole$', () => {
+  describe('getUserData$', () => {
     it('should fetch user roles and providers successfully and update the store', () => {
       const mockRolesResponse = {
         uid: 'testuser@access.eosc.pl',
@@ -35,11 +35,11 @@ describe('UserProfileService', () => {
         providers: [null, 'pncel'],
       };
 
-      let receivedResponse: UserRolesResponse | undefined;
+      let receivedResponse: UserDataResponse | undefined;
       let storeRoles: string[] | undefined;
       let storeProviders: (string | null)[] | undefined;
 
-      service.getUserRole$().subscribe((res: UserRolesResponse) => {
+      service.getUserData$().subscribe((res: UserDataResponse) => {
         receivedResponse = res;
 
         service.roles$.subscribe((rolesFromStore: string[]) => {
@@ -61,7 +61,10 @@ describe('UserProfileService', () => {
 
       req.flush(mockRolesResponse);
 
-      expect(receivedResponse).toEqual(mockRolesResponse);
+      expect(receivedResponse).toEqual({
+        roles: ['admin', 'coordinator'],
+        providers: [null, 'pncel'],
+      });
       expect(storeRoles).toEqual(['admin', 'coordinator']);
       expect(storeProviders).toEqual([null, 'pncel']);
     });
@@ -73,9 +76,9 @@ describe('UserProfileService', () => {
     ])(
       'should return empty roles and providers for %i (%s)',
       (status: number, statusText: string) => {
-        let receivedResponse: UserRolesResponse | undefined;
+        let receivedResponse: UserDataResponse | undefined;
 
-        service.getUserRole$().subscribe((res) => {
+        service.getUserData$().subscribe((res) => {
           receivedResponse = res;
         });
 
@@ -93,5 +96,31 @@ describe('UserProfileService', () => {
         expect(receivedResponse).toEqual({ roles: [], providers: [] });
       }
     );
+
+    it('should not make a second HTTP request if user data is already fetched in the store', () => {
+      const mockRolesResponse = {
+        roles: ['admin'],
+        providers: ['provider_id'],
+      };
+
+      service.getUserData$().subscribe();
+      const req = httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      req.flush(mockRolesResponse);
+
+      let secondResponse: UserDataResponse | undefined;
+      service.getUserData$().subscribe((res) => {
+        secondResponse = res;
+      });
+
+      httpMock.expectNone(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      expect(secondResponse).toEqual({
+        roles: ['admin'],
+        providers: ['provider_id'],
+      });
+    });
   });
 });

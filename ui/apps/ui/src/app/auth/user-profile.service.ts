@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, filter, of, tap } from 'rxjs';
+import { Observable, catchError, filter, of, switchMap, tap } from 'rxjs';
 import { environment } from '@environment/environment';
-import { UserProfile, UserRolesResponse } from './user-profile.types';
+import { UserDataResponse, UserProfile } from './user-profile.types';
 import { createStore, select, withProps } from '@ngneat/elf';
 
 @Injectable({
@@ -19,10 +19,12 @@ export class UserProfileService {
       user: UserProfile | null;
       roles: string[];
       providers: (string | null)[];
+      userDataFetchedAt: number | null;
     }>({
       user: null,
       roles: [],
       providers: [],
+      userDataFetchedAt: null,
     })
   );
 
@@ -38,6 +40,17 @@ export class UserProfileService {
   readonly providers$: Observable<(string | null)[]> = this._store$.pipe(
     select((state) => state.providers)
   );
+
+  readonly userData$: Observable<UserDataResponse> = this._store$.pipe(
+    select((state) => ({
+      roles: state.roles,
+      providers: state.providers,
+    }))
+  );
+
+  private _isUserDataFetched(): boolean {
+    return this._store$.getValue().userDataFetchedAt !== null;
+  }
 
   get$(): Observable<UserProfile> {
     return this._http
@@ -55,9 +68,13 @@ export class UserProfileService {
       );
   }
 
-  getUserRole$(): Observable<UserRolesResponse> {
+  getUserData$(): Observable<UserDataResponse> {
+    if (this._isUserDataFetched()) {
+      return this.userData$;
+    }
+
     return this._http
-      .get<UserRolesResponse>(
+      .get<UserDataResponse>(
         `${environment.backendApiPath}/${environment.userRolesPath}`
       )
       .pipe(
@@ -67,8 +84,10 @@ export class UserProfileService {
             ...state,
             roles: res?.roles ?? [],
             providers: res?.providers ?? [],
+            userDataFetchedAt: Date.now(),
           }))
-        )
+        ),
+        switchMap(() => this.userData$)
       );
   }
 }

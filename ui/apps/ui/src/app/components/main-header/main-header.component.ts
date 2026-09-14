@@ -8,7 +8,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserProfileService } from '../../auth/user-profile.service';
 import { EoscCommonWindow } from './types';
 import { environment } from '@environment/environment';
-import { combineLatest, map, of, switchMap } from 'rxjs';
+import { map, of, switchMap } from 'rxjs';
 
 declare let window: EoscCommonWindow;
 
@@ -44,18 +44,13 @@ export class MainHeaderComponent implements OnInit {
       .pipe(
         switchMap((profile) => {
           if (profile && profile.username) {
-            return this._userProfileService
-              .getUserRole$()
-              .pipe(
-                switchMap(() =>
-                  combineLatest([
-                    this._userProfileService.roles$,
-                    this._userProfileService.providers$,
-                  ]).pipe(
-                    map(([roles, providers]) => ({ profile, roles, providers }))
-                  )
-                )
-              );
+            return this._userProfileService.getUserData$().pipe(
+              map((userData) => ({
+                profile,
+                roles: userData.roles ?? [],
+                providers: userData.providers ?? [],
+              }))
+            );
           } else {
             return of({ profile, roles: [], providers: [] });
           }

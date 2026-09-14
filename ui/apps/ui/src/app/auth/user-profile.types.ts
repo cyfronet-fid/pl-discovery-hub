@@ -3,7 +3,7 @@ export interface UserProfile {
   aai_id: string;
 }
 
-export interface UserRolesResponse {
+export interface UserDataResponse {
   uid?: string;
   roles?: string[];
   providers?: (string | null)[];
