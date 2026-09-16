@@ -122,5 +122,46 @@ describe('UserProfileService', () => {
         providers: ['provider_id'],
       });
     });
+    it('should not cache data after a failed request, allowing retry on next call', () => {
+      service.getUserData$().subscribe();
+
+      const req = httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      req.flush('Error', { status: 500, statusText: 'Internal Server Error' });
+
+      service.getUserData$().subscribe();
+      httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+    });
+
+    it('should make a new HTTP request after cache expires', () => {
+      jest.useFakeTimers();
+
+      const mockRolesResponse = {
+        roles: ['admin'],
+        providers: ['provider_id'],
+      };
+
+      service.getUserData$().subscribe();
+      httpMock
+        .expectOne(`${environment.backendApiPath}/${environment.userRolesPath}`)
+        .flush(mockRolesResponse);
+
+      service.getUserData$().subscribe();
+      httpMock.expectNone(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+
+      jest.advanceTimersByTime(30_000);
+
+      service.getUserData$().subscribe();
+      httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+
+      jest.useRealTimers();
+    });
   });
 });

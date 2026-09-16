@@ -48,8 +48,15 @@ export class UserProfileService {
     }))
   );
 
+  private readonly USER_DATA_CACHE_TTL = 30_000;
+
   private _isUserDataFetched(): boolean {
-    return this._store$.getValue().userDataFetchedAt !== null;
+    const { userDataFetchedAt } = this._store$.getValue();
+
+    return (
+      userDataFetchedAt !== null &&
+      Date.now() - userDataFetchedAt < this.USER_DATA_CACHE_TTL
+    );
   }
 
   get$(): Observable<UserProfile> {
@@ -78,7 +85,6 @@ export class UserProfileService {
         `${environment.backendApiPath}/${environment.userRolesPath}`
       )
       .pipe(
-        catchError(() => of({ roles: [], providers: [] })),
         tap((res) =>
           this._store$.update((state) => ({
             ...state,
@@ -87,7 +93,8 @@ export class UserProfileService {
             userDataFetchedAt: Date.now(),
           }))
         ),
-        switchMap(() => this.userData$)
+        switchMap(() => this.userData$),
+        catchError(() => of({ roles: [], providers: [] }))
       );
   }
 }
