@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, filter, of, tap } from 'rxjs';
+import { Observable, catchError, filter, of, switchMap, tap } from 'rxjs';
 import { environment } from '@environment/environment';
-import { UserProfile } from './user-profile.types';
+import { UserDataResponse, UserProfile } from './user-profile.types';
 import { createStore, select, withProps } from '@ngneat/elf';
 
 @Injectable({
@@ -15,9 +15,16 @@ export class UserProfileService {
     {
       name: 'user-profile',
     },
-    withProps<{ user: UserProfile | null; roles: string[] }>({
+    withProps<{
+      user: UserProfile | null;
+      roles: string[];
+      providers: (string | null)[];
+      userDataFetchedAt: number | null;
+    }>({
       user: null,
       roles: [],
+      providers: [],
+      userDataFetchedAt: null,
     })
   );
 
@@ -29,6 +36,28 @@ export class UserProfileService {
   readonly roles$: Observable<string[]> = this._store$.pipe(
     select((state) => state.roles)
   );
+
+  readonly providers$: Observable<(string | null)[]> = this._store$.pipe(
+    select((state) => state.providers)
+  );
+
+  readonly userData$: Observable<UserDataResponse> = this._store$.pipe(
+    select((state) => ({
+      roles: state.roles,
+      providers: state.providers,
+    }))
+  );
+
+  private readonly USER_DATA_CACHE_TTL = 30_000;
+
+  private _isUserDataFetched(): boolean {
+    const { userDataFetchedAt } = this._store$.getValue();
+
+    return (
+      userDataFetchedAt !== null &&
+      Date.now() - userDataFetchedAt < this.USER_DATA_CACHE_TTL
+    );
+  }
 
   get$(): Observable<UserProfile> {
     return this._http
@@ -46,19 +75,26 @@ export class UserProfileService {
       );
   }
 
-  getUserRole$(): Observable<string[]> {
+  getUserData$(): Observable<UserDataResponse> {
+    if (this._isUserDataFetched()) {
+      return this.userData$;
+    }
+
     return this._http
-      .get<string[]>(
+      .get<UserDataResponse>(
         `${environment.backendApiPath}/${environment.userRolesPath}`
       )
       .pipe(
-        catchError(() => of([])),
-        tap((roles) =>
+        tap((res) =>
           this._store$.update((state) => ({
             ...state,
-            roles,
+            roles: res?.roles ?? [],
+            providers: res?.providers ?? [],
+            userDataFetchedAt: Date.now(),
           }))
-        )
+        ),
+        switchMap(() => this.userData$),
+        catchError(() => of({ roles: [], providers: [] }))
       );
   }
 }

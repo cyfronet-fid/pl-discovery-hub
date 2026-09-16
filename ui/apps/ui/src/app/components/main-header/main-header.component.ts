@@ -22,6 +22,7 @@ declare let window: EoscCommonWindow;
       [attr.data-logout-url]="backendUrl + '/auth/logout'"
       [attr.show-eosc-links]="'true'"
       [attr.user-roles]="JSON.stringify(userRoles)"
+      [attr.providers]="JSON.stringify(providers)"
       #h5er
     ></div>
   `,
@@ -31,6 +32,7 @@ export class MainHeaderComponent implements OnInit {
   id = 'eosc-common-main-header';
   backendUrl = `${environment.backendApiPath}`;
   userRoles: string[] = [];
+  providers: (string | null)[] = [];
 
   constructor(
     private _userProfileService: UserProfileService,
@@ -42,23 +44,22 @@ export class MainHeaderComponent implements OnInit {
       .pipe(
         switchMap((profile) => {
           if (profile && profile.username) {
-            return this._userProfileService
-              .getUserRole$()
-              .pipe(
-                switchMap(() =>
-                  this._userProfileService.roles$.pipe(
-                    map((roles) => ({ profile, roles }))
-                  )
-                )
-              );
+            return this._userProfileService.getUserData$().pipe(
+              map((userData) => ({
+                profile,
+                roles: userData.roles ?? [],
+                providers: userData.providers ?? [],
+              }))
+            );
           } else {
-            return of({ profile, roles: [] });
+            return of({ profile, roles: [], providers: [] });
           }
         }),
         untilDestroyed(this)
       )
-      .subscribe(({ profile, roles }) => {
+      .subscribe(({ profile, roles, providers }) => {
         this.userRoles = roles;
+        this.providers = providers;
         this._cdr.detectChanges();
         if (
           window.eosccommon &&
