@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.1...v1.10.2) (2026-09-16)
+
+
+### Bug Fixes
+
+* display provider tab in commons header for users with providers ([#210](https://github.com/cyfronet-fid/pl-discovery-hub/issues/210)) ([5be3453](https://github.com/cyfronet-fid/pl-discovery-hub/commit/5be3453c5fe51a309546d76ea953fd1dc8779280))
+
 ## [1.10.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.0...v1.10.1) (2026-09-07)
 
 
