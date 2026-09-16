@@ -6,6 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { UserProfileService } from './user-profile.service';
+import { UserDataResponse } from './user-profile.types';
 import { environment } from '@environment/environment';
 
 describe('UserProfileService', () => {
@@ -26,19 +27,30 @@ describe('UserProfileService', () => {
     httpMock.verify();
   });
 
-  describe('getUserRole$', () => {
-    it('should fetch user roles successfully and update the store', () => {
-      const mockRoles = ['admin', 'coordinator'];
+  describe('getUserData$', () => {
+    it('should fetch user roles and providers successfully and update the store', () => {
+      const mockRolesResponse = {
+        uid: 'testuser@access.eosc.pl',
+        roles: ['admin', 'coordinator'],
+        providers: [null, 'pncel'],
+      };
 
-      let receivedRoles: string[] | undefined;
+      let receivedResponse: UserDataResponse | undefined;
       let storeRoles: string[] | undefined;
+      let storeProviders: (string | null)[] | undefined;
 
-      service.getUserRole$().subscribe((roles: string[]) => {
-        receivedRoles = roles;
+      service.getUserData$().subscribe((res: UserDataResponse) => {
+        receivedResponse = res;
 
         service.roles$.subscribe((rolesFromStore: string[]) => {
           storeRoles = rolesFromStore;
         });
+
+        service.providers$.subscribe(
+          (providersFromStore: (string | null)[]) => {
+            storeProviders = providersFromStore;
+          }
+        );
       });
 
       const req = httpMock.expectOne(
@@ -47,10 +59,14 @@ describe('UserProfileService', () => {
 
       expect(req.request.method).toBe('GET');
 
-      req.flush(mockRoles);
+      req.flush(mockRolesResponse);
 
-      expect(receivedRoles).toEqual(mockRoles);
-      expect(storeRoles).toEqual(mockRoles);
+      expect(receivedResponse).toEqual({
+        roles: ['admin', 'coordinator'],
+        providers: [null, 'pncel'],
+      });
+      expect(storeRoles).toEqual(['admin', 'coordinator']);
+      expect(storeProviders).toEqual([null, 'pncel']);
     });
 
     it.each([
@@ -58,12 +74,12 @@ describe('UserProfileService', () => {
       [404, 'Not Found'],
       [500, 'Internal Server Error'],
     ])(
-      'should return empty roles for %i (%s)',
+      'should return empty roles and providers for %i (%s)',
       (status: number, statusText: string) => {
-        let receivedRoles: string[] | undefined;
+        let receivedResponse: UserDataResponse | undefined;
 
-        service.getUserRole$().subscribe((roles) => {
-          receivedRoles = roles;
+        service.getUserData$().subscribe((res) => {
+          receivedResponse = res;
         });
 
         const req = httpMock.expectOne(
@@ -77,8 +93,75 @@ describe('UserProfileService', () => {
           statusText,
         });
 
-        expect(receivedRoles).toEqual([]);
+        expect(receivedResponse).toEqual({ roles: [], providers: [] });
       }
     );
+
+    it('should not make a second HTTP request if user data is already fetched in the store', () => {
+      const mockRolesResponse = {
+        roles: ['admin'],
+        providers: ['provider_id'],
+      };
+
+      service.getUserData$().subscribe();
+      const req = httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      req.flush(mockRolesResponse);
+
+      let secondResponse: UserDataResponse | undefined;
+      service.getUserData$().subscribe((res) => {
+        secondResponse = res;
+      });
+
+      httpMock.expectNone(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      expect(secondResponse).toEqual({
+        roles: ['admin'],
+        providers: ['provider_id'],
+      });
+    });
+    it('should not cache data after a failed request, allowing retry on next call', () => {
+      service.getUserData$().subscribe();
+
+      const req = httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+      req.flush('Error', { status: 500, statusText: 'Internal Server Error' });
+
+      service.getUserData$().subscribe();
+      httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+    });
+
+    it('should make a new HTTP request after cache expires', () => {
+      jest.useFakeTimers();
+
+      const mockRolesResponse = {
+        roles: ['admin'],
+        providers: ['provider_id'],
+      };
+
+      service.getUserData$().subscribe();
+      httpMock
+        .expectOne(`${environment.backendApiPath}/${environment.userRolesPath}`)
+        .flush(mockRolesResponse);
+
+      service.getUserData$().subscribe();
+      httpMock.expectNone(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+
+      jest.advanceTimersByTime(30_000);
+
+      service.getUserData$().subscribe();
+      httpMock.expectOne(
+        `${environment.backendApiPath}/${environment.userRolesPath}`
+      );
+
+      jest.useRealTimers();
+    });
   });
 });

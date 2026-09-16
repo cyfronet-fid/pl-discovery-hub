@@ -80,7 +80,7 @@ async def logout(response: Response, session_id: UUID = Depends(cookie)):
     return RedirectResponse(status_code=303, url=settings.UI_BASE_URL)
 
 
-@router.get("/user-roles", dependencies=[Depends(cookie)])
+@router.get("/user-data", dependencies=[Depends(cookie)])
 async def user_role(session_data: SessionData = Depends(verifier)):
     if session_data.username is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
@@ -116,4 +116,4 @@ async def user_role(session_data: SessionData = Depends(verifier)):
         ) from err
     data = response.json()
 
-    return data.get("roles") or []
+    return data
