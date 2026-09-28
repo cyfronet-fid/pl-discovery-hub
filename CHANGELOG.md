@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.11.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.2...v1.11.0) (2026-09-28)
+
+
+### Features
+
+* [[#189](https://github.com/cyfronet-fid/pl-discovery-hub/issues/189)] node filter - add eosc pl icon ([315eeb9](https://github.com/cyfronet-fid/pl-discovery-hub/commit/315eeb92c2886ad46a9fe7c500fa3a250a130afd))
+
+
+### Bug Fixes
+
+* [] terms of use - change security email address ([56dc1de](https://github.com/cyfronet-fid/pl-discovery-hub/commit/56dc1de55f56a6c3ea8504e6c12f6f55ced62345))
+
 ## [1.10.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.1...v1.10.2) (2026-09-16)
 
 
