@@ -35,6 +35,12 @@ import { IUIFilterTreeNode } from '@collections/repositories/types';
             [src]="'/assets/access-icons/open-access-padlock.svg'"
             class="open-access-padlock"
           />
+          <img
+            *ngIf="node.filter === 'node' && node.value === 'EOSC PL'"
+            src="/assets/eoscpl-node-filter-icon.svg"
+            alt=""
+            class="node-filter-icon"
+          />
 
           <span [class.text-secondary]="+node.count === 0">{{
             node.name | filterPipe: node.filter
@@ -72,6 +78,12 @@ import { IUIFilterTreeNode } from '@collections/repositories/types';
     `
       .open-access-padlock {
         margin-right: 2px;
+      }
+      .node-filter-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+        vertical-align: middle;
       }
       .filter-count {
         color: rgba(0, 0, 0, 0.45);
