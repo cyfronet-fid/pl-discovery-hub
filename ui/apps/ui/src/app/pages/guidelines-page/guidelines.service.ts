@@ -13,7 +13,7 @@ export class GuidelinesService {
 
   get$(id: number | string): Observable<IGuideline> {
     return this._http.get<IGuideline>(
-      `${this.endpointUrl}/${encodeURIComponent(id)}`
+      `${this.endpointUrl}/${encodeURIComponent(id)}?scope=pl`
     );
   }
 

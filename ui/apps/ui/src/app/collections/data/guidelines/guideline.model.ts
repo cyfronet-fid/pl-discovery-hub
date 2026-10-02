@@ -2,6 +2,8 @@ export interface IGuideline {
   author_names?: string[];
   author_names_tg?: string[];
   author_types?: string[];
+  alternative_id_schemes?: string[];
+  alternative_ids?: string[];
   description?: string[];
   doi?: string[] | null;
   eosc_guideline_type?: string;
@@ -30,6 +32,7 @@ export interface IGuideline {
   related_standards_id?: string[];
   type_general: string[];
   uri?: string[];
+  url?: string[];
   keywords?: string[];
   creators: string | '';
   related_services: Record<string, string>[];
