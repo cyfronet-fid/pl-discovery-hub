@@ -80,9 +80,7 @@ export class GuidelineDetailPageComponent implements OnInit {
     try {
       const parsedUrl = new URL(url);
 
-      return ['http:', 'https:'].includes(parsedUrl.protocol)
-        ? url
-        : undefined;
+      return ['http:', 'https:'].includes(parsedUrl.protocol) ? url : undefined;
     } catch {
       return undefined;
     }
