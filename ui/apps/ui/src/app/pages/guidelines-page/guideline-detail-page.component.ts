@@ -66,36 +66,23 @@ export class GuidelineDetailPageComponent implements OnInit {
     this.currentTab = id;
   }
 
-  getValue(value: string[] | undefined, index: number) {
+  getValue(value: string[] | undefined, index: number): string {
     return value && value.length ? value[index] : '';
   }
 
-  getIdentifierLink() {
-    return this.interoperabilityGuidelineItem?.doi !== undefined
-      ? this.getDoiLink() ?? 'javascript:void(0)'
-      : this.interoperabilityGuidelineItem?.uri ?? 'javascript:void(0)';
-  }
+  getIdentifierLink(): string | undefined {
+    const url = this.interoperabilityGuidelineItem?.url?.[0];
 
-  getDoiLink(): string | null {
-    const dois = this.interoperabilityGuidelineItem?.doi;
-
-    if (!dois?.length) {
-      return null;
+    if (!url) {
+      return undefined;
     }
 
-    const normalized = this.normalizeDoi(dois[0]);
+    try {
+      const parsedUrl = new URL(url);
 
-    return normalized ? `https://doi.org/${normalized}` : null;
-  }
-
-  private normalizeDoi(raw: string) {
-    const doi = raw
-      .trim()
-      .replace(/^doi:/i, '')
-      .replace(/^https?:\/\/(dx\.)?doi\.org\//i, '');
-
-    const doiRegex = /^10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
-
-    return doiRegex.test(doi) ? doi : null;
+      return ['http:', 'https:'].includes(parsedUrl.protocol) ? url : undefined;
+    } catch {
+      return undefined;
+    }
   }
 }
