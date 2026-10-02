@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.12.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.11.0...v1.12.0) (2026-10-02)
+
+
+### Features
+
+* landing page eosc node poland section ([8458975](https://github.com/cyfronet-fid/pl-discovery-hub/commit/84589754c86fa7e15ab7e1fed55dc60ccb9a6328))
+
+
+### Bug Fixes
+
+* [[#214](https://github.com/cyfronet-fid/pl-discovery-hub/issues/214)] ig detail page ([#221](https://github.com/cyfronet-fid/pl-discovery-hub/issues/221)) ([30e1da3](https://github.com/cyfronet-fid/pl-discovery-hub/commit/30e1da3b6374d8261ca2befa9dc0f6818cdefd34))
+
 ## [1.11.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.10.2...v1.11.0) (2026-09-28)
 
 
