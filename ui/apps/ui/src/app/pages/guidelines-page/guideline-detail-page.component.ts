@@ -70,7 +70,21 @@ export class GuidelineDetailPageComponent implements OnInit {
     return value && value.length ? value[index] : '';
   }
 
-  getIdentifierLink(): string {
-    return this.interoperabilityGuidelineItem?.url?.[0] ?? 'javascript:void(0)';
+  getIdentifierLink(): string | undefined {
+    const url = this.interoperabilityGuidelineItem?.url?.[0];
+
+    if (!url) {
+      return undefined;
+    }
+
+    try {
+      const parsedUrl = new URL(url);
+
+      return ['http:', 'https:'].includes(parsedUrl.protocol)
+        ? url
+        : undefined;
+    } catch {
+      return undefined;
+    }
   }
 }

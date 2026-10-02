@@ -58,7 +58,10 @@
               </div>
 
               <div class="ig-buttons-container col-md-3 col-12">
-                <a [href]="getIdentifierLink()">
+                <a
+                  *ngIf="getIdentifierLink() as identifierLink"
+                  [href]="identifierLink"
+                >
                   <div class="button" i18n>Read the Guideline</div>
                 </a>
               </div>
