@@ -196,7 +196,15 @@
                 </div>
               </div>
 
-              <div class="ig-provider-information-wrapper">
+              <!-- Rights -->
+              <div
+                class="ig-provider-information-wrapper"
+                *ngIf="
+                  this.interoperabilityGuidelineItem?.right_title?.length ||
+                  this.interoperabilityGuidelineItem?.right_uri?.length ||
+                  this.interoperabilityGuidelineItem?.right_id?.length
+                "
+              >
                 <div class="ig-header">
                   <img src="assets/icon-rights.svg" alt="Rights" />
                   <p>Rights</p>
@@ -212,7 +220,16 @@
                       "
                     >
                       <div>
-                        <p class="section creator" i18n>
+                        <p
+                          class="section creator"
+                          i18n
+                          *ngIf="
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_title,
+                              i
+                            )
+                          "
+                        >
                           Rights<br />
                           <span class="section-description left20">
                             {{
@@ -224,22 +241,25 @@
                           </span>
                         </p>
 
-                        <p class="section creator" i18n>
+                        <p
+                          class="section creator"
+                          i18n
+                          *ngIf="
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_uri,
+                              i
+                            )
+                          "
+                        >
                           Rights URI<br />
                           <span class="section-description left20">
                             <a
-                              href="{{
+                              [href]="
                                 getValue(
                                   this.interoperabilityGuidelineItem?.right_uri,
                                   i
-                                ) === ''
-                                  ? 'javascript:void(0)'
-                                  : getValue(
-                                      this.interoperabilityGuidelineItem
-                                        ?.right_uri,
-                                      i
-                                    )
-                              }}"
+                                )
+                              "
                             >
                               {{
                                 getValue(
@@ -251,7 +271,16 @@
                           </span>
                         </p>
 
-                        <p class="section creator" i18n>
+                        <p
+                          class="section creator"
+                          i18n
+                          *ngIf="
+                            getValue(
+                              this.interoperabilityGuidelineItem?.right_id,
+                              i
+                            )
+                          "
+                        >
                           Rights Identifier<br />
                           <span class="section-description left20">
                             {{
