@@ -70,10 +70,8 @@ export class GuidelineDetailPageComponent implements OnInit {
     return value && value.length ? value[index] : '';
   }
 
-  getIdentifierLink() {
-    return this.interoperabilityGuidelineItem?.doi !== undefined
-      ? this.getDoiLink() ?? 'javascript:void(0)'
-      : this.interoperabilityGuidelineItem?.uri ?? 'javascript:void(0)';
+  getIdentifierLink(): string {
+    return this.interoperabilityGuidelineItem?.url?.[0] ?? 'javascript:void(0)';
   }
 
   getDoiLink(): string | null {
