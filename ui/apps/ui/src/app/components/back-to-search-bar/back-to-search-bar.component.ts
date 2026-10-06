@@ -6,8 +6,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'ess-back-to-search-bar',
   template: `<div class="eosc-back-search-bar">
-    <div class="container">
-      <div class="col-md-3 col-12 eosc-back-link">
+    <div class="container-xxl">
+      <div class="col-md-5 col-12 eosc-back-link">
         <div class="chevron-left"></div>
         <a
           routerLink="/{{ return_path }}"
