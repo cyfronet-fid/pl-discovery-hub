@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.12.0...v1.12.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* [[#227](https://github.com/cyfronet-fid/pl-discovery-hub/issues/227)] documentation page and landing page ([#228](https://github.com/cyfronet-fid/pl-discovery-hub/issues/228)) ([84ebca7](https://github.com/cyfronet-fid/pl-discovery-hub/commit/84ebca7f7923b6cf26466c46eec48fd08da5f1a7))
+
 ## [1.12.0](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.11.0...v1.12.0) (2026-10-02)
 
 
