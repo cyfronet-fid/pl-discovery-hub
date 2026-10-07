@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.12.1...v1.12.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* [[#226](https://github.com/cyfronet-fid/pl-discovery-hub/issues/226)] hide catalogues, organisation and knowledge base ([e906cf7](https://github.com/cyfronet-fid/pl-discovery-hub/commit/e906cf7e7cdea4d32937014117917e5b83a2f938))
+
 ## [1.12.1](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.12.0...v1.12.1) (2026-10-07)
 
 
