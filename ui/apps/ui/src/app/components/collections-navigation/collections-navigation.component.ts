@@ -171,6 +171,7 @@ import { Observable, map } from 'rxjs';
                   </div>
                 </a>
                 <a
+                  *ngIf="toShow"
                   [routerLink]="['/search', 'catalogue']"
                   [queryParams]="{
                     q: (q$ | async),
@@ -208,6 +209,7 @@ import { Observable, map } from 'rxjs';
                   </div>
                 </a>
                 <a
+                  *ngIf="toShow"
                   [routerLink]="['/search', 'organisation']"
                   [queryParams]="{
                     q: (q$ | async),
@@ -273,7 +275,7 @@ import { Observable, map } from 'rxjs';
             </div>
           </li>
 
-          <li class="has-submenu align-right">
+          <li *ngIf="toShow" class="has-submenu align-right">
             <a class="menu-top-level">
               <img
                 src="assets/main-menu-05.svg"
@@ -410,6 +412,7 @@ export class CollectionsNavigationComponent implements OnInit {
   public radioValueExact$ = this._customRoute.radioValueExact$;
   public radioValueTitle$ = this._customRoute.radioValueTitle$;
   public radioValueKeyword$ = this._customRoute.radioValueKeyword$;
+  protected toShow = false;
 
   constructor(
     private _customRoute: CustomRoute,
