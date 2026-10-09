@@ -50,9 +50,6 @@ async def search_filters(
     if collection == Collection.PROJECT:
         request.facets = parse_project_facets(request.facets)
 
-    if collection == Collection.ORGANISATION:
-        request.facets = parse_organisation_facets(request.facets)
-
     client = make_async_http_client()
     coroutines = [
         _search(
@@ -140,12 +137,4 @@ def parse_project_facets(facets):
     Function removing 'status' facet.
     """
     facets.pop("project_status", None)
-    return facets
-
-
-def parse_organisation_facets(facets):
-    """
-    Function removing 'status' facet.
-    """
-    facets.pop("related_resources", None)
     return facets

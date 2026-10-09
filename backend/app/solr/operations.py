@@ -6,13 +6,7 @@ from typing import Dict, Optional
 
 from httpx import AsyncClient, Response
 
-from app.consts import (
-    CATALOGUE_QF,
-    DEFAULT_QF,
-    ORGANISATION_QF,
-    PROJECT_QF,
-    PROVIDER_QF,
-)
+from app.consts import DEFAULT_QF, PROJECT_QF, PROVIDER_QF
 from app.schemas.search_request import StatFacet, TermsFacet
 from app.schemas.solr_response import Collection, SolrResponse
 from app.settings import settings
@@ -22,11 +16,7 @@ from .error_handling import (
     handle_solr_detail_response_errors,
     handle_solr_list_response_errors,
 )
-from .utils import (
-    parse_organisation_filters,
-    parse_project_filters,
-    parse_providers_filters,
-)
+from .utils import parse_project_filters, parse_providers_filters
 
 
 async def search(
@@ -71,8 +61,6 @@ async def search(
     solr_collection = _get_solr_collection(collection, scope)
     if collection == Collection.PROJECT and fq:
         fq = parse_project_filters(fq)
-    elif collection == Collection.ORGANISATION and fq:
-        fq = parse_organisation_filters(fq)
     request_body = {
         "params": {
             "defType": "edismax",
@@ -178,8 +166,6 @@ async def search_advanced(
     solr_collection = _get_solr_collection(collection, scope)
     if collection == Collection.PROJECT and fq:
         fq = parse_project_filters(fq)
-    elif collection == Collection.ORGANISATION and fq:
-        fq = parse_organisation_filters(fq)
     request_body = {
         "params": {
             "defType": "edismax",
@@ -250,13 +236,8 @@ async def _check_collection_sanity(client, collection, scope: Optional[str] = No
     """
     if collection == Collection.PROVIDER:
         qf = PROVIDER_QF
-    elif collection == Collection.ORGANISATION:
-        qf = ORGANISATION_QF
     elif collection == Collection.PROJECT:
         qf = PROJECT_QF
-    elif collection == Collection.CATALOGUE:
-        qf = CATALOGUE_QF
-
     else:
         qf = DEFAULT_QF
     request_body = {
