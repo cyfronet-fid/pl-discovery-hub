@@ -5,11 +5,8 @@ import {
   IExcludedFiltersConfig,
   IFiltersConfig,
 } from '../repositories/types';
-import { trainingsNavConfig } from './trainings/nav-config.data';
 import { guidelinesNavConfig } from './guidelines/nav-config.data';
 import { providersNavConfig } from '@collections/data/providers/nav-config.data';
-import { organisationsNavConfig } from './organisations/nav-config.data';
-import { cataloguesNavConfig } from './catalogues/nav-config.data';
 import {
   URL_PARAM_NAME as ALL_COLLECTIONS_URL_PARAM_NAME,
   allCollectionsNavConfig,
@@ -20,7 +17,6 @@ import { softwareNavConfig } from './software/nav-config.data';
 import { dataSourcesNavConfig } from './data-sources/nav-config.data';
 import { servicesNavConfig } from '@collections/data/services/nav-config.data';
 
-import { trainingsAdapter } from './trainings/adapter.data';
 import { guidelinesAdapter } from './guidelines/adapter.data';
 import { allCollectionsAdapter } from './all/adapter.data';
 import { publicationsAdapter } from './publications/adapter.data';
@@ -28,40 +24,31 @@ import { datasetsAdapter } from './datasets/adapter.data';
 import { softwareAdapter } from './software/adapter.data';
 import { dataSourcesAdapter } from './data-sources/adapter.data';
 import { providersAdapter } from '@collections/data/providers/adapter.data';
-import { organisationsAdapter } from './organisations/adapter.data';
 import { servicesAdapter } from '@collections/data/services/adapter.data';
-import { cataloguesAdapter } from './catalogues/adapter.data';
 
 import { plDatasetsAdapter } from '../pl-data/datasets/adapter.data';
 import { plAllCollectionsAdapter } from '../pl-data/all/adapter.data';
 import { plProvidersAdapter } from '../pl-data/providers/adapter.data';
 import { plServicesAdapter } from '../pl-data/services/adapter.data';
 import { plDataSourcesAdapter } from '../pl-data/data-sources/adapter.data';
-import { plCataloguesAdapter } from '../pl-data/catalogues/adapter.data';
 
-import { trainingsSearchMetadata } from './trainings/search-metadata.data';
 import { guidelinesSearchMetadata } from './guidelines/search-metadata.data';
 import { providersSearchMetadata } from './providers/search-metadata.data';
-import { organisationsSearchMetadata } from './organisations/search-metadata.data';
 import { allCollectionsSearchMetadata } from './all/search-metadata.data';
 import { publicationsSearchMetadata } from './publications/search-metadata.data';
 import { datasetsSearchMetadata } from './datasets/search-metadata.data';
 import { softwareSearchMetadata } from './software/search-metadata.data';
 import { dataSourcesSearchMetadata } from './data-sources/search-metadata.data';
 import { servicesSearchMetadata } from '@collections/data/services/search-metadata.data';
-import { cataloguesSearchMetadata } from './catalogues/search-metadata.data';
 
 import { allCollectionsFilters } from './all/filters.data';
 import { publicationsFilters } from './publications/filters.data';
 import { datasetsFilters } from './datasets/filters.data';
 import { softwareFilters } from './software/filters.data';
 import { dataSourcesFilters } from './data-sources/filters.data';
-import { trainingsFilters } from './trainings/filters.data';
 import { guidelinesFilters } from './guidelines/filters.data';
 import { servicesFilters } from '@collections/data/services/filters.data';
 import { providersFilters } from '@collections/data/providers/filters.data';
-import { organisationsFilters } from './organisations/filters.data';
-import { catalogueFilters } from './catalogues/filters.data';
 
 import { plDatasetsFilters } from '../pl-data/datasets/filters.data';
 import { plAllCollectionsFilters } from '@collections/pl-data/all/filters.data';
@@ -72,16 +59,12 @@ import { excludedAllCollectionsFilters } from '@collections/data/all/excluded.da
 import { excludedSoftwareFilters } from '@collections/data/software/excluded.data';
 import { excludedServicesFilters } from '@collections/data/services/excluded.data';
 import { excludedDataSourcesFilters } from '@collections/data/data-sources/excluded.data';
-import { excludedTrainingsFilters } from '@collections/data/trainings/excluded.data';
 import { excludedGuidelinesFilters } from '@collections/data/guidelines/excluded.data';
 import { excludedProvidersFilters } from '@collections/data/providers/excluded.data';
-import { excludedOrganisationFilters } from './organisations/excluded.data';
-import { excludedCatalogueFilters } from './catalogues/excluded.data';
 
 import { plExcludedDatasetsFilters } from '@collections/pl-data/datasets/excluded.data';
 import { plExcludedAllCollectionsFilters } from '@collections/pl-data/all/excluded.data';
 import { plExcludedProvidersFilters } from '@collections/pl-data/providers/excluded.data';
-import { plExcludedOrganisationsFilters } from '@collections/pl-data/organisations/excluded.data';
 import { plExcludedSoftwareFilters } from '@collections/pl-data/software/excluded.data';
 
 import { validateCollections } from '@collections/data/validators';
@@ -94,11 +77,8 @@ export const ADAPTERS: IAdapter[] = [
   softwareAdapter,
   servicesAdapter,
   dataSourcesAdapter,
-  cataloguesAdapter,
   providersAdapter,
-  organisationsAdapter,
   guidelinesAdapter,
-  trainingsAdapter,
 ];
 
 export const PL_ADAPTERS: IAdapter[] = [
@@ -108,11 +88,8 @@ export const PL_ADAPTERS: IAdapter[] = [
   softwareAdapter,
   plServicesAdapter,
   plDataSourcesAdapter,
-  plCataloguesAdapter,
   plProvidersAdapter,
-  organisationsAdapter,
   guidelinesAdapter,
-  trainingsAdapter,
 ];
 
 export const FILTERS: IFiltersConfig[] = [
@@ -122,11 +99,8 @@ export const FILTERS: IFiltersConfig[] = [
   softwareFilters,
   servicesFilters,
   dataSourcesFilters,
-  catalogueFilters,
   providersFilters,
-  organisationsFilters,
   guidelinesFilters,
-  trainingsFilters,
 ];
 
 export const PL_FILTERS: IFiltersConfig[] = [
@@ -136,11 +110,8 @@ export const PL_FILTERS: IFiltersConfig[] = [
   softwareFilters,
   servicesFilters,
   dataSourcesFilters,
-  catalogueFilters,
   providersFilters,
-  organisationsFilters,
   guidelinesFilters,
-  trainingsFilters,
 ];
 
 // Excluded filters according to adjustments in
@@ -152,11 +123,8 @@ export const EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
   excludedSoftwareFilters,
   excludedServicesFilters,
   excludedDataSourcesFilters,
-  excludedCatalogueFilters,
   excludedProvidersFilters,
-  excludedOrganisationFilters,
   excludedGuidelinesFilters,
-  excludedTrainingsFilters,
 ];
 
 export const PL_EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
@@ -166,11 +134,8 @@ export const PL_EXCLUDED_FILTERS: IExcludedFiltersConfig[] = [
   plExcludedSoftwareFilters,
   excludedServicesFilters,
   excludedDataSourcesFilters,
-  excludedCatalogueFilters,
   plExcludedProvidersFilters,
-  plExcludedOrganisationsFilters,
   excludedGuidelinesFilters,
-  excludedTrainingsFilters,
 ];
 
 export const NAV_CONFIGS: ICollectionNavConfig[] = [
@@ -180,11 +145,8 @@ export const NAV_CONFIGS: ICollectionNavConfig[] = [
   softwareNavConfig,
   servicesNavConfig,
   dataSourcesNavConfig,
-  cataloguesNavConfig,
   providersNavConfig,
-  organisationsNavConfig,
   guidelinesNavConfig,
-  trainingsNavConfig,
 ];
 
 export const PL_NAV_CONFIGS: ICollectionNavConfig[] = [
@@ -194,11 +156,8 @@ export const PL_NAV_CONFIGS: ICollectionNavConfig[] = [
   softwareNavConfig,
   servicesNavConfig,
   dataSourcesNavConfig,
-  cataloguesNavConfig,
   providersNavConfig,
-  organisationsNavConfig,
   guidelinesNavConfig,
-  trainingsNavConfig,
 ];
 
 export const SEARCH_METADATA: ICollectionSearchMetadata[] = [
@@ -208,11 +167,8 @@ export const SEARCH_METADATA: ICollectionSearchMetadata[] = [
   softwareSearchMetadata,
   servicesSearchMetadata,
   dataSourcesSearchMetadata,
-  cataloguesSearchMetadata,
   providersSearchMetadata,
-  organisationsSearchMetadata,
   guidelinesSearchMetadata,
-  trainingsSearchMetadata,
 ];
 
 export const PL_SEARCH_METADATA: ICollectionSearchMetadata[] = [
@@ -222,11 +178,8 @@ export const PL_SEARCH_METADATA: ICollectionSearchMetadata[] = [
   softwareSearchMetadata,
   servicesSearchMetadata,
   dataSourcesSearchMetadata,
-  cataloguesSearchMetadata,
   providersSearchMetadata,
-  organisationsSearchMetadata,
   guidelinesSearchMetadata,
-  trainingsSearchMetadata,
 ];
 
 validateCollections(

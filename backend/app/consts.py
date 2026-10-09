@@ -33,13 +33,10 @@ class Collection(str, Enum):
     OTHER_RP = "other_rp"
     PUBLICATION = "publication"
     SERVICE = "service"
-    TRAINING = "training"
     PROVIDER = "provider"
     SOFTWARE = "software"
     OFFER = "offer"
-    ORGANISATION = "organisation"
     PROJECT = "project"
-    CATALOGUE = "catalogue"
 
 
 ALL_COLLECTION_LIST = [
@@ -48,7 +45,6 @@ ALL_COLLECTION_LIST = [
     Collection.SOFTWARE,
     Collection.SERVICE,
     Collection.DATA_SOURCE,
-    Collection.TRAINING,
     Collection.GUIDELINE,
     Collection.BUNDLE,
     Collection.OTHER_RP,
@@ -79,7 +75,6 @@ class PanelId(str, Enum):
     OTHER_RESEARCH_PRODUCT = "other_research_product"
     PUBLICATIONS = "publications"
     SERVICES = "services"
-    TRAININGS = "trainings"
     SOFTWARE = "software"
     BUNDLE = "bundle"
 
@@ -92,7 +87,6 @@ COLLECTION_TO_PANEL_ID_MAP = {
     Collection.OTHER_RP: PanelId.OTHER_RESEARCH_PRODUCT,
     Collection.PUBLICATION: PanelId.PUBLICATIONS,
     Collection.SERVICE: PanelId.SERVICES,
-    Collection.TRAINING: PanelId.TRAININGS,
     Collection.SOFTWARE: PanelId.SOFTWARE,
     Collection.BUNDLE: PanelId.BUNDLE,
 }
@@ -101,21 +95,16 @@ PANEL_ID_OPTIONS = [
     PanelId.PUBLICATIONS,
     PanelId.DATASETS,
     PanelId.SOFTWARE,
-    PanelId.TRAININGS,
     PanelId.OTHER_RESEARCH_PRODUCT,
     PanelId.SERVICES,
     PanelId.BUNDLE,
 ]
 
-SPECIAL_COLLECTIONS = [Collection.PROJECT, Collection.ORGANISATION]
-
-CATALOGUE_QF = "title^100 abbreviation^100 description^10 keywords_tg^10"
+SPECIAL_COLLECTIONS = [Collection.PROJECT]
 
 PROVIDER_QF = "title^100 description^10 scientific_domains^10"
 
 PROJECT_QF = "title^ description^10 keywords_tg^10"
-
-ORGANISATION_QF = "alternative_names title abbreviation"
 
 DEFAULT_QF = "title^100 author_names_tg^120 description^10 keywords_tg^10"
 

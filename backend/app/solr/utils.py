@@ -10,13 +10,6 @@ STATUS_TO_DATE_RANGE_MAP = {
     # "scheduled": "{{!field f=date_range op=Within}}[{tomorrow} TO *]",
 }
 
-TYPE_TO_FIELD_MAP = {
-    "software": "related_software_ids",
-    "publication": "related_publication_ids",
-    "dataset": "related_dataset_ids",
-    "other": "related_other_ids",
-}
-
 
 def parse_providers_filters(fq):
     """
@@ -46,29 +39,6 @@ def parse_project_filters(fq):
         STATUS_TO_DATE_RANGE_MAP[value].format(
             today=today, tomorrow=tomorrow, yesterday=yesterday
         )
-    )
-
-    return regular_fq
-
-
-def parse_organisation_filters(fq):
-    """
-    Function creating a separate fq item for each of provided related_resource and maps it
-    to existing solr fields
-    """
-    key_to_parse = "related_resources"
-    regular_fq = [item for item in fq if item.split(":")[0] != key_to_parse]
-    related_resource_type_fq = [
-        item for item in fq if item.split(":")[0] == key_to_parse
-    ]
-    if not related_resource_type_fq:
-        return fq
-    _, values = related_resource_type_fq[0].split(":")
-    parsed_values = [
-        value.strip().replace('"', "") for value in values[1:-1].split("OR")
-    ]
-    regular_fq.append(
-        " OR ".join([f"{TYPE_TO_FIELD_MAP[val]}:(*)" for val in parsed_values])
     )
 
     return regular_fq

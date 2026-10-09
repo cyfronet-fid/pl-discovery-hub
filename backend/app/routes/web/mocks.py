@@ -14,7 +14,6 @@ async def labels():
         LabelResponse(label="marketplace", count=148),
         LabelResponse(label="research outcomes", count=2053),
         LabelResponse(label="content providers", count=12243),
-        LabelResponse(label="organisations", count=538),
         LabelResponse(label="knowledge hub", count=188),
     ]
 

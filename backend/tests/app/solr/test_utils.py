@@ -4,7 +4,7 @@ from unittest import mock
 
 import pytest
 
-from app.solr.utils import parse_organisation_filters, parse_project_filters
+from app.solr.utils import parse_project_filters
 
 
 class MockedDate(datetime.date):
@@ -74,36 +74,4 @@ class MockedDate(datetime.date):
 def test_parse_project_filters(monkeypatch, original_fq, expected):
     datetime.today = MockedDate.today()
     result_fq = parse_project_filters(original_fq)
-    assert result_fq == expected
-
-
-@pytest.mark.parametrize(
-    "original_fq, expected",
-    [
-        (
-            ['country:("United Kingdom" OR "India")'],
-            ['country:("United Kingdom" OR "India")'],
-        ),
-        (
-            ['related_resources:("dataset")', 'country:("United Kingdom" OR "India")'],
-            ['country:("United Kingdom" OR "India")', "related_dataset_ids:(*)"],
-        ),
-        (
-            [
-                'related_resources:("publication" OR "dataset")',
-                'country:("United Kingdom" OR "India")',
-            ],
-            [
-                'country:("United Kingdom" OR "India")',
-                "related_publication_ids:(*) OR related_dataset_ids:(*)",
-            ],
-        ),
-        (
-            ['related_resources:("publication" OR "dataset")'],
-            ["related_publication_ids:(*) OR related_dataset_ids:(*)"],
-        ),
-    ],
-)
-def test_parse_organisation_filters(original_fq, expected):
-    result_fq = parse_organisation_filters(original_fq)
     assert result_fq == expected

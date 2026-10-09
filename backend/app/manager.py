@@ -62,7 +62,6 @@ def seed_oag_1():
                     "otherresearchproducts",
                     "publications",
                     "software",
-                    "organisations",
                     "projects",
                 ]
             ],

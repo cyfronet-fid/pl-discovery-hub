@@ -56,18 +56,12 @@
           (click)="focused = false"
           [formControl]="collectionFc"
         >
-          <ng-container *ngFor="let navConfig of searchCollections">
-            <option
-              *ngIf="
-                navConfig.title !== 'Catalogues' &&
-                navConfig.title !== 'Organisations' &&
-                navConfig.title !== 'Trainings'
-              "
-              [ngValue]="navConfig"
-            >
-              {{ navConfig.title }}
-            </option>
-          </ng-container>
+          <option
+            *ngFor="let navConfig of searchCollections"
+            [ngValue]="navConfig"
+          >
+            {{ navConfig.title }}
+          </option>
         </select>
         <div class="input-group-btn">
           <button
@@ -196,18 +190,12 @@
           (click)="focused = false"
           [formControl]="collectionFc"
         >
-          <ng-container *ngFor="let navConfig of searchCollections">
-            <option
-              *ngIf="
-                navConfig.title !== 'Catalogues' &&
-                navConfig.title !== 'Organisations' &&
-                navConfig.title !== 'Trainings'
-              "
-              [ngValue]="navConfig"
-            >
-              {{ navConfig.title }}
-            </option>
-          </ng-container>
+          <option
+            *ngFor="let navConfig of searchCollections"
+            [ngValue]="navConfig"
+          >
+            {{ navConfig.title }}
+          </option>
         </select>
         <div class="input-group-btn">
           <button
