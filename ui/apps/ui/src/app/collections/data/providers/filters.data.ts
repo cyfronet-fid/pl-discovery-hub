@@ -1,6 +1,9 @@
 import { IFiltersConfig } from '../../repositories/types';
 import { URL_PARAM_NAME } from './nav-config.data';
-import { transformCatalogueNames } from '@collections/data/utils';
+import {
+  transformCatalogueNames,
+  transformEoscNodes,
+} from '@collections/data/utils';
 
 export const providersFilters: IFiltersConfig = {
   id: URL_PARAM_NAME,
@@ -23,6 +26,7 @@ export const providersFilters: IFiltersConfig = {
       defaultCollapsed: false,
       tooltipText: '',
       expandArrow: true,
+      transformNodes: transformEoscNodes,
     },
     {
       id: 'scientific_domains',
