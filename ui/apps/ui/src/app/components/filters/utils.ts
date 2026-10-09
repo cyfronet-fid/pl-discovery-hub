@@ -79,11 +79,11 @@ export const flatNodesToTree = (nodes: IFilterNode[]): IUIFilterTreeNode[] => {
 
     return Object.values(fullMap)
       .filter(({ level }) => level === 0)
-      .filter(({ count }) => count !== '0');
+      .filter(({ count, filter }) => filter === 'node' || count !== '0');
   } else {
     return Object.values(nodes)
       .filter(({ level }) => level === 0)
-      .filter(({ count }) => count !== '0');
+      .filter(({ count, filter }) => filter === 'node' || count !== '0');
   }
 };
 export const toSearchMetadata = (
@@ -110,5 +110,6 @@ export const toFilterFacet = (
     field: filter,
     type: 'terms',
     limit: -1,
+    ...(filter === 'node' ? { mincount: 0 } : {}),
   },
 });

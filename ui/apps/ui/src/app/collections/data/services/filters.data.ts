@@ -8,6 +8,7 @@ import {
   alphanumericFilterSort,
   transformBoolean,
   transformCatalogueNames,
+  transformEoscNodes,
 } from '@collections/data/utils';
 
 export const servicesFilters: IFiltersConfig = {
@@ -31,6 +32,7 @@ export const servicesFilters: IFiltersConfig = {
       defaultCollapsed: false,
       tooltipText: '',
       expandArrow: true,
+      transformNodes: transformEoscNodes,
     },
     {
       id: 'unified_categories',

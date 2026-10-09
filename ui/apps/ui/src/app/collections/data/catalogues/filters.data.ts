@@ -1,5 +1,6 @@
 import { IFiltersConfig } from '../../repositories/types';
 import { URL_PARAM_NAME } from './nav-config.data';
+import { transformEoscNodes } from '@collections/data/utils';
 
 export const catalogueFilters: IFiltersConfig = {
   id: URL_PARAM_NAME,
@@ -12,6 +13,7 @@ export const catalogueFilters: IFiltersConfig = {
       defaultCollapsed: false,
       tooltipText: '',
       expandArrow: true,
+      transformNodes: transformEoscNodes,
     },
     {
       id: 'scientific_domains',

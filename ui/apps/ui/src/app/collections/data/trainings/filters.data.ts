@@ -3,6 +3,7 @@ import { URL_PARAM_NAME } from './nav-config.data';
 import {
   alphanumericFilterSort,
   transformCatalogueNames,
+  transformEoscNodes,
 } from '@collections/data/utils';
 
 export const trainingsFilters: IFiltersConfig = {
@@ -16,6 +17,7 @@ export const trainingsFilters: IFiltersConfig = {
       defaultCollapsed: false,
       tooltipText: '',
       expandArrow: true,
+      transformNodes: transformEoscNodes,
     },
     {
       id: 'unified_categories',

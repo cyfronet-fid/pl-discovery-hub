@@ -14,6 +14,7 @@ import {
   CATALOGUE_NAME_MAPPING,
   COUNTRY_CODE_TO_NAME,
   DATASOURCE_PID_MAPPING,
+  EOSC_NODES,
 } from '@collections/data/config';
 import moment from 'moment';
 
@@ -145,6 +146,21 @@ export const transformDataSourceNames = (
         : node.name,
   }));
 };
+
+export const transformEoscNodes = (nodes: IFilterNode[]): IFilterNode[] => [
+  ...nodes,
+  ...EOSC_NODES.filter(
+    (node) => !nodes.some(({ value }) => value === node)
+  ).map((node) => ({
+    id: node,
+    name: node,
+    value: node,
+    count: '0',
+    filter: 'node',
+    isSelected: false,
+    level: 0,
+  })),
+];
 
 export const transformCatalogueNames = (
   nodes: IFilterNode[]
