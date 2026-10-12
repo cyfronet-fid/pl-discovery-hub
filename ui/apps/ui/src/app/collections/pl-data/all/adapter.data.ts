@@ -1,5 +1,4 @@
 import { IDataSource } from '../../data/data-sources/data-source.model';
-import { ITraining } from '../../data/trainings/training.model';
 import { IGuideline } from '../../data/guidelines/guideline.model';
 import { IService } from '../../data/services/service.model';
 import { IBundle } from '../../data/bundles/bundle.model';
@@ -20,13 +19,7 @@ import {
 const plRedirectUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -56,13 +49,7 @@ const plRedirectUrlAdapter = (
 const plLogoUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -87,13 +74,7 @@ const plLogoUrlAdapter = (
 export const plOrderUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -119,7 +100,6 @@ export const plAllCollectionsAdapter = {
   adapter: (
     data: Partial<
       IOpenAIREResult &
-        ITraining &
         IDataSource &
         IService &
         IGuideline &

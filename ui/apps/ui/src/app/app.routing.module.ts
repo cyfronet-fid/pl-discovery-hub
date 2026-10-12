@@ -24,13 +24,6 @@ const appRoutes: Routes = [
       ),
   },
   {
-    path: 'trainings',
-    loadChildren: () =>
-      import('./pages/trainings-page/trainings-page.module').then(
-        (m) => m.TrainingsPageModule
-      ),
-  },
-  {
     path: 'guidelines',
     loadChildren: () =>
       import('./pages/guidelines-page/guidelines-page.module').then(
