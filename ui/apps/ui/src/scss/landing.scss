@@ -94,7 +94,11 @@ h2 {
   .landing-header {
     background: url("../eoscpl-topmap.jpg") no-repeat 50% 0;
     background-size: cover;
-    padding: 70px 0 60px;
+    padding: 0 0 65px;
+
+    .heading {
+      padding-top: 60px;
+    }
 
     .search-text-checkbox {
       display: none !important;
@@ -158,7 +162,6 @@ h2 {
     .eosc-operation {
       background: #F39BB1;
       padding: 0 10px;
-      margin-top: 25px;
       color: #000;
       font-size: 24px;
 
@@ -1671,7 +1674,7 @@ footer {
   // scss-lint:disable all
   .landing_page {
     .landing-header {
-      padding: 15px 0 20px;
+      padding: 0 0 20px;
       background-size: cover;
 
       h1 {
