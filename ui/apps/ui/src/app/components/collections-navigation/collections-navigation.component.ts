@@ -171,26 +171,6 @@ import { Observable, map } from 'rxjs';
                   </div>
                 </a>
                 <a
-                  *ngIf="toShow"
-                  [routerLink]="['/search', 'catalogue']"
-                  [queryParams]="{
-                    q: (q$ | async),
-                    standard: (st$ | async),
-                    exact: (ex$ | async),
-                    radioValueAuthor: (radioValueAuthor$ | async),
-                    radioValueExact: (radioValueExact$ | async),
-                    radioValueTitle: (radioValueTitle$ | async),
-                    radioValueKeyword: (radioValueKeyword$ | async)
-                  }"
-                  class="item"
-                >
-                  <div class="title">Catalogues</div>
-                  <div class="desc">
-                    Browse listings of available data collections and
-                    repositories.
-                  </div>
-                </a>
-                <a
                   [routerLink]="['/search', 'provider']"
                   [queryParams]="{
                     q: (q$ | async),
@@ -206,26 +186,6 @@ import { Observable, map } from 'rxjs';
                   <div class="title">Providers</div>
                   <div class="desc">
                     Browse list of providers offering platform services.
-                  </div>
-                </a>
-                <a
-                  *ngIf="toShow"
-                  [routerLink]="['/search', 'organisation']"
-                  [queryParams]="{
-                    q: (q$ | async),
-                    standard: (st$ | async),
-                    exact: (ex$ | async),
-                    radioValueAuthor: (radioValueAuthor$ | async),
-                    radioValueExact: (radioValueExact$ | async),
-                    radioValueTitle: (radioValueTitle$ | async),
-                    radioValueKeyword: (radioValueKeyword$ | async)
-                  }"
-                  class="item"
-                >
-                  <div class="title">Organisations</div>
-                  <div class="desc">
-                    Discover universities, institutes, or research bodies
-                    contributing to EOSC.
                   </div>
                 </a>
               </div>
@@ -271,44 +231,6 @@ import { Observable, map } from 'rxjs';
                 <div class="title">Standards & Libraries</div>
                 Access interoperability standards, configuration templates, and
                 integration libraries.
-              </div>
-            </div>
-          </li>
-
-          <li *ngIf="toShow" class="has-submenu align-right">
-            <a class="menu-top-level">
-              <img
-                src="assets/main-menu-05.svg"
-                alt="Knowledge Base"
-                class="icon"
-              />
-              Knowledge Base
-            </a>
-            <div class="submenu">
-              <div class="left">
-                <a
-                  [routerLink]="['/search', 'training']"
-                  [queryParams]="{
-                    q: (q$ | async),
-                    standard: (st$ | async),
-                    exact: (ex$ | async),
-                    radioValueAuthor: (radioValueAuthor$ | async),
-                    radioValueExact: (radioValueExact$ | async),
-                    radioValueTitle: (radioValueTitle$ | async),
-                    radioValueKeyword: (radioValueKeyword$ | async)
-                  }"
-                  class="item"
-                >
-                  <div class="title">Trainings</div>
-                  <div class="desc">
-                    Find courses, tutorials, and workshops to build your skills
-                    on the platform.
-                  </div>
-                </a>
-              </div>
-              <div class="right">
-                <div class="title">Knowledge Base</div>
-                Learn via courses, tutorials, workshops, and user guides.
               </div>
             </div>
           </li>
@@ -412,7 +334,6 @@ export class CollectionsNavigationComponent implements OnInit {
   public radioValueExact$ = this._customRoute.radioValueExact$;
   public radioValueTitle$ = this._customRoute.radioValueTitle$;
   public radioValueKeyword$ = this._customRoute.radioValueKeyword$;
-  protected toShow = false;
 
   constructor(
     private _customRoute: CustomRoute,

@@ -22,7 +22,7 @@ from app.consts import (
 )
 from app.routes.web.recommendation import sort_by_relevance
 from app.schemas.search_request import SearchRequest
-from app.schemas.solr_response import Collection, ExportData, OrganisationResponse
+from app.schemas.solr_response import Collection, ExportData
 from app.settings import settings
 from app.solr.error_handling import SolrDocumentNotFoundError
 from app.solr.operations import get, search_advanced_dep, search_dep
@@ -117,7 +117,7 @@ async def search_post(
 @router.post("/search-results-advanced", name="web:post-search")
 async def search_post_advanced(
     request_session: Request,
-    collection: str = Query(..., description="Collection"),
+    collection: Collection = Query(..., description="Collection"),
     q: str = Query(..., description="Free-form query string"),
     qf: str = Query(..., description="Query fields"),
     fq: list[str] = Query(
@@ -178,16 +178,6 @@ async def search_post_advanced(
     )
 
 
-def _first_or_empty(value, default: str = "") -> str:
-    """
-    Helper to extract the first element from a list or return the value as-is.
-    Returns default if value is an empty list or None.
-    """
-    if isinstance(value, list):
-        return value[0] if value else default
-    return value if value is not None else default
-
-
 async def _extract_doi_from_url(url_string):
     """Function extracting doi from url"""
     try:
@@ -231,24 +221,6 @@ async def parse_single_export(doc) -> list:
     return data
 
 
-def parse_single_organisation(doc) -> OrganisationResponse:
-    """Creates an output for a single document"""
-    return OrganisationResponse(
-        id=doc["id"],
-        title=_first_or_empty(doc.get("title", "")),
-        abbreviation=doc.get("abbreviation", ""),
-        country=_first_or_empty(doc.get("country", "")),
-        url=_first_or_empty(doc.get("url", "")),
-        type=doc["type"],
-        alternative_names=doc.get("alternative_names", [""]),
-        related_publication_number=len(doc.get("related_publication_ids", [])),
-        related_software_number=len(doc.get("related_software_ids", [])),
-        related_dataset_number=len(doc.get("related_dataset_ids", [])),
-        related_other_number=len(doc.get("related_other_ids", [])),
-        related_project_number=len(doc.get("related_project_ids", [])),
-    ).dict()
-
-
 async def create_parsed_docs_for_export_data(docs):
     """Injects exportation data into response"""
     parsed_docs = []
@@ -256,22 +228,6 @@ async def create_parsed_docs_for_export_data(docs):
         if doc.get("exportation"):
             doc["exportation"] = await parse_single_export(doc)
         parsed_docs.append(doc)
-    return parsed_docs
-
-
-async def create_parsed_docs_for_organisation(docs):
-    """Creates an output for docs for organisations"""
-    parsed_docs = []
-    for doc in docs:
-        try:
-            new_doc = await parse_single_organisation(doc)
-        except (ValueError, KeyError) as err:
-            doc_id = doc.get("id", "Unknown")
-            logger.exception(
-                "Organisation %s is not conform to the schema: %s.", doc_id, err
-            )
-        else:
-            parsed_docs.append(new_doc)
     return parsed_docs
 
 
@@ -283,8 +239,6 @@ async def create_output(
 
     if docs and collection in RP_AND_ALL_COLLECTIONS_LIST:
         docs = await create_parsed_docs_for_export_data(docs)
-    elif docs and collection == Collection.ORGANISATION:
-        docs = await create_parsed_docs_for_organisation(docs)
     out = {
         "numFound": res_json["response"]["numFound"],
         "nextCursorMark": res_json["nextCursorMark"],
