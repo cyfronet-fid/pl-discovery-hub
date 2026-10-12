@@ -8,7 +8,6 @@ import {
   toInterPatternsSecondaryTag,
 } from '@collections/data/utils';
 import { IDataSource } from '@collections/data/data-sources/data-source.model';
-import { ITraining } from '@collections/data/trainings/training.model';
 import { IGuideline } from '@collections/data/guidelines/guideline.model';
 import { IService } from '@collections/data/services/service.model';
 import {
@@ -31,13 +30,7 @@ import { IProvider } from '@collections/data/providers/provider.model';
 export const redirectUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -68,8 +61,6 @@ export const redirectUrlAdapter = (
       return `${
         ConfigService.config?.eu_marketplace_url
       }/providers/${encodeURIComponent(data.pid || '')}`;
-    case 'training':
-      return '/trainings/' + encodeURIComponent(data.id || '');
     case 'interoperability guideline':
       return '/guidelines/' + encodeURIComponent(data.id || '');
     default:
@@ -80,13 +71,7 @@ export const redirectUrlAdapter = (
 export const logoUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -114,13 +99,7 @@ export const logoUrlAdapter = (
 export const orderUrlAdapter = (
   type: string,
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (type) {
@@ -154,13 +133,7 @@ const forInteroperabilityGuidelinesValueAdapter = (value: string = '') => {
 
 const extractDate = (
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (data.type) {
@@ -171,7 +144,6 @@ const extractDate = (
     case 'publication':
     case 'software':
     case 'dataset':
-    case 'training':
     case 'other':
       return formatPublicationDate(data['publication_date']);
     default:
@@ -181,13 +153,7 @@ const extractDate = (
 
 const setIsResearchProduct = (
   data: Partial<
-    IOpenAIREResult &
-      IDataSource &
-      IService &
-      ITraining &
-      IGuideline &
-      IBundle &
-      IProvider
+    IOpenAIREResult & IDataSource & IService & IGuideline & IBundle & IProvider
   >
 ) => {
   switch (data.type) {
@@ -206,7 +172,6 @@ export const allCollectionsAdapter: IAdapter = {
   adapter: (
     data: Partial<
       IOpenAIREResult &
-        ITraining &
         IDataSource &
         IService &
         IGuideline &
