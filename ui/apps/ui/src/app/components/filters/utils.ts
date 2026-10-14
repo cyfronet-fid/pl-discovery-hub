@@ -35,6 +35,19 @@ export function* toAllLevels(value: string) {
   }
 }
 
+export const eoscNodesSort = (a: IFilterNode, b: IFilterNode) => {
+  const isEoscPlNode = (node: IFilterNode) =>
+    node.filter === 'node' && node.value === 'EOSC PL';
+
+  if (isEoscPlNode(a) !== isEoscPlNode(b)) {
+    return isEoscPlNode(a) ? -1 : 1;
+  }
+
+  return a.filter === 'node' && b.filter === 'node'
+    ? a.name.localeCompare(b.name)
+    : 0;
+};
+
 export const flatNodesToTree = (nodes: IFilterNode[]): IUIFilterTreeNode[] => {
   if (
     nodes[0].filter !== 'publisher' &&
@@ -79,11 +92,13 @@ export const flatNodesToTree = (nodes: IFilterNode[]): IUIFilterTreeNode[] => {
 
     return Object.values(fullMap)
       .filter(({ level }) => level === 0)
-      .filter(({ count }) => count !== '0');
+      .filter(({ count, filter }) => filter === 'node' || count !== '0')
+      .sort(eoscNodesSort);
   } else {
     return Object.values(nodes)
       .filter(({ level }) => level === 0)
-      .filter(({ count }) => count !== '0');
+      .filter(({ count, filter }) => filter === 'node' || count !== '0')
+      .sort(eoscNodesSort);
   }
 };
 export const toSearchMetadata = (
@@ -110,5 +125,6 @@ export const toFilterFacet = (
     field: filter,
     type: 'terms',
     limit: -1,
+    ...(filter === 'node' ? { mincount: 0 } : {}),
   },
 });

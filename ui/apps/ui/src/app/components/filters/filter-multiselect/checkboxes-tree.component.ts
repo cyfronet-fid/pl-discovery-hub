@@ -4,6 +4,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 
 import { NzTreeFlatDataSource, NzTreeFlattener } from 'ng-zorro-antd/tree-view';
 import { IUIFilterTreeNode } from '@collections/repositories/types';
+import { eoscNodesSort } from '@components/filters/utils';
 
 @Component({
   selector: 'ess-checkboxes-tree',
@@ -102,9 +103,16 @@ import { IUIFilterTreeNode } from '@collections/repositories/types';
 export class CheckboxesTreeComponent {
   @Input()
   set data(data: IUIFilterTreeNode[]) {
-    data.sort((a, b) =>
-      a.isSelected === b.isSelected ? 0 : a.isSelected ? -1 : 1
-    );
+    data.sort((a, b) => {
+      const eoscNodesOrder = eoscNodesSort(a, b);
+      return eoscNodesOrder !== 0
+        ? eoscNodesOrder
+        : a.isSelected === b.isSelected
+        ? 0
+        : a.isSelected
+        ? -1
+        : 1;
+    });
     this.dataSource.setData(data);
   }
 

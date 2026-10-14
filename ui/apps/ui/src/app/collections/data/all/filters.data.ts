@@ -8,6 +8,7 @@ import {
   alphanumericFilterSort,
   transformBoolean,
   transformDataSourceNames,
+  transformEoscNodes,
 } from '@collections/data/utils';
 
 export const allCollectionsFilters: IFiltersConfig = {
@@ -31,6 +32,7 @@ export const allCollectionsFilters: IFiltersConfig = {
       defaultCollapsed: false,
       tooltipText: '',
       expandArrow: true,
+      transformNodes: transformEoscNodes,
     },
     {
       id: 'related_organisation_titles',
