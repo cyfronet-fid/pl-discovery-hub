@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.3](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.12.2...v1.12.3) (2026-10-14)
+
+
+### Bug Fixes
+
+* [[#192](https://github.com/cyfronet-fid/pl-discovery-hub/issues/192)] add nodes with zero count in eosc node filter ([de1d3a0](https://github.com/cyfronet-fid/pl-discovery-hub/commit/de1d3a068a15f605dde5eda7aa33504f722aa027))
+
 ## [1.12.2](https://github.com/cyfronet-fid/pl-discovery-hub/compare/v1.12.1...v1.12.2) (2026-10-07)
 
 
