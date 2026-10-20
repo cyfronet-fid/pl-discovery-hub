@@ -1,6 +1,5 @@
 """The UI Search endpoint"""
 
-import copy
 import csv
 import itertools
 import json
@@ -26,7 +25,6 @@ from app.schemas.solr_response import Collection, ExportData
 from app.settings import settings
 from app.solr.error_handling import SolrDocumentNotFoundError
 from app.solr.operations import get, search_advanced_dep, search_dep
-from app.utils.ig_related_services import extend_ig_with_related_services
 
 router = APIRouter()
 
@@ -88,18 +86,6 @@ async def search_post(
             scope=scope,
         )
         res_json = response.data
-
-        # Extend results with bundles
-        if collection in [Collection.ALL_COLLECTION, Collection.BUNDLE]:
-            await extend_results_with_bundles(client, res_json, scope)
-        if collection in [Collection.ALL_COLLECTION, Collection.GUIDELINE]:
-            try:
-                new_docs = await extend_ig_with_related_services(
-                    client, res_json["response"]["docs"], scope
-                )
-                res_json["response"]["docs"] = copy.deepcopy(new_docs)
-            except (Exception,):  # pylint: disable=broad-except
-                logger.exception("Exception happened during related services extension")
 
     collection = response.collection
     out = await create_output(request_session, res_json, collection, sort_ui)
