@@ -97,7 +97,7 @@ async def search_post(
                 new_docs = await extend_ig_with_related_services(
                     client, res_json["response"]["docs"], scope
                 )
-                res_json["response"]["docs"] = copy.deepcopy(new_docs)
+                res_json["response"]["docs"] = new_docs
             except (Exception,):  # pylint: disable=broad-except
                 logger.exception("Exception happened during related services extension")
 
