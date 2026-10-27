@@ -26,8 +26,6 @@ from app.settings import settings
 from app.solr.error_handling import SolrDocumentNotFoundError
 from app.solr.operations import get, search_advanced_dep, search_dep
 
-# from app.utils.ig_related_services import extend_ig_with_related_services
-
 router = APIRouter()
 
 logger = logging.getLogger(__name__)
@@ -88,24 +86,6 @@ async def search_post(
             scope=scope,
         )
         res_json = response.data
-
-        # # Extend results with bundles
-        # if collection in [Collection.ALL_COLLECTION, Collection.BUNDLE]:
-        #     await extend_results_with_bundles(client, res_json, scope)
-        #
-        # commented out for now as there is no related services api to send requests to
-        # it will be used again when such api will be implemented (probably in marketplace)
-        # bundles commented out and not deleted as a reminder
-        # to discuss advanced search existing but not being used
-
-        # if collection in [Collection.ALL_COLLECTION, Collection.GUIDELINE]:
-        #     try:
-        #         new_docs = await extend_ig_with_related_services(
-        #             client, res_json["response"]["docs"], scope
-        #         )
-        #         res_json["response"]["docs"] = new_docs
-        #     except (Exception,):
-        #         logger.exception("Exception happened during related services extension")
 
     collection = response.collection
     out = await create_output(request_session, res_json, collection, sort_ui)
