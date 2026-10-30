@@ -10,7 +10,6 @@ from httpx import AsyncClient
 from app.generic.models.bad_request import BadRequest
 from app.schemas.solr_response import Collection
 from app.solr.operations import get_dep
-from app.utils.ig_related_services import extend_ig_with_related_services
 
 router = APIRouter()
 
@@ -27,12 +26,7 @@ async def read_item(
 ):
     async with AsyncClient() as client:
         response = await get_item(client, collection, item_id, scope)
-        if collection == Collection.GUIDELINE:
-            await extend_ig_with_related_services(
-                client=client,
-                docs=[response["doc"]],
-                scope=scope,
-            )
+
     return {
         **response["doc"],
         "facets": response["facets"] if "facets" in response else {},
