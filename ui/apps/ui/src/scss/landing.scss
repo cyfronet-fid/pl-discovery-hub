@@ -481,7 +481,7 @@ h2 {
 }
 
 .search-box input {
-  height: 44px;
+  height: 40px;
   width: 565px;
   border: none;
   border-radius: 8px;
@@ -514,7 +514,7 @@ h2 {
 }
 
 .search-box .btn-primary {
-  height: 44px;
+  height: 40px;
   background: #F39BB1;
   color: #0E0F0F;
   margin-left: 14px;
@@ -522,6 +522,7 @@ h2 {
   font-size: 15px;
   font-weight: 400;
   border: none;
+  line-height: 1;
   border-radius: 20px;
 }
 
