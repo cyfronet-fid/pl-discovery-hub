@@ -2,9 +2,7 @@
 @import '~ng-zorro-antd/ng-zorro-antd.min.css';
 @import 'scss/landing';
 
-.anticon {
-  vertical-align: 0 !important;
-}
+
 
 body {
   font-family: 'Inter', sans-serif;
@@ -159,7 +157,7 @@ btn-primary.disabled,
       align-items: center;
 
       .search-switch {
-        border-radius: 20px;
+        border-radius: 24px 24px 0 0;
         width: 470px;
         display: flex;
         overflow: hidden;
@@ -167,10 +165,11 @@ btn-primary.disabled,
         border: 1px solid #D9D9D9;
 
         span {
-          padding: 9px 0 10px;
+          padding: 8px 0 7px;
           text-align: center;
           width: 50%;
-          font-size: 14px;
+          font-size: 15px;
+          font-weight: 400;
           cursor: pointer;
           background: none;
           color: #ffffff;
@@ -204,9 +203,13 @@ btn-primary.disabled,
 
   .adv-search-text-btn {
     padding: 8px 20px;
-    opacity: 0.9;
+    opacity: 1;
     background: #24727B;
     backdrop-filter: blur(300px);
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 
   .search-guide {
