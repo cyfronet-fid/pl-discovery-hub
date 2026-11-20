@@ -6,9 +6,14 @@ export default {
 
   coverageDirectory: '../../coverage/apps/ui',
   transform: {
-    '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
+    // Inlines templateUrl templates, so components can be rendered
+    '^.+\\.(ts|mjs|js|html)$': [
+      'jest-preset-angular',
+      { stringifyContentPathRegex: '\\.(html|svg)$' },
+    ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  // lodash-es ships ES modules only
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|lodash-es)'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

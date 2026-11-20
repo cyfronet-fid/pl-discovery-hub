@@ -62,6 +62,9 @@ export interface IResult {
   relatedSoftwareNumber?: number;
   relatedOrganisationTitles?: string[];
   pid?: string;
+  // A bundle's Marketplace service id and its id within that service
+  serviceId?: number;
+  iid?: number;
   funder?: string[];
 }
 

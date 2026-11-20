@@ -33,6 +33,7 @@ import {
 } from '@collections/repositories/types';
 import { DOCUMENT } from '@angular/common';
 import { RedirectService } from '@collections/services/redirect.service';
+import { clickThroughName } from '../../matomo/click-through';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { SPECIAL_COLLECTIONS } from '@collections/data/config';
 import { DEFAULT_SCOPE } from '@collections/services/custom-route.service';
@@ -50,6 +51,7 @@ export interface Tags {
 })
 export class SearchInputComponent implements OnInit {
   @Input() navigateOnCollectionChange = true;
+  readonly clickThroughName = clickThroughName;
 
   @ViewChild('inputQuery', { static: true }) inputQuery!: ElementRef;
   @ViewChild('inputQueryAdv', { static: true }) inputQueryAdv!: ElementRef;

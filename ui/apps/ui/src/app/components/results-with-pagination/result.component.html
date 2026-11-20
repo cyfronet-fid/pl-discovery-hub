@@ -54,6 +54,8 @@
             [title]="title"
             [highlight]="highlightsreal['title'] ?? []"
             [url]="redirectUrl"
+            [clickThroughType]="type.value"
+            [clickThroughName]="clickThroughName"
           >
           </ess-url-title>
           <ess-url-title
@@ -62,6 +64,8 @@
             [title]="abbreviation"
             [highlight]="highlightsreal['abbreviation'] ?? []"
             [url]="redirectUrl"
+            [clickThroughType]="type.value"
+            [clickThroughName]="clickThroughName"
             style="margin-bottom: -10px"
           >
           </ess-url-title>
@@ -77,6 +81,8 @@
             [title]="title"
             [highlight]="highlightsreal['title'] ?? []"
             [url]="redirectUrl"
+            [clickThroughType]="type.value"
+            [clickThroughName]="clickThroughName"
           >
           </ess-url-title>
         </div>
@@ -373,6 +379,8 @@
     <a
       class="btn btn-primary"
       [href]="redirectUrl"
+      [attr.data-click-through-type]="type.value"
+      [attr.data-click-through-name]="clickThroughName || null"
       target="_self"
       rel="noopener"
     >
