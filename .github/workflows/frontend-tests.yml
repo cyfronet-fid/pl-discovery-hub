@@ -28,4 +28,4 @@ jobs:
         run: npm run make:requirements
 
       - name: Run tests
-        run: npm run test -- --testPathIgnorePatterns="terms-of-use.component.spec.ts|documentation.component.spec.ts|privacy-policy.component.spec.ts|recommendations.service.spec.ts|redirect.service.spec.ts|config.service.spec.ts|recommendations.component.spec.ts|back-to-search-bar.component.spec.ts|test.ts"
+        run: npm run test -- --testPathIgnorePatterns="terms-of-use.component.spec.ts|documentation.component.spec.ts|privacy-policy.component.spec.ts|recommendations.service.spec.ts|config.service.spec.ts|recommendations.component.spec.ts|back-to-search-bar.component.spec.ts|test.ts"

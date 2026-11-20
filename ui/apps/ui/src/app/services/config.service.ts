@@ -19,6 +19,9 @@ export interface BackendConfig {
   max_results_by_page: number;
   show_beta_collections: boolean;
   show_knowledge_base: boolean;
+  // Both are null unless the Node has switched Matomo on
+  matomo_url?: string | null;
+  matomo_site_id?: number | null;
 }
 
 @Injectable({
