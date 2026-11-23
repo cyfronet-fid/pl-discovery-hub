@@ -2,23 +2,17 @@
 
 ## Setting up environment
 
-Ensure you have the correct python version from `.tool-versions` installed.
+Install the Python version from `.tool-versions` and
+[uv](https://docs.astral.sh/uv/getting-started/installation/).
 
-Run `pip install --user pipx` and `pipx ensurepath`.
-
-You should see output similar to
-```
-/home/ubuntu/.local/bin is already in PATH.
-
-⚠️  All pipx binary directories have been added to PATH. If you are sure you
-want to proceed, try again with the '--force' flag.
-
-Otherwise pipx is ready to go! ✨ 🌟 ✨
+To install the dependencies (including the dev group) into `backend/.venv`:
+```shell
+uv sync
 ```
 
-Then, `pipx install pipenv` and `pipenv --python 3.10`.
-
-To install the dependencies `pipenv install`.
+Settings are read from the root `.env` file. Unlike pipenv, `uv run` does not load
+`backend/.env`; if you keep variables there, pass it explicitly:
+`uv run --env-file .env <command>`.
 
 
 ## Database
@@ -32,17 +26,17 @@ It spawns a database on `localhost:5442`.
 
 ### Migrations
 
-To run missing migrations: `pipenv run alembic upgrade head`.
+To run missing migrations: `uv run alembic upgrade head`.
 
 To auto-generate migrations after models changes:
-`pipenv run alembic revision --autogenerate -m "<revision message>"`.
+`uv run alembic revision --autogenerate -m "<revision message>"`.
 
 
 ### Seed
 
 To create basic DB seed, run:
 ```shell
-pipenv run python -m app.manager db seed-basic
+uv run python -m app.manager db seed-basic
 ```
 
 Available seeds:
@@ -55,21 +49,21 @@ Available seeds:
 
 To run in console, ensure you have spun up required services (e.g. migrated db, Solr, etc.) and execute:
 ```shell
-pipenv run uvicorn app.main:app
+uv run uvicorn app.main:app
 ```
 
 To reload on changes:
 ```shell
-pipenv run uvicorn app.main:app --reload
+uv run uvicorn app.main:app --reload
 ```
 
 
 ## Styles
 
 ```console
-pipenv run --experimental-string-processing black alembic app tests
-pipenv run isort .
-pipenv run pylint app tests
+uv run black alembic app tests
+uv run isort .
+uv run pylint app tests
 ```
 
 
@@ -78,10 +72,10 @@ pipenv run pylint app tests
 You need to run the test services first `docker-compose -f dc-test.yml up -d`.
 
 ```console
-PIPENV_DONT_LOAD_ENV=1 ENVIRONMENT=test pipenv run pytest
+ENVIRONMENT=test uv run pytest
 ```
 
 To skip integration tests:
 ```console
-ENVIRONMENT=test SOLR_URL=http://localhost:8993/solr/ pipenv run pytest -m "not integration"
+ENVIRONMENT=test SOLR_URL=http://localhost:8993/solr/ uv run pytest -m "not integration"
 ```

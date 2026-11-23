@@ -2,7 +2,8 @@
 """The application tasks"""
 
 import logging
-from typing import Callable
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from sqlalchemy import create_engine
@@ -26,8 +27,7 @@ def connect_to_db(app: FastAPI, session_local: sessionmaker) -> None:
     try:
         # pylint: disable=protected-access
         app.state._db = session_local()
-    # pylint: disable=broad-except
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         logger.warning("--- DB CONNECTION ERROR ---")
         logger.warning(e)
         logger.warning("--- DB CONNECTION ERROR ---")
@@ -38,26 +38,15 @@ def close_db_connection(app: FastAPI) -> None:
     try:
         # pylint: disable=protected-access
         app.state._db.close()
-    # pylint: disable=broad-except
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         logger.warning("--- DB DISCONNECT ERROR ---")
         logger.warning(e)
         logger.warning("--- DB DISCONNECT ERROR ---")
 
 
-def create_start_app_handler(app: FastAPI) -> Callable:
-    """Start app handler"""
-
-    async def start_app() -> None:
-        connect_to_db(app, create_session_local())
-
-    return start_app
-
-
-def create_stop_app_handler(app: FastAPI) -> Callable:
-    """Stop app handler"""
-
-    async def stop_app() -> None:
-        close_db_connection(app)
-
-    return stop_app
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    """Connect to DB on startup and close the connection on shutdown"""
+    connect_to_db(app, create_session_local())
+    yield
+    close_db_connection(app)

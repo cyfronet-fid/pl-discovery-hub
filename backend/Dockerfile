@@ -1,4 +1,6 @@
-FROM python:3.10
+FROM python:3.14.3
+
+COPY --from=ghcr.io/astral-sh/uv:0.13.10 /uv /uvx /bin/
 
 WORKDIR /app
 
@@ -18,10 +20,13 @@ RUN apt-get update \
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
-COPY Pipfile Pipfile.lock /app/
-
-RUN pip install --upgrade pip pipenv
-RUN pipenv install --ignore-pipfile --system
+# Install locked dependencies into /app/.venv (no dev group)
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_DOWNLOADS=never
+COPY pyproject.toml uv.lock .python-version /app/
+RUN uv sync --locked --no-dev --no-install-project
+ENV PATH="/app/.venv/bin:$PATH"
 
 RUN useradd --create-home --uid 1000 app
 

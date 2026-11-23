@@ -7,7 +7,6 @@ import pytest
 import stomp
 from fastapi import FastAPI
 from httpx import AsyncClient, Response
-from pytest_lazyfixture import lazy_fixture
 from starlette.status import HTTP_303_SEE_OTHER
 from stomp.utils import Frame
 
@@ -96,7 +95,14 @@ async def test_redirects_does_not_set_cookie_for_authorized_user(
     assert res.headers.get("set-cookie", {}) == {}
 
 
-@pytest.mark.parametrize("client_", (lazy_fixture(("client", "auth_client"))))
+@pytest.fixture(name="client_", params=["client", "auth_client"])
+def fixture_client_(
+    request: pytest.FixtureRequest, client: AsyncClient, auth_client: AsyncClient
+) -> AsyncClient:
+    """Run the test once with an anonymous and once with an authorized client"""
+    return {"client": client, "auth_client": auth_client}[request.param]
+
+
 @pytest.mark.integration
 @pytest.mark.asyncio
 async def test_sends_user_action_after_response(app: FastAPI, client_: AsyncClient):
