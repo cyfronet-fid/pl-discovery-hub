@@ -3,7 +3,11 @@
 
 from fastapi import APIRouter
 
-from app.schemas.configuration_response import ConfigurationResponse
+from app.schemas.configuration_response import (
+    ConfigurationResponse,
+    SentryConfigurationResponse,
+)
+from app.sentry import sentry_context
 from app.settings import settings
 
 router = APIRouter()
@@ -25,4 +29,5 @@ async def config():
         max_items_sort_relevance=settings.MAX_ITEMS_SORT_RELEVANCE,
         show_beta_collections=settings.SHOW_BETA_COLLECTIONS,
         show_knowledge_base=settings.SHOW_KNOWLEDGE_BASE,
+        sentry=SentryConfigurationResponse.from_context(sentry_context),
     )

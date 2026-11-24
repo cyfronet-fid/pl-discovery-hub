@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from httpx import AsyncClient
 from starlette.status import HTTP_200_OK
 
+from app.settings import settings
+
 
 @pytest.mark.asyncio
 async def test_return_backend_config(app: FastAPI, client: AsyncClient) -> None:
@@ -24,4 +26,30 @@ async def test_return_backend_config(app: FastAPI, client: AsyncClient) -> None:
         "max_items_sort_relevance": 250,
         "show_beta_collections": False,
         "show_knowledge_base": True,
+        "sentry": None,
+    }
+
+
+@pytest.mark.asyncio
+async def test_return_sentry_config_when_sentry_is_on(
+    app: FastAPI, client: AsyncClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(settings, "SENTRY_DSN", "https://key@sentry.test/1")
+    monkeypatch.setattr(settings, "SENTRY_ENVIRONMENT", "staging")
+    monkeypatch.setattr(settings, "SENTRY_RELEASE", "abc123")
+    monkeypatch.setattr(settings, "SENTRY_VARIANT", "dh")
+    monkeypatch.setattr(settings, "UI_BASE_URL", "https://search.test/")
+
+    response = await client.get(app.url_path_for("web:configuration"))
+
+    assert response.status_code == HTTP_200_OK
+    assert response.json()["sentry"] == {
+        "dsn": "https://key@sentry.test/1",
+        "environment": "staging",
+        "release": "abc123",
+        "tags": {
+            "variant": "dh",
+            "instance": "search.test",
+            "component": "ui",
+        },
     }
