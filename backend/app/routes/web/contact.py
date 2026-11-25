@@ -1,6 +1,5 @@
 """Contact endpoint"""
 
-import logging
 import smtplib
 
 from fastapi import APIRouter, HTTPException
@@ -11,7 +10,6 @@ from app.settings import settings
 
 router = APIRouter()
 
-logging.basicConfig(level=logging.INFO)
 smtplib.SMTP.debuglevel = 0
 
 
