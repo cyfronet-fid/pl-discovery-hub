@@ -5,13 +5,33 @@ import logging
 from typing import Annotated, Literal, Optional
 from urllib.parse import urljoin, urlparse
 
-from pydantic import BeforeValidator, HttpUrl, PostgresDsn, TypeAdapter
+from pydantic import (
+    BeforeValidator,
+    HttpUrl,
+    PostgresDsn,
+    TypeAdapter,
+    field_validator,
+    model_validator,
+)
+from pydantic_core import PydanticUseDefault
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # In pydantic v2 http annotations are not strings themselves which may cause code to crash.
 # Therefore, let's annotate it as str and validate http "manually"
 Url = Annotated[
     str, BeforeValidator(lambda value: str(TypeAdapter(HttpUrl).validate_python(value)))
+]
+
+
+def _absolute_url_with_trailing_slash(value: str) -> str:
+    url = str(TypeAdapter(HttpUrl).validate_python(value))
+    return url if url.endswith("/") else url + "/"
+
+
+# An absolute http(s) URL that always ends with "/", so that relative paths
+# can be appended to it
+UrlWithTrailingSlash = Annotated[
+    str, BeforeValidator(_absolute_url_with_trailing_slash)
 ]
 EnvironmentType = Literal["dev", "test", "production"]
 
@@ -85,6 +105,11 @@ class GlobalSettings(BaseSettings):
     )
     HELPDESK_TARGET_ID: int = 38
 
+    # - Matomo (browser-side tracking only, the backend never calls Matomo)
+    MATOMO_ENABLED: bool = False
+    MATOMO_URL: Optional[UrlWithTrailingSlash] = None
+    MATOMO_SITE_ID: Optional[int] = None
+
     # - Other
     RELATED_SERVICES_ENDPOINT: Url = (
         "https://integration.providers.sandbox.eosc-beyond.eu/"
@@ -116,6 +141,30 @@ class GlobalSettings(BaseSettings):
 
     # user roles token
     PL_MARKETPLACE_USER_ROLES_TOKEN: str = "CHANGE_ME"
+
+    @field_validator("MATOMO_ENABLED", "MATOMO_URL", "MATOMO_SITE_ID", mode="before")
+    @classmethod
+    def _empty_matomo_setting_is_not_set(cls, value):
+        # Deployment templates may pass a variable that isn't set as "",
+        # which must not stop the backend, so "" means the default
+        if value == "":
+            raise PydanticUseDefault()
+        return value
+
+    @model_validator(mode="after")
+    def _require_matomo_target_when_enabled(self) -> "GlobalSettings":
+        if self.MATOMO_ENABLED:
+            missing = [
+                name
+                for name in ("MATOMO_URL", "MATOMO_SITE_ID")
+                if getattr(self, name) is None
+            ]
+            if missing:
+                raise ValueError(
+                    "MATOMO_ENABLED is true, but these are not set: "
+                    f"{', '.join(missing)}. Set them, or set MATOMO_ENABLED=false."
+                )
+        return self
 
 
 class DevSettings(GlobalSettings):

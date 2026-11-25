@@ -43,6 +43,7 @@ export class ResultComponent implements OnInit {
   scope = DEFAULT_SCOPE;
   isDoiCollection = false;
   @Input() id!: string;
+  @Input() clickThroughName = '';
   @Input() date?: string;
   @Input() pid?: string = '';
   @Input() urls: string[] = [];

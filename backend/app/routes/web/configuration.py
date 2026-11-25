@@ -29,5 +29,7 @@ async def config():
         max_items_sort_relevance=settings.MAX_ITEMS_SORT_RELEVANCE,
         show_beta_collections=settings.SHOW_BETA_COLLECTIONS,
         show_knowledge_base=settings.SHOW_KNOWLEDGE_BASE,
+        matomo_url=settings.MATOMO_URL if settings.MATOMO_ENABLED else None,
+        matomo_site_id=settings.MATOMO_SITE_ID if settings.MATOMO_ENABLED else None,
         sentry=SentryConfigurationResponse.from_context(sentry_context),
     )

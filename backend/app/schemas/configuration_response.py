@@ -47,4 +47,7 @@ class ConfigurationResponse(BaseModel):
     max_items_sort_relevance: int
     show_beta_collections: bool
     show_knowledge_base: bool
+    # Both are None unless Matomo is enabled
+    matomo_url: Optional[Url] = None
+    matomo_site_id: Optional[int] = None
     sentry: Optional[SentryConfigurationResponse] = None

@@ -6,7 +6,12 @@ import { attachHighlightsToTxt, stripHighlightedFromHtml } from '../utils';
 @Component({
   selector: 'ess-url-title',
   template: `<h6>
-    <a *ngIf="url; else onlyTitleRef" [attr.href]="url">
+    <a
+      *ngIf="url; else onlyTitleRef"
+      [attr.href]="url"
+      [attr.data-click-through-type]="clickThroughType"
+      [attr.data-click-through-name]="clickThroughName || null"
+    >
       <b [innerHTML]="highlightedTitle"></b>
     </a>
     <ng-template #onlyTitleRef
@@ -33,6 +38,14 @@ export class UrlTitleComponent implements OnChanges {
 
   @Input()
   highlight: string[] = [];
+
+  // For a link straight to a result: the result's type and click-through
+  // name, read by MatomoService. Links through /navigate carry them already.
+  @Input()
+  clickThroughType: string | null = null;
+
+  @Input()
+  clickThroughName = '';
 
   constructor(public redirectService: RedirectService) {}
 
